@@ -30,7 +30,7 @@ class Lesson extends Model implements HasMedia
         'slug',
         'position',
         'course_id',
-        'shor_text',
+        'short_text',
         'full_text',
         'published',
         'created_at',

@@ -48,6 +48,11 @@ class Course extends Model implements HasMedia
         return $this->hasMany(Lesson::class, 'course_id', 'id')->orderBy('position');
     }
 
+     public function publishedLessons()
+    {
+        return $this->hasMany(Lesson::class, 'course_id', 'id')->orderBy('position')->where('published', 1);
+    }
+
     public function tests()
     {
         return $this->hasMany(Test::class, 'course_id', 'id');
