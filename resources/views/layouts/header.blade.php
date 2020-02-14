@@ -36,12 +36,20 @@
 					</div>
 					<div class="col-xl-3 col-lg-3 d-none d-lg-block">
 						<div class="log_chat_area d-flex align-items-center">
-							<a href="#test-form" class="login popup-with-form">
-								<i class="flaticon-user"></i>
-								<span>log in</span>
-							</a>
-							<div class="live_chat_btn">
-								<a class="boxed_btn_orange" href="#">
+							@if (Auth::check())
+								<a href="#" class="login popup-with-form">
+									<i class="flaticon-user"></i>
+									<span>Logout</span>
+								</a>
+							@else
+								<div class="live_chat_btn">
+									<a href="/user/login" class="boxed_btn_orange">
+										<span>Login</span>
+									</a>
+								</div>
+							@endif
+							<div class="live_chat_btn" style="padding-left: 20px">
+								<a class="boxed_btn" href="#">
 									<i class="fa fa-phone"></i>
 									<span>+10 378 467 3672</span>
 								</a>

@@ -14,10 +14,14 @@ Route::get('/home', function () {
 });
 
 // Registration routes
-// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('auth.register');
-// Route::post('register', 'Auth\RegisterController@register')->name('auth.register');
+Route::get('user/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('user/register', 'Auth\RegisterController@register')->name('register');
+Route::get('user/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('user/login', 'Auth\LoginController@login')->name('login');
 
-Auth::routes(['register' => true]);
+
+
+Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'DashboardController@index')->name('home');

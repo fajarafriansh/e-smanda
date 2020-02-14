@@ -27,7 +27,7 @@
 				<li><a href="#"> <i class="ti-linkedin"></i> </a></li>
 			</ul>
 		</div>
-		<a href="{{-- {{ route('auth.register') }} --}}" class="boxed_btn">Take Course</a>
+		<a href="{{ route('register') }}?redirect_url={{ route('courses.show', [$course->slug]) }}" class="boxed_btn">Take Course</a>
 		<div class="feedback_info">
 			<h3>Write your feedback</h3>
 			<p>Your rating</p>
