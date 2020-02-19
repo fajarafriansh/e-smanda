@@ -13,15 +13,19 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
-// Registration routes
-Route::get('user/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('user/register', 'Auth\RegisterController@register')->name('register');
-Route::get('user/login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('user/login', 'Auth\LoginController@login')->name('login');
+// Registration & Login routes
+Route::match(['get', 'post'], '/student/register', 'UserController@register');
+Route::match(['get', 'post'], '/student/login', 'UserController@login');
+Route::match(['get', 'post'], '/student/check-email', 'UserController@checkEmail');
+Route::get('/student/logout', 'UserController@logout');
 
+Route::group(['middleware' => ['student']], function() {
+    Route::match(['get', 'post'], '/student/courses', 'CoursesController@account');
+    Route::redirect('/student', '/student/courses');
+    Route::match(['get', 'post'], '/student/take-course', 'CoursesController@takeCourse');
+});
 
-
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'DashboardController@index')->name('home');

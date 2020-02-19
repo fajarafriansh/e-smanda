@@ -27,7 +27,18 @@
 				<li><a href="#"> <i class="ti-linkedin"></i> </a></li>
 			</ul>
 		</div>
-		<a href="{{ route('register') }}?redirect_url={{ route('courses.show', [$course->slug]) }}" class="boxed_btn">Take Course</a>
+		{{-- <a href="{{ route('register') }}?redirect_url={{ route('courses.show', [$course->slug]) }}" class="boxed_btn">Take Course</a> --}}
+		@if (empty(Auth::check()))
+			<a href="{{ url('student/login') }}{{-- {{ route('register') }}?redirect_url={{ route('courses.show', [$course->slug]) }} --}}" class="boxed_btn">Take Course</a>
+		@else
+			<form name="take_course" id="take_course" action="{{ url('/student/take-course') }}" method="POST">@csrf
+				<input type="hidden" name="course_id" value="{{ $course->id }}">
+				<input type="hidden" name="course_name" value="{{ $course->title }}">
+				<input type="hidden" name="course_slug" value="{{ $course->slug }}">
+				<input type="hidden" name="price" value="{{ $course->price }}">
+				<button type="submit" class="boxed_btn">Take Course</button>
+			</form>
+		@endif
 		<div class="feedback_info">
 			<h3>Write your feedback</h3>
 			<p>Your rating</p>

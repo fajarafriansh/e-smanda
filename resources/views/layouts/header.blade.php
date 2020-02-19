@@ -14,21 +14,16 @@
 						<div class="main-menu  d-none d-lg-block">
 							<nav>
 								<ul id="navigation">
-									<li><a class="active" href="index.html">home</a></li>
-									<li><a href="Courses.html">Courses</a></li>
-									<li><a href="#">pages <i class="ti-angle-down"></i></a>
-										<ul class="submenu">
-										    <li><a href="course_details.html">course details</a></li>
-										    <li><a href="elements.html">elements</a></li>
-										</ul>
-									</li>
-									<li><a href="about.html">About</a></li>
-									<li><a href="#">blog <i class="ti-angle-down"></i></a>
-										<ul class="submenu">
+									<li><a class="active" href="/">home</a></li>
+									<li><a href="{{ url('/courses') }}">Courses</a></li>
+									<li><a href="{{ url('/courses') }}">Materi</a></li>
+									<li><a href="#">blog{{--  <i class="ti-angle-down"></i> --}}</a>
+										{{-- <ul class="submenu">
 										    <li><a href="blog.html">blog</a></li>
 										    <li><a href="single-blog.html">single-blog</a></li>
-										</ul>
+										</ul> --}}
 									</li>
+									<li><a href="about.html">About</a></li>
 									<li><a href="contact.html">Contact</a></li>
 								</ul>
 							</nav>
@@ -36,24 +31,27 @@
 					</div>
 					<div class="col-xl-3 col-lg-3 d-none d-lg-block">
 						<div class="log_chat_area d-flex align-items-center">
-							@if (Auth::check())
-								<a href="#" class="login popup-with-form">
-									<i class="flaticon-user"></i>
-									<span>Logout</span>
-								</a>
-							@else
+							@if (empty(Auth::check()))
 								<div class="live_chat_btn">
-									<a href="/user/login" class="boxed_btn_orange">
+									<a href="{{ url('student/login') }}" class="boxed_btn_orange login">
 										<span>Login</span>
 									</a>
 								</div>
+							@else
+								<a href="{{ url('student/courses') }}" class="login student">
+									<i class="flaticon-user"></i>
+									<span>Your Courses</span>
+								</a>
+								<a href="{{ url('student/logout') }}" class="login">
+									<span>Logout</span>
+								</a>
 							@endif
-							<div class="live_chat_btn" style="padding-left: 20px">
+							{{-- <div class="live_chat_btn" style="padding-left: 20px">
 								<a class="boxed_btn" href="#">
 									<i class="fa fa-phone"></i>
 									<span>+10 378 467 3672</span>
 								</a>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 					<div class="col-12">

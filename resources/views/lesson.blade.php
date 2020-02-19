@@ -6,7 +6,7 @@
 @include('layouts.lesson-banner')
 <!-- bradcam_area_end -->
 
-<!--================Blog Area =================-->
+<!-- lesson detail area start-->
    <section class="blog_area single-post-area section-padding">
       <div class="container">
          <div class="row">
@@ -179,7 +179,7 @@
                   </div>
                </div>
                <div class="comment-form">
-                  <h4>Leave a Reply</h4>
+                  <h4>Ayo Diskusi!</h4>
                   <form class="form-contact comment_form" action="#" id="commentForm">
                      <div class="row">
                         <div class="col-12">
@@ -216,6 +216,6 @@
          </div>
       </div>
    </section>
-   <!--================ Blog Area end =================-->
+   <!-- lesson detail area end -->
 
 @endsection

@@ -6,7 +6,7 @@
 					<h3>{{ $course->title }}</h3>
 					<div class="prise">
 						{{-- <span class="inactive">$89.00</span> --}}
-						<span class="active">${{ $course->price }}</span>
+						{{-- <span class="active">${{ $course->price }}</span> --}}
 					</div>
 					<div class="rating">
 						<i class="flaticon-mark-as-favorite-star"></i>
