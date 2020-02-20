@@ -67,6 +67,8 @@
 	<script src="{{ asset ('js/mail-script.js') }}"></script>
 
 	<script src="{{ asset ('js/main.js') }}"></script>
+	<script src="{{ asset ('js/custom.js') }}"></script>
+	<script src="{{ asset ('js/fuck.js') }}"></script>
 </body>
 
 </html>

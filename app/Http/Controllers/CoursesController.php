@@ -19,13 +19,19 @@ class CoursesController extends Controller
 
     	$student_email = \Auth::user()->email;
 
-    	DB::table('student_courses')->insert( [
-    		'course_id' => $data['course_id'],
-    		'course_name' => $data['course_name'],
-    		'course_slug' => $data['course_slug'],
-    		'price' => $data['price'],
-    		'student_email' => $student_email,
-    	]);
+    	$count_course = DB::table('student_courses')->where(['course_id'=>$data['course_id'], 'student_email'=>$student_email])->count();
+
+    	if ($count_course > 0) {
+    		return redirect()->back()->with('error_message', 'Kursus ini sudah kamu ambil.');
+    	} else {
+	    	DB::table('student_courses')->insert( [
+	    		'course_id' => $data['course_id'],
+	    		'course_name' => $data['course_name'],
+	    		'course_slug' => $data['course_slug'],
+	    		'price' => $data['price'],
+	    		'student_email' => $student_email,
+	    	]);
+	    }
 
     	return redirect('/student/courses');
     }
