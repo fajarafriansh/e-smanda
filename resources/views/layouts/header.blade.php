@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-3 d-none d-lg-block">
-						<div class="log_chat_area d-flex align-items-center">
+						<div class="log_chat_area d-flex align-items-center student_area">
 							@if (empty(Auth::check()))
 								<div class="live_chat_btn">
 									<a href="{{ url('student/login') }}" class="boxed_btn_orange login">
@@ -42,7 +42,7 @@
 									<i class="flaticon-user"></i>
 									<span>Your Courses</span>
 								</a>
-								<a href="{{ url('student/logout') }}" class="login">
+								<a href="{{ url('student/logout') }}" class="login student">
 									<span>Logout</span>
 								</a>
 							@endif

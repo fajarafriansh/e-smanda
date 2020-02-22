@@ -15,7 +15,7 @@ class UserController extends Controller
     		// echo "<pre>"; print_r($data); die;
     		$users_count = User::where('email', $data['email'])->count();
     		if ($users_count > 0) {
-    			return redirect()->back()->with('error_message', 'Email already exists!');
+    			return redirect()->back()->with('error_message', 'Email sudah digunakan.');
     		} else {
     			$user = new User;
     			$user->name = $data['name'];
@@ -50,7 +50,7 @@ class UserController extends Controller
     			Session::put('student_session', $data['email']);
 				return redirect('/student/courses');
 			} else {
-				return redirect()->back()->with('error_message', 'Invalid email or password.');
+				return redirect()->back()->with('error_message', 'Email atau password salah.');
 			}
     	}
     	return view('user.login');

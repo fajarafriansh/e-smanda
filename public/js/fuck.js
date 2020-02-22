@@ -22,7 +22,7 @@
 		$('html body').css('overflow', 'auto');
 	}
 	// hidePopup();
-	setTimeout(showPopup,2000);
+	// setTimeout(showPopup,2000);
 
 	$('#popup_close').click(function() {
 		hidePopup();

@@ -1,23 +1,6 @@
-@extends('layouts.index')
+@extends('layouts.home-index')
 
 @section('content')
-
-@if (Session::has('error_message'))
-	{{-- <div id="errorpu">
-		<div class="mfp-bg mfp-ready"></div>
-		<div class="mfp-wrap mfp-close-btn-in mfp-auto-cursor mfp-ready" tabindex="-1" style="overflow: hidden auto;"><div class="mfp-container mfp-inline-holder"><div class="mfp-content"><div id="student-login" name="student-login" class="white-popup-block"> --}}
-			<div id="error_popup">
-			    <div class="error_popup_box ">
-			        <div class="popup_inner">
-			            <h3 class="text-center">{!! session('error_message') !!}</h3>
-			            <button id="popup_close" class="boxed_btn_orange">OK</button>
-			        </div>
-			    </div>
-
-			</div>{{-- </div></div></div>
-		</div>
-	</div> --}}
-@endif
 
 <!-- bradcam_area_start -->
 @include('layouts.course-banner')

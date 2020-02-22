@@ -72,71 +72,75 @@ table.dataTable thead .sorting_desc {
 }
 
 /* My custom CSS */
-.alert_error {
-    background: #ffdddd;
-    border: #da3333 solid 1px;
-}
-
-label {
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-.popup_box input.error {
-    margin-bottom: 5px;
-}
-
-@media (max-width: 760px) {
-    .mfp-container:before {
-        height: 30%;
-    }
-}
-
-.passtrengthMeter::after {
-    margin-bottom: 20px;
-}
-
-.passtrengthMeter .showPassword {
-    top: calc(50% - 20px);
-}
-
-.passtrengthMeter .showPassword {
-    top: calc(50% - 20px);
-}
-
-.header-area .main-header-area .login {
-    color: #fff;
-    font-family: "Poppins", sans-serif;
+.header-area .student_area .login.student span {
     font-size: 14px;
 }
 
-#error_popup {
-  width: 100%;
-  height: 100%;
-  background: #0008;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  display: none;
+.alert_error {
+	background: #ffdddd;
+	border: #da3333 solid 1px;
+}
+
+label {
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+.popup_box input.error {
+	margin-bottom: 5px;
+}
+
+@media (max-width: 760px) {
+	.mfp-container:before {
+		height: 30%;
+	}
+}
+
+.passtrengthMeter::after {
+	margin-bottom: 20px;
+}
+
+.passtrengthMeter .showPassword {
+	top: calc(50% - 20px);
+}
+
+.passtrengthMeter .showPassword {
+	top: calc(50% - 20px);
+}
+
+.header-area .main-header-area .login {
+	color: #fff;
+	font-family: "Poppins", sans-serif;
+	font-size: 14px;
+}
+
+/* #error_popup {
+	width: 100%;
+	height: 100%;
+	background: #0008;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	display: none;
 }
 
 body.error_popup {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 @media (max-width: 320px) {
-  .error_popup_box {
-      width: 280px;
-      padding: 30px 20px;
-  }
+	.error_popup_box {
+		width: 280px;
+		padding: 30px 20px;
+	}
 }
 
 @media (min-width: 321px) and (max-width: 767px) {
-  .error_popup_box {
-      width: 320px;
-      padding: 45px 30px;
-  }
+	.error_popup_box {
+		width: 320px;
+		padding: 45px 30px;
+	}
 }
 
 @media (min-width: 768px) {
@@ -169,4 +173,4 @@ button#popup_close {
 	left: 50%;
 	bottom: 40%;
 	transform: translate(-50%, 50%);
-}
+} */

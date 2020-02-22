@@ -8,6 +8,11 @@ use DB;
 
 class CoursesController extends Controller
 {
+    public function showAll() {
+        $courses = Course::where('published', 1)->orderBy('id', 'desc')->get();
+        return view('courses', compact('courses'));
+    }
+
     public function show($course_slug) {
     	$course = Course::where('slug', $course_slug)->with('publishedLessons')->firstOrFail();
     	return view('course', compact('course'));
@@ -22,7 +27,7 @@ class CoursesController extends Controller
     	$count_course = DB::table('student_courses')->where(['course_id'=>$data['course_id'], 'student_email'=>$student_email])->count();
 
     	if ($count_course > 0) {
-    		return redirect()->back()->with('error_message', 'Kursus ini sudah kamu ambil.');
+    		return redirect()->back()->with('warning', 'Kursus ini sudah pernah kamu ambil.');
     	} else {
 	    	DB::table('student_courses')->insert( [
 	    		'course_id' => $data['course_id'],
@@ -33,7 +38,7 @@ class CoursesController extends Controller
 	    	]);
 	    }
 
-    	return redirect('/student/courses');
+    	return redirect()->back()->with('toast_success', 'Kursus berhasil diambil.');
     }
 
     public function account() {

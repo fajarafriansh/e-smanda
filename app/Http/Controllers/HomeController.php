@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 Use App\Course;
 Use App\Http\Requests;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -14,6 +15,6 @@ class HomeController extends Controller
      */
     public function index() {
         $courses = Course::where('published', 1)->orderBy('id', 'desc')->get();
-        return view('index', compact('courses'));
+        return view('home', compact('courses'));
     }
 }

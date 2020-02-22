@@ -39,6 +39,8 @@
 	@include('layouts.footer')
 	<!-- footer -->
 
+	@include('sweetalert::alert')
+
 	<!-- JS here -->
 	<script src="{{ asset ('js/vendor/modernizr-3.5.0.min.js') }}"></script>
 	<script src="{{ asset ('js/vendor/jquery-1.12.4.min.js') }}"></script>
@@ -67,8 +69,8 @@
 	<script src="{{ asset ('js/mail-script.js') }}"></script>
 
 	<script src="{{ asset ('js/main.js') }}"></script>
-	<script src="{{ asset ('js/custom.js') }}"></script>
-	<script src="{{ asset ('js/fuck.js') }}"></script>
+	{{-- <script src="{{ asset ('js/custom.js') }}"></script> --}}
+	{{-- <script src="{{ asset ('js/fuck.js') }}"></script> --}}
 </body>
 
 </html>
