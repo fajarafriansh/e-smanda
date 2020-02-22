@@ -14,9 +14,9 @@
 						<div class="main-menu  d-none d-lg-block">
 							<nav>
 								<ul id="navigation">
-									<li><a class="active" href="/">home</a></li>
-									<li><a href="{{ url('/courses') }}">Courses</a></li>
-									<li><a href="{{ url('/courses') }}">Materi</a></li>
+									<li><a class="active" href="/">Home</a></li>
+									<li><a href="{{ url('/courses') }}">Kursus</a></li>
+									<li><a href="{{ url('/documents') }}">Materi</a></li>
 									<li><a href="#">blog{{--  <i class="ti-angle-down"></i> --}}</a>
 										{{-- <ul class="submenu">
 										    <li><a href="blog.html">blog</a></li>

@@ -12,7 +12,7 @@
 						<h3>Selamat datang <br>
 						di e-Learning <br>
 						Smanda</h3>
-						<a href="/courses" class="boxed_btn">Browse Our Courses</a>
+						<a href="/courses" class="boxed_btn">Telusuri Semua Kursus</a>
 					</div>
 				</div>
 			</div>
