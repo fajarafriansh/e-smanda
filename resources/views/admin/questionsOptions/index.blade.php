@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin-index')
 @section('content')
 @can('questions_option_create')
     <div style="margin-bottom: 10px;" class="row">

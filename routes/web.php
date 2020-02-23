@@ -8,7 +8,7 @@ Route::get('lesson/{slug}', ['uses' => 'LessonsController@show', 'as' => 'lesson
 Route::redirect('/admin', '/login');
 Route::get('/home', function () {
     if (session('status')) {
-        return redirect()->route('admin.home')->with('toast_success', session('status'));
+        return redirect()->route('admin.home')->with('status', session('status'));
     }
 
     return redirect()->route('admin.home');

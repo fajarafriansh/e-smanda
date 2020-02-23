@@ -25,7 +25,7 @@ class UserController extends Controller
     			$user->roles()->sync([2]);
     			if (Auth::attempt(['email'=>$data['email'], 'password'=>$data['password']])) {
 	    			Session::put('student_session', $data['email']);
-    				return redirect('/student/courses');
+    				return redirect('/student/courses')->with('toast_success', 'Registrasi berhasil.');
     			}
     		}
     	}
@@ -48,7 +48,7 @@ class UserController extends Controller
     		// echo "<pre>"; print_r($data); die;
     		if (Auth::attempt(['email'=>$data['email'], 'password'=>$data['password']])) {
     			Session::put('student_session', $data['email']);
-				return redirect('/student/courses');
+				return redirect('/student/courses')->with('toast_success', 'Kamu berhasil login.');
 			} else {
 				return redirect()->back()->with('error_message', 'Email atau password salah.');
 			}
@@ -59,6 +59,6 @@ class UserController extends Controller
     public function logout() {
     	Auth::logout();
     	Session::forget('student_session');
-    	return redirect('/');
+    	return redirect('/')->with('toast_success', 'Kamu telah keluar, login kembali untuk megakses kursus.');;
     }
 }
