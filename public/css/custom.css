@@ -114,6 +114,10 @@ label {
 	font-size: 14px;
 }
 
+.boxed_btn.danger {
+    background: #f44a40;
+}
+
 /* #error_popup {
 	width: 100%;
 	height: 100%;

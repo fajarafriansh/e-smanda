@@ -15,7 +15,11 @@ class CoursesController extends Controller
 
     public function show($course_slug) {
     	$course = Course::where('slug', $course_slug)->with('publishedLessons')->firstOrFail();
-    	return view('course', compact('course'));
+
+        $student_email = \Auth::user()->email;
+        $count_course = DB::table('student_courses')->where(['course_id'=>$course->id, 'student_email'=>$student_email])->count();
+
+    	return view('course', compact('course', 'count_course'));
     }
 
     public function takeCourse(Request $request) {
@@ -46,5 +50,9 @@ class CoursesController extends Controller
     	$student_courses = DB::table('student_courses')->where(['student_email'=>$student_email])->get();
     	// echo "<pre>"; print_r($student_courses); die;
     	return view('user.account')->with(compact('student_courses'));
+    }
+
+    public function deleteCourse() {
+
     }
 }

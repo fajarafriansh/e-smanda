@@ -1,7 +1,9 @@
 <div class="col-lg-4">
 	<div class="blog_right_sidebar">
 		<aside class="single_sidebar_widget post_category_widget">
-			<h4 class="widget_title">{{ $lesson->course->title }}</h4>
+			<a href="{{ route('courses.show', [$lesson->course->slug]) }}">
+				<h4 class="widget_title">{{ $lesson->course->title }}</h4>
+			</a>
 			<ul class="list cat-list">
 				@foreach ($lesson->course->publishedLessons as $list_lesson)
 					<li>

@@ -5,7 +5,7 @@
 				<div class="row align-items-center no-gutters">
 					<div class="col-xl-2 col-lg-2">
 						<div class="logo-img">
-							<a href="/">
+							<a href="{{ route('home') }}">
 								<img src="{{ asset ('img/logo.png') }}" alt="">
 							</a>
 						</div>
@@ -14,7 +14,7 @@
 						<div class="main-menu  d-none d-lg-block">
 							<nav>
 								<ul id="navigation">
-									<li><a class="active" href="/">Home</a></li>
+									<li><a class="active" href="{{ route('home') }}">Home</a></li>
 									<li><a href="{{ url('/courses') }}">Kursus</a></li>
 									<li><a href="{{ url('/documents') }}">Materi</a></li>
 									<li><a href="#">blog{{--  <i class="ti-angle-down"></i> --}}</a>

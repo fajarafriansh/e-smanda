@@ -36,7 +36,7 @@
         <div class="popup_box ">
             <div class="popup_inner">
                 <div class="logo text-center">
-                    <a href="../">
+                    <a href="{{ route('home') }}">
                         <img src="{{ asset('img/form-logo.png') }}" alt="">
                     </a>
                 </div>
@@ -81,7 +81,8 @@
                         <div class="slider_info">
                             <h3>Learn your <br>
                                 Favorite Course <br>
-                                From Online</h3>
+                                From Online
+                            </h3>
                             <a href="#" class="boxed_btn">Browse Our Courses</a>
                         </div>
                     </div>

@@ -35,7 +35,7 @@
         <div class="popup_box ">
             <div class="popup_inner">
                 <div class="logo text-center">
-                    <a href="../">
+                    <a href="{{ route('home') }}">
                         <img src="{{ asset ('img/form-logo.png') }}" alt="">
                     </a>
                 </div>

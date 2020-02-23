@@ -1,10 +1,12 @@
 <?php
 
-Route::get('/', 'HomeController@index');
+// Front routes
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/courses', 'CoursesController@showAll');
 Route::get('course/{slug}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
 Route::get('lesson/{slug}', ['uses' => 'LessonsController@show', 'as' => 'lessons.show']);
 
+// Admin routes
 Route::redirect('/admin', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -20,14 +22,17 @@ Route::match(['get', 'post'], '/student/login', 'UserController@login');
 Route::match(['get', 'post'], '/student/check-email', 'UserController@checkEmail');
 Route::get('/student/logout', 'UserController@logout');
 
+// Student after login
 Route::group(['middleware' => ['student']], function() {
     Route::match(['get', 'post'], '/student/courses', 'CoursesController@account');
     Route::redirect('/student', '/student/courses');
     Route::match(['get', 'post'], '/student/take-course', 'CoursesController@takeCourse');
+    Route::delete('student/delete-course', 'CoursesController@deleteCourse');
 });
 
 Auth::routes(['register' => false]);
 
+// Admin after login
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'DashboardController@index')->name('home');
     // Permissions
