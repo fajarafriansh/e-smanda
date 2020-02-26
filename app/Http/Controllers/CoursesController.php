@@ -52,7 +52,9 @@ class CoursesController extends Controller
     	return view('user.account')->with(compact('student_courses'));
     }
 
-    public function deleteCourse() {
-
+    public function deleteCourse($id = null) {
+        $student_email = \Auth::user()->email;
+        DB::table('student_courses')->where(['course_id'=>$id, 'student_email'=>$student_email])->delete();
+        return redirect()->back()->with('toast_success', 'Kursus telah dibatalkan.');
     }
 }

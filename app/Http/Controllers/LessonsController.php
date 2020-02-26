@@ -27,4 +27,9 @@ class LessonsController extends Controller
 			return view('errors.404');
 		}
     }
+
+    public function test($lesson_slug) {
+    	$lesson = Lesson::where('slug', $lesson_slug)->firstOrFail();
+    	return view('test', compact('lesson'));
+    }
 }

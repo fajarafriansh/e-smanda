@@ -32,14 +32,14 @@
 			<a href="{{ url('student/login') }}{{-- {{ route('register') }}?redirect_url={{ route('courses.show', [$course->slug]) }} --}}" class="boxed_btn">Ambil Kursus</a>
 		@else
 			@if ($count_course > 0)
-				<a href="{{ url('/student/delete-course') }}" class="boxed_btn danger">Batalkan Kursus</a>
+				<a href="{{ route('untake-course', [$course->slug]) }}" class="boxed_btn danger">Batalkan Kursus</a>
 			@else
-				<form name="take_course" id="take_course" action="{{ url('/student/take-course') }}" method="POST">@csrf
+				<form name="take_course" id="take_course" action="{{ route('take-course') }}" method="POST">@csrf
 					<input type="hidden" name="course_id" value="{{ $course->id }}">
 					<input type="hidden" name="course_name" value="{{ $course->title }}">
 					<input type="hidden" name="course_slug" value="{{ $course->slug }}">
 					<input type="hidden" name="price" value="{{ $course->price }}">
-					<button type="submit" class="boxed_btn">Take Course</button>
+					<button type="submit" class="boxed_btn">Ambil Kursus</button>
 				</form>
 			@endif
 		@endif

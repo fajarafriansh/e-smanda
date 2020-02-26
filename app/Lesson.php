@@ -49,9 +49,14 @@ class Lesson extends Model implements HasMedia
         return $this->hasMany(Test::class, 'lesson_id', 'id');
     }
 
+    public function test()
+    {
+        return $this->hasOne(Test::class);
+    }
+
     public function course()
     {
-        return $this->belongsTo(Course::class, 'course_id');
+        return $this->belongsTo(Course::class, 'course_id')->withTrashed();
     }
 
     public function getLessonImageAttribute()

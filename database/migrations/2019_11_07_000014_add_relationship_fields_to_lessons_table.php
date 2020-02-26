@@ -14,4 +14,9 @@ class AddRelationshipFieldsToLessonsTable extends Migration
             $table->foreign('course_id', 'course_fk_570918')->references('id')->on('courses');
         });
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('lessons');
+    }
 }

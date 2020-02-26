@@ -24,6 +24,22 @@
 
 						<p>{{ $lesson->full_text }}</p>
 
+						@if ($lesson->test)
+							{{-- <form action="" method="POST" accept-charset="utf-8">
+								<h3>Test: {{ $lesson->test->title }}</h3>
+								@foreach ($lesson->test->questions as $question)
+									{{ $loop->iteration }}. {{ $question->question }}
+									<br>
+									@foreach ($question->questionsOptions as $option)
+										<input type="radio" name="question_{{ $question->id }}"> {{ $option->option_text}}<br>
+									@endforeach
+									<br>
+								@endforeach
+								<input type="submit" name="" value="Submit Jawaban">
+							</form> --}}
+							<a href="{{ route('lessons.test', [$lesson->slug]) }}" class="boxed_btn">Jawab Soal Latihan</a>
+						@endif
+
 					</div>
 				</div>
 				<div class="navigation-top">
@@ -44,17 +60,17 @@
 							<div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
 								@if ($previous_lesson)
 									<div class="thumb">
-										<a href="#">
+										<a href="{{ route('lessons.show', [$previous_lesson->slug]) }}">
 											<img class="img-fluid" src="{{ asset ('img/post/preview.png') }}" alt="">
 										</a>
 									</div>
 									<div class="arrow">
-										<a href="#">
+										<a href="{{ route('lessons.show', [$previous_lesson->slug]) }}">
 											<span class="lnr text-white ti-arrow-left"></span>
 										</a>
 									</div>
 									<div class="detials">
-										<p>Prev Lesson</p>
+										<p>Pelajaran Sebelumnya</p>
 										<a href="{{ route('lessons.show', [$previous_lesson->slug]) }}">
 											<h4>{{ $previous_lesson->title }}</h4>
 										</a>
@@ -64,18 +80,18 @@
 							<div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
 								@if ($next_lesson)
 									<div class="detials">
-										<p>Next Lesson</p>
+										<p>Pelajaran Selanjutnya</p>
 										<a href="{{ route('lessons.show', [$next_lesson->slug]) }}">
 											<h4>{{ $next_lesson->title }}</h4>
 										</a>
 									</div>
 									<div class="arrow">
-										<a href="#">
+										<a href="{{ route('lessons.show', [$next_lesson->slug]) }}">
 											<span class="lnr text-white ti-arrow-right"></span>
 										</a>
 									</div>
 									<div class="thumb">
-										<a href="#">
+										<a href="{{ route('lessons.show', [$next_lesson->slug]) }}">
 											<img class="img-fluid" src="{{ asset ('img/post/next.png') }}" alt="">
 										</a>
 									</div>

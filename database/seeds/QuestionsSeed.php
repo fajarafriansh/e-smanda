@@ -1,6 +1,6 @@
 <?php
 
-use App\Questions;
+use App\Question;
 use App\QuestionsOption;
 use Illuminate\Database\Seeder;
 
@@ -13,8 +13,9 @@ class QuestionsSeed extends Seeder
      */
     public function run()
     {
-        factory(Questions::class, 50)->create()->each(function($question) {
-			$question->options()->saveMany(factory(QuestionsOption::class, 10)->create());
+        factory(Question::class, 50)->create()->each(function($question) {
+			$question->questionsOptions()->saveMany(factory(QuestionsOption::class, 4)->create());
+			$question->tests()->attach(rand(1,50));
 		});
     }
 }

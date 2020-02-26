@@ -118,6 +118,102 @@ label {
     background: #f44a40;
 }
 
+.boxed_btn.danger:hover {
+    background: transparent;
+    color: #f44a40;
+    border: 1px solid #f44a40;
+    color: #f44a40 !important;
+}
+
+a.boxed_btn {
+    font-family: "Poppins", sans-serif;
+}
+
+.courses_details_info.test #accordion .card h5 {
+    font-size: 22px;
+    font-weight: 400;
+    color: #1F1F1F;
+}
+
+.courses_details_info.test #accordion .card h5 span {
+    color: #00D363;
+    margin-right: 15px;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    border-radius: 50%;
+    border: solid 2px;
+    text-align: center;
+}
+
+.courses_details_info .single_courses p.second_title {
+	margin-bottom: 30px;
+}
+
+.courses_details_info.test #accordion .card .card-body {
+    padding: 0 0 40px 60px;
+}
+
+.option-container {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 300;
+    color: #888888;
+    font-family: "Crimson Text", serif;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.option-container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 23px;
+	width: 23px;
+	background-color: #dadada;
+	border-radius: 50%;
+}
+
+.option-container:hover input ~ .checkmark {
+	background-color: #4cd3e3;
+}
+
+.option-container input:checked ~ .checkmark {
+	background-color: #4cd3e3;
+}
+
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+.option-container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+.option-container .checkmark:after {
+	top: 8px;
+	left: 8px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+
 /* #error_popup {
 	width: 100%;
 	height: 100%;

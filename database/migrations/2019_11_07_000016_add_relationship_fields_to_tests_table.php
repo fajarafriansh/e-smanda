@@ -18,4 +18,9 @@ class AddRelationshipFieldsToTestsTable extends Migration
             $table->foreign('lesson_id', 'lesson_fk_571007')->references('id')->on('lessons');
         });
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('tests');
+    }
 }

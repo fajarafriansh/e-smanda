@@ -20,4 +20,9 @@ class CreateQuestionsOptionsTable extends Migration
             $table->softDeletes();
         });
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('questions_options');
+    }
 }

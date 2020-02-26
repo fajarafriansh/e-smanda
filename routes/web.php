@@ -26,8 +26,10 @@ Route::get('/student/logout', 'UserController@logout');
 Route::group(['middleware' => ['student']], function() {
     Route::match(['get', 'post'], '/student/courses', 'CoursesController@account');
     Route::redirect('/student', '/student/courses');
-    Route::match(['get', 'post'], '/student/take-course', 'CoursesController@takeCourse');
-    Route::delete('student/delete-course', 'CoursesController@deleteCourse');
+    Route::match(['get', 'post'], '/student/take-course', 'CoursesController@takeCourse')->name('take-course');
+    Route::get('student/{slug}/delete', 'CoursesController@deleteCourse')->name('untake-course');
+
+    Route::get('lesson/{slug}/test', ['uses' => 'LessonsController@test', 'as' => 'lessons.test']);
 });
 
 Auth::routes(['register' => false]);

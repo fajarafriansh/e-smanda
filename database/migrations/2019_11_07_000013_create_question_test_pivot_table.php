@@ -18,4 +18,9 @@ class CreateQuestionTestPivotTable extends Migration
             $table->foreign('question_id', 'question_id_fk_571010')->references('id')->on('questions')->onDelete('cascade');
         });
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('question_test');
+    }
 }

@@ -8,6 +8,7 @@ class CreateMediaTable extends Migration
 {
     public function up()
     {
+        Schema::dropIfExists('media');
         Schema::create('media', function (Blueprint $table) {
             $table->increments('id');
             $table->morphs('model');
@@ -23,5 +24,10 @@ class CreateMediaTable extends Migration
             $table->unsignedInteger('order_column')->nullable();
             $table->nullableTimestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('media');
     }
 }

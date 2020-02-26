@@ -8,6 +8,7 @@ class CreateCoursesTable extends Migration
 {
     public function up()
     {
+        Schema::dropIfExists('courses');
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
 
@@ -27,5 +28,10 @@ class CreateCoursesTable extends Migration
 
             $table->softDeletes();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('courses');
     }
 }

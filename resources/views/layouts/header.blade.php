@@ -34,16 +34,16 @@
 							@if (empty(Auth::check()))
 								<div class="live_chat_btn">
 									<a href="{{ url('student/login') }}" class="boxed_btn_orange login">
-										<span>Login</span>
+										<span>Masuk</span>
 									</a>
 								</div>
 							@else
 								<a href="{{ url('student/courses') }}" class="login student">
 									<i class="flaticon-user"></i>
-									<span>Your Courses</span>
+									<span>Kursus</span>
 								</a>
 								<a href="{{ url('student/logout') }}" class="login student">
-									<span>Logout</span>
+									<span>Keluar</span>
 								</a>
 							@endif
 							{{-- <div class="live_chat_btn" style="padding-left: 20px">

@@ -21,7 +21,6 @@ class CreateStudentCoursesTable extends Migration
             $table->integer('course_user');
             $table->string('price');
             $table->string('student_email');
-            $table->string('session_id');
             $table->timestamps();
         });
     }

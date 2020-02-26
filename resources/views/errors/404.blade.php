@@ -17,6 +17,7 @@
 	{{-- <link rel="stylesheet" href="{{ asset ('css/animate.css' ) }}"> --}}
 	{{-- <link rel="stylesheet" href="{{ asset ('css/slicknav.css' ) }}"> --}}
 	<link rel="stylesheet" href="{{ asset ('css/style.css' ) }}">
+	<link rel="stylesheet" href="{{ asset ('css/custom.css' ) }}">
 
 	<style type="text/css" media="screen">
 		.slider_area .single_slider .slider_info h1 {
@@ -44,8 +45,8 @@
 					<div class="col-xl-6 col-md-6">
 						<div class="slider_info">
 							<h1>404</h1>
-							<h3>Object not found</h3>
-							<a href="{{ route('home') }}" class="boxed_btn">Back to home</a>
+							<h3>Halaman tidak ditemukan</h3>
+							<a href="{{ route('home') }}" class="boxed_btn">Kembali ke Home</a>
 						</div>
 					</div>
 				</div>

@@ -14,4 +14,9 @@ class AddRelationshipFieldsToQuestionsOptionsTable extends Migration
             $table->foreign('question_id', 'question_fk_570992')->references('id')->on('questions');
         });
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('questions_options');
+    }
 }

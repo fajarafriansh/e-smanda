@@ -30,4 +30,9 @@ class CreateLessonsTable extends Migration
             $table->softDeletes();
         });
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('lessons');
+    }
 }

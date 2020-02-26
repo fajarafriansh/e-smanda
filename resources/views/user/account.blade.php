@@ -17,7 +17,7 @@
                     <div class="section_title text-center mb-100">
                         <h3>Kamu Belum Mengambil Kursus</h3>
                         <p>Kamu belum mengambil kursus apapun. Klik tombol di bawah untuk mulai mengambil kursus!<br><br><br></p>
-                        <a href="/courses" class="boxed_btn">Browse Our Courses</a>
+                        <a href="/courses" class="boxed_btn">Telusuri Semua Kursus</a>
                     </div>
                 </div>
             </div>
