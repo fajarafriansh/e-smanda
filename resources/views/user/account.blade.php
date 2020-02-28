@@ -96,7 +96,9 @@
                                                     </a>
                                                 </div>
                                                 <div class="courses_info">
-                                                    <span>Photoshop</span>
+                                                    @foreach ($course->course->teachers as $teacher)
+                                                        <span>{{ $teacher->name }}</span>
+                                                    @endforeach
                                                     <h3><a href="{{ route('courses.show', [$course->course_slug]) }}">{{ $course->course_name }}</a></h3>
                                                     <div class="star_prise d-flex justify-content-between">
                                                         <div class="star">

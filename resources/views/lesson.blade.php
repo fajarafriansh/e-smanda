@@ -22,22 +22,27 @@
 							<li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
 						</ul>
 
-						<p>{{ $lesson->full_text }}</p>
+						<div class=lesson-text-area>
+							<p>{{ $lesson->full_text }}</p>
+						</div>
 
 						@if ($lesson->test)
-							{{-- <form action="" method="POST" accept-charset="utf-8">
-								<h3>Test: {{ $lesson->test->title }}</h3>
-								@foreach ($lesson->test->questions as $question)
-									{{ $loop->iteration }}. {{ $question->question }}
-									<br>
-									@foreach ($question->questionsOptions as $option)
-										<input type="radio" name="question_{{ $question->id }}"> {{ $option->option_text}}<br>
-									@endforeach
-									<br>
-								@endforeach
-								<input type="submit" name="" value="Submit Jawaban">
-							</form> --}}
-							<a href="{{ route('lessons.test', [$lesson->slug]) }}" class="boxed_btn">Jawab Soal Latihan</a>
+							<div class="test-area">
+								<div class="container box_1170 border-top-generic">
+									<h3 class="text-heading">Ujian</h3>
+									@if (!is_null($test_result))
+										<div class="quote-wrapper">
+											<div class="quotes">
+												Kamu sudah mengerjakan Ujian {{ $lesson->test->title }}.
+												Nilai ujian kamu adalah {{ $test_result->test_result }}.
+											</div>
+										</div>
+									@else
+										<p>Selesaikan soal Ujian {{ $lesson->test->title }} dengan klik pada tombol di bawah!</p>
+										<a href="{{ route('lessons.test', [$lesson->slug]) }}" class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn">Kerjakan Soal</a>
+									@endif
+								</div>
+							</div>
 						@endif
 
 					</div>
@@ -101,15 +106,17 @@
 					</div>
 				</div>
 				<div class="blog-author">
-					<div class="media align-items-center">
-						<img src="{{ asset ('img/blog/author.png') }}" alt="">
-						<div class="media-body">
-							<a href="#">
-								<h4>Harvard milan</h4>
-							</a>
-							<p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he our dominion twon Second divided from</p>
+					@foreach ($lesson->course->teachers as $teacher)
+						<div class="media align-items-center">
+							<img src="{{ asset ('storage/avatar/90x90/'. $teacher->detail->avatar) }}" alt="">
+							<div class="media-body">
+								<a href="#">
+                                    <h4>{{ $teacher->name }}</h4>
+								</a>
+								<p>{{ $teacher->detail->bio }}</p>
+							</div>
 						</div>
-					</div>
+                    @endforeach
 				</div>
 				<div class="comments-area">
 					<h4>05 Comments</h4>

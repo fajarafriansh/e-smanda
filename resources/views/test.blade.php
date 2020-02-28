@@ -3,53 +3,58 @@
 @section('content')
 
 <!-- bradcam_area_start -->
-@include('layouts.test-banner')
+<div class="bradcam_area breadcam_bg overlay2">
+	<h3>Ujian: {{ $lesson->test->title }}</h3>
+</div>
 <!-- bradcam_area_end -->
 
 <!-- lesson detail area start-->
 <section class="courses_details_info test">
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-7 col-lg-7">
-				<form action="" method="POST" accept-charset="utf-8">
-					<div class="single_courses">
-						<h3>{{ $lesson->test->title }}</h3>
-						<p class="second_title">Kerjakan soal latihan berikut</p>
-					</div>
-					<div class="outline_courses_info">
-						<div id="accordion">
-							@foreach ($lesson->test->questions as $question)
-								<div class="card">
-									<div class="card-header" id="headingTwo">
-										<h5 class="mb-0">
-											{{-- <i class="flaticon-question"></i>  --}}
-											<span class="number">{{ $loop->iteration }}</span>{{ $question->question }}
-										</h5>
-									</div>
-									<div class="card-body">
-										@foreach ($question->questionsOptions as $option)
-											{{-- <div class="option">
-												<input type="radio" id="option_{{ $option->id }}" name="question_{{ $question->id }}" class="option_input">
-												<label for="option_{{ $option->id }}" class="option_label">{{ $option->option_text}}</label><br>
-											</div> --}}
-											<label class="option-container">
-												{{ $option->option_text}}
-												<input type="radio" name="question_{{ $question->id }}" value="">
-												<span class="checkmark"></span>
-											</label>
-										@endforeach
-									</div>
+			<div class="col-lg-8">
+				<form action="{{ route('lessons.test-result', [$lesson->slug]) }}" method="POST" accept-charset="utf-8">@csrf
+				<div class="single_courses">
+					<h3>Ujian: {{ $lesson->test->title }}</h3>
+					<p class="second_title">Kerjakan soal berikut atau <a href="{{ route('lessons.show', [$lesson->slug]) }}">kembali ke pelajaran</a></p>
+				</div>
+				<div class="outline_courses_info">
+					<div id="accordion">
+						@foreach ($lesson->test->questions as $question)
+							<div class="card">
+								<div class="card-header" id="headingTwo">
+									<h5 class="mb-0">
+										{{-- <i class="flaticon-question"></i>  --}}
+										<span class="number">{{ $loop->iteration }}</span>{{ $question->question }}
+									</h5>
 								</div>
-							@endforeach
-						</div>
+								<div class="card-body">
+									@foreach ($question->questionsOptions as $option)
+										<label class="option-container">
+											{{ $option->option_text}}
+											<input type="radio" name="questions[{{ $question->id }}]" value="{{ $option->id}}">
+											<span class="checkmark"></span>
+										</label>
+									@endforeach
+								</div>
+							</div>
+						@endforeach
 					</div>
-
-							<input type="submit" name="" value="Kirim Jawaban">
-				</form>
+				</div>
 			</div>
 
 			<!-- lesson sidebar area start -->
-			@include('layouts.test-sidebar')
+			<div class="col-lg-4">
+				<div class="blog_right_sidebar">
+					<aside class="single_sidebar_widget post_category_widget">
+						<a href="{{ route('lessons.show', [$lesson->slug]) }}">
+							<h4 class="widget_title">Kembali ke Pelajaran</h4>
+						</a>
+						<input class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit" name="" value="Kirim Jawaban">
+					</aside>
+				</div>
+			</form>
+			</div>
 			<!-- lesson sidebar area end -->
 
 		</div>

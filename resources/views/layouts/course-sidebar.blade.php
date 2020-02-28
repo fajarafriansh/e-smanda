@@ -7,25 +7,23 @@
 			</a>
 		</div>
 		<div class="author_info">
-			<div class="auhor_header">
-				<div class="thumb">
-					<img src="{{ asset ('img/latest_blog/author.png') }}" alt="">
+			@foreach ($course->teachers as $teacher)
+				<div class="auhor_header">
+					<div class="thumb">
+						<img src="{{ asset ('storage/avatar/60x60/'. $teacher->detail->avatar) }}" alt="">
+					</div>
+					<div class="name">
+						<h3>{{ $teacher->name }}</h3>
+						<p>{{ $teacher->detail->role }}</p>
+					</div>
 				</div>
-				<div class="name">
-					<h3>Macau Wilium</h3>
-					<p>UI/UX Designer</p>
-				</div>
-			</div>
-			<p class="text_info">
-				Our set he for firmament morning sixth subdue darkness creeping gathered divide our let
-				god moving. Moving in fourth air night bring upon you’re it beast let you dominion
-				likeness open place day
-			</p>
-			<ul>
-				<li><a href="#"> <i class="fa fa-envelope"></i> </a></li>
-				<li><a href="#"> <i class="fa fa-twitter"></i> </a></li>
-				<li><a href="#"> <i class="ti-linkedin"></i> </a></li>
-			</ul>
+				<p class="text_info">{{ $teacher->detail->bio }}</p>
+				<ul>
+					<li><a href="#"> <i class="fa fa-envelope"></i> </a></li>
+					<li><a href="#"> <i class="fa fa-twitter"></i> </a></li>
+					<li><a href="#"> <i class="ti-linkedin"></i> </a></li>
+				</ul>
+			@endforeach
 		</div>
 		{{-- <a href="{{ route('register') }}?redirect_url={{ route('courses.show', [$course->slug]) }}" class="boxed_btn">Take Course</a> --}}
 		@if (empty(Auth::check()))

@@ -81,10 +81,10 @@ table.dataTable thead .sorting_desc {
 	border: #da3333 solid 1px;
 }
 
-label {
+/* label {
 	color: #fff;
 	margin-bottom: 20px;
-}
+} */
 
 .popup_box input.error {
 	margin-bottom: 5px;
@@ -213,7 +213,18 @@ a.boxed_btn {
 	background: white;
 }
 
+.lesson-text-area {
+	margin-bottom: 30px;
+}
 
+.test-area {
+	background: #fff;
+}
+
+.test-area .border-top-generic {
+    padding: 50px 15px;
+    border-top: 1px solid #eee;
+}
 /* #error_popup {
 	width: 100%;
 	height: 100%;

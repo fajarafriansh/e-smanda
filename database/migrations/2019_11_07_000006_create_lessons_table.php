@@ -19,6 +19,8 @@ class CreateLessonsTable extends Migration
 
             $table->longText('full_text')->nullable();
 
+            $table->string('documents')->nullable();
+
             $table->integer('position');
 
             $table->boolean('free_lesson')->default(0)->nullable();

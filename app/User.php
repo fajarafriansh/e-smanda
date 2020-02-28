@@ -32,6 +32,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar',
         'password',
         'created_at',
         'updated_at',
@@ -74,5 +75,9 @@ class User extends Authenticatable
 
     public function isAdmin() {
         return $this->roles()->where('role_id', 1)->first();
+    }
+
+    public function detail() {
+        return $this->hasOne(UserDetail::class);
     }
 }

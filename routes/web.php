@@ -30,6 +30,7 @@ Route::group(['middleware' => ['student']], function() {
     Route::get('student/{slug}/delete', 'CoursesController@deleteCourse')->name('untake-course');
 
     Route::get('lesson/{slug}/test', ['uses' => 'LessonsController@test', 'as' => 'lessons.test']);
+    Route::post('lesson/{slug}/test-result', ['uses' => 'LessonsController@testResult', 'as' => 'lessons.test-result']);
 });
 
 Auth::routes(['register' => false]);
