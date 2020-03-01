@@ -28,8 +28,10 @@ class CoursesController extends Controller
             $courses = Course::ofTeacher()->get();
         }
         // $courses = Course::all();
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
 
-        return view('admin.courses.index', compact('courses'));
+        return view('admin.courses.index', compact('courses', 'user'));
     }
 
     public function create()
@@ -38,7 +40,10 @@ class CoursesController extends Controller
 
         $teachers = User::whereHas('roles', function ($q) { $q->where('role_id', 3); })->get()->pluck('name', 'id');
 
-        return view('admin.courses.create', compact('teachers'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.courses.create', compact('teachers', 'user'));
     }
 
     public function store(StoreCourseRequest $request)
@@ -62,7 +67,10 @@ class CoursesController extends Controller
 
         $course->load('teachers');
 
-        return view('admin.courses.edit', compact('teachers', 'course'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.courses.edit', compact('teachers', 'course', 'user'));
     }
 
     public function update(UpdateCourseRequest $request, Course $course)
@@ -88,7 +96,10 @@ class CoursesController extends Controller
 
         $course->load('teachers');
 
-        return view('admin.courses.show', compact('course'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.courses.show', compact('course', 'user'));
     }
 
     public function destroy(Course $course)

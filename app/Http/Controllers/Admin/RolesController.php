@@ -11,6 +11,7 @@ use App\Role;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\User;
 
 class RolesController extends Controller
 {
@@ -20,7 +21,10 @@ class RolesController extends Controller
 
         $roles = Role::all();
 
-        return view('admin.roles.index', compact('roles'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.roles.index', compact('roles', 'user'));
     }
 
     public function create()
@@ -29,7 +33,10 @@ class RolesController extends Controller
 
         $permissions = Permission::all()->pluck('title', 'id');
 
-        return view('admin.roles.create', compact('permissions'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.roles.create', compact('permissions', 'user'));
     }
 
     public function store(StoreRoleRequest $request)
@@ -48,7 +55,10 @@ class RolesController extends Controller
 
         $role->load('permissions');
 
-        return view('admin.roles.edit', compact('permissions', 'role'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.roles.edit', compact('permissions', 'role', 'user'));
     }
 
     public function update(UpdateRoleRequest $request, Role $role)
@@ -65,7 +75,10 @@ class RolesController extends Controller
 
         $role->load('permissions');
 
-        return view('admin.roles.show', compact('role'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.roles.show', compact('role', 'user'));
     }
 
     public function destroy(Role $role)

@@ -7,15 +7,16 @@ use App\StudentCourse;
 use App\Question;
 use App\QuestionsOption;
 use App\TestsResult;
+use App\Comment;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
 
 class LessonsController extends Controller
 {
-    public function show($lesson_slug) {
+    public function show($course_code, $lesson_slug) {
     	if (Auth::check()) {
-	    	$lesson = Lesson::where('slug', $lesson_slug)->firstOrFail();
+	    	$lesson = Lesson::where('slug', $lesson_slug)->where('course_code', $course_code)->firstOrFail();
 
 	    	$test_result = NULL;
 	    	if ($lesson->test) {
@@ -25,11 +26,13 @@ class LessonsController extends Controller
 	    	$previous_lesson = Lesson::where('course_id', $lesson->course_id)->where('published', 1)->where('position', '<', $lesson->position)->orderBy('position', 'desc')->first();
 	    	$next_lesson = Lesson::where('course_id', $lesson->course_id)->where('published', 1)->where('position', '>', $lesson->position)->orderBy('position', 'asc')->first();
 
+            $comments_count = Comment::where('lesson_id', $lesson->id)->count();
+
 	    	$student_email = \Auth::user()->email;
 	    	$count_course = StudentCourse::where(['course_id'=>$lesson->course_id, 'student_email'=>$student_email])->count();
 
 	    	if ($count_course > 0) {
-		    	return view('lesson', compact('lesson', 'previous_lesson', 'next_lesson', 'test_result'));
+		    	return view('lesson', compact('lesson', 'previous_lesson', 'next_lesson', 'test_result', 'comments_count'));
 		    } else {
 		    	return redirect()->back()->with('warning', 'Kamu harus mengambil kursus ini terlebih dahulu.');
 		    }
@@ -38,13 +41,13 @@ class LessonsController extends Controller
 		}
     }
 
-    public function test($lesson_slug) {
-    	$lesson = Lesson::where('slug', $lesson_slug)->firstOrFail();
+    public function test($course_code, $lesson_slug) {
+    	$lesson = Lesson::where('slug', $lesson_slug)->where('course_code', $course_code)->firstOrFail();
     	return view('test', compact('lesson'));
     }
 
-    public function testResult($lesson_slug, Request $request) {
-    	$lesson = Lesson::where('slug', $lesson_slug)->firstOrFail();
+    public function testResult($course_code, $lesson_slug, Request $request) {
+    	$lesson = Lesson::where('slug', $lesson_slug)->where('course_code', $course_code)->firstOrFail();
     	$answers = [];
     	$test_score = 0;
 
@@ -69,6 +72,6 @@ class LessonsController extends Controller
     	]);
     	$test_result->answers()->createMany($answers);
 
-    	return redirect(route('lessons.show', [$lesson->slug]))->with('info', 'Nilai kamu adalah '. $test_score);
+    	return redirect(route('lessons.show', [$lesson->course->code, $lesson->slug]))->with('info', 'Nilai kamu adalah '. $test_score);
     }
 }

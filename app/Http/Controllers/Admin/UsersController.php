@@ -20,7 +20,10 @@ class UsersController extends Controller
 
         $users = User::all();
 
-        return view('admin.users.index', compact('users'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.users.index', compact('users', 'user'));
     }
 
     public function create()
@@ -29,7 +32,10 @@ class UsersController extends Controller
 
         $roles = Role::all()->pluck('title', 'id');
 
-        return view('admin.users.create', compact('roles'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.users.create', compact('roles', 'user'));
     }
 
     public function store(StoreUserRequest $request)

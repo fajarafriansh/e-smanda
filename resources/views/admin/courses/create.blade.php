@@ -29,6 +29,18 @@
                 </p>
             </div>
             @endif
+            <div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
+                <label for="codw">Kode Kursus*</label>
+                <input type="text" id="code" name="code" class="form-control" value="{{ old('code', isset($course) ? $course->code : '') }}" required>
+                @if($errors->has('code'))
+                    <p class="help-block">
+                        {{ $errors->first('code') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('cruds.course.fields.title_helper') }}
+                </p>
+            </div>
             <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                 <label for="title">{{ trans('cruds.course.fields.title') }}*</label>
                 <input type="text" id="title" name="title" class="form-control" value="{{ old('title', isset($course) ? $course->title : '') }}" required>

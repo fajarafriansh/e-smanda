@@ -80,12 +80,15 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 3.0.0-alpha
             </div>
-            <strong> &copy;</strong> {{ trans('global.allRightsReserved') }}
+            <strong> &copy;</strong> {{ trans('global.allRightsReserved') }} - Develop by <a href="https://twitter.com/fajarafrians" title="Fajar Afriansh">Fajar Afriansh</a>
         </footer>
         <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
         </form>
     </div>
+
+    @include('sweetalert::alert')
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>

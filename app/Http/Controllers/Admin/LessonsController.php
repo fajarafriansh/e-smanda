@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Course;
 use App\Lesson;
+use App\User;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyLessonRequest;
@@ -32,7 +33,10 @@ class LessonsController extends Controller
             $lessons = $lessons->get();
         }
 
-        return view('admin.lessons.index', compact('lessons'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.lessons.index', compact('lessons', 'user'));
     }
 
     public function create()
@@ -41,7 +45,10 @@ class LessonsController extends Controller
 
         $courses = Course::ofTeacher()->get()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.lessons.create', compact('courses'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.lessons.create', compact('courses', 'user'));
     }
 
     public function store(StoreLessonRequest $request)
@@ -67,7 +74,10 @@ class LessonsController extends Controller
 
         $lesson->load('course');
 
-        return view('admin.lessons.edit', compact('courses', 'lesson'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.lessons.edit', compact('courses', 'lesson', 'user'));
     }
 
     public function update(UpdateLessonRequest $request, Lesson $lesson)
@@ -107,7 +117,10 @@ class LessonsController extends Controller
 
         $lesson->load('course');
 
-        return view('admin.lessons.show', compact('lesson'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.lessons.show', compact('lesson', 'user'));
     }
 
     public function destroy(Lesson $lesson)

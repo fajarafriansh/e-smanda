@@ -75,4 +75,12 @@ class Lesson extends Model implements HasMedia
     {
         return $this->getMedia('downloadable_file');
     }
+
+    public function comments() {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
+
+    public function comment() {
+        return $this->hasOne(Comment::class);
+    }
 }

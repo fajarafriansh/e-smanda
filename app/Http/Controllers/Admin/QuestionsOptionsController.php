@@ -11,6 +11,7 @@ use App\QuestionsOption;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\User;
 
 class QuestionsOptionsController extends Controller
 {
@@ -20,7 +21,10 @@ class QuestionsOptionsController extends Controller
 
         $questionsOptions = QuestionsOption::all();
 
-        return view('admin.questionsOptions.index', compact('questionsOptions'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.questionsOptions.index', compact('questionsOptions', 'user'));
     }
 
     public function create()
@@ -29,7 +33,10 @@ class QuestionsOptionsController extends Controller
 
         $questions = Question::all()->pluck('question', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.questionsOptions.create', compact('questions'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.questionsOptions.create', compact('questions', 'user'));
     }
 
     public function store(StoreQuestionsOptionRequest $request)
@@ -47,7 +54,10 @@ class QuestionsOptionsController extends Controller
 
         $questionsOption->load('question');
 
-        return view('admin.questionsOptions.edit', compact('questions', 'questionsOption'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.questionsOptions.edit', compact('questions', 'questionsOption', 'user'));
     }
 
     public function update(UpdateQuestionsOptionRequest $request, QuestionsOption $questionsOption)
@@ -63,7 +73,10 @@ class QuestionsOptionsController extends Controller
 
         $questionsOption->load('question');
 
-        return view('admin.questionsOptions.show', compact('questionsOption'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.questionsOptions.show', compact('questionsOption', 'user'));
     }
 
     public function destroy(QuestionsOption $questionsOption)

@@ -38,6 +38,9 @@
                         </th>
                         @endif
                         <th>
+                            Kode Kursus
+                        </th>
+                        <th>
                             {{ trans('cruds.course.fields.title') }}
                         </th>
                         <th>
@@ -82,6 +85,9 @@
                                 @endforeach
                             </td>
                             @endif
+                            <td>
+                                {{ $course->code ?? '' }}
+                            </td>
                             <td>
                                 {{ $course->title ?? '' }}
                             </td>

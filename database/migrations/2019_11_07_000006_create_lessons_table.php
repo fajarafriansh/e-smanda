@@ -26,6 +26,7 @@ class CreateLessonsTable extends Migration
             $table->boolean('free_lesson')->default(0)->nullable();
 
             $table->boolean('published')->default(0)->nullable();
+            $table->string('course_code')->nullable();
 
             $table->timestamps();
 

@@ -28,6 +28,7 @@ class Course extends Model implements HasMedia
 
     protected $fillable = [
         'slug',
+        'code',
         'title',
         'price',
         'published',

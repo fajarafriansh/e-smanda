@@ -12,6 +12,8 @@ use App\QuestionsOption;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\User;
+use App\Test;
 
 class QuestionsController extends Controller
 {
@@ -23,19 +25,28 @@ class QuestionsController extends Controller
 
         $questions = Question::all();
 
-        return view('admin.questions.index', compact('questions'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.questions.index', compact('questions', 'user'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('question_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.questions.create');
+        $tests = Test::all()->pluck('title', 'id');
+
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.questions.create', compact('tests', 'user'));
     }
 
     public function store(StoreQuestionRequest $request)
     {
         $question = Question::create($request->all());
+        $question->tests()->sync($request->input('tests', []));
 
         if ($request->input('question_image', false)) {
             $question->addMedia(storage_path('tmp/uploads/' . $request->input('question_image')))->toMediaCollection('question_image');
@@ -59,12 +70,18 @@ class QuestionsController extends Controller
     {
         abort_if(Gate::denies('question_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.questions.edit', compact('question'));
+        $tests = Test::all()->pluck('title', 'id');
+
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.questions.edit', compact('question', 'user', 'tests'));
     }
 
     public function update(UpdateQuestionRequest $request, Question $question)
     {
         $question->update($request->all());
+        $question->tests()->sync($request->input('tests', []));
 
         if ($request->input('question_image', false)) {
             if (!$question->question_image || $request->input('question_image') !== $question->question_image->file_name) {
@@ -81,7 +98,10 @@ class QuestionsController extends Controller
     {
         abort_if(Gate::denies('question_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.questions.show', compact('question'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.questions.show', compact('question', 'user'));
     }
 
     public function destroy(Question $question)

@@ -70,9 +70,7 @@
                                 {{ $test->description ?? '' }}
                             </td>
                             <td>
-                                @foreach($test->questions as $key => $item)
-                                    <span class="badge badge-info">{{ $item->question }}</span>
-                                @endforeach
+                                {{ $test->questions->count() }}
                             </td>
                             <td>
                                 {{ $test->published ? trans('global.yes') : trans('global.no') }}

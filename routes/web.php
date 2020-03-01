@@ -2,9 +2,9 @@
 
 // Front routes
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/courses', 'CoursesController@showAll');
+Route::get('/courses', 'CoursesController@index');
 Route::get('course/{slug}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
-Route::get('lesson/{slug}', ['uses' => 'LessonsController@show', 'as' => 'lessons.show']);
+Route::get('lesson/{code}/{slug}', ['uses' => 'LessonsController@show', 'as' => 'lessons.show']);
 
 // Admin routes
 Route::redirect('/admin', '/login');
@@ -29,8 +29,11 @@ Route::group(['middleware' => ['student']], function() {
     Route::match(['get', 'post'], '/student/take-course', 'CoursesController@takeCourse')->name('take-course');
     Route::get('student/{slug}/delete', 'CoursesController@deleteCourse')->name('untake-course');
 
-    Route::get('lesson/{slug}/test', ['uses' => 'LessonsController@test', 'as' => 'lessons.test']);
-    Route::post('lesson/{slug}/test-result', ['uses' => 'LessonsController@testResult', 'as' => 'lessons.test-result']);
+    Route::get('lesson/{code}/{slug}/test', ['uses' => 'LessonsController@test', 'as' => 'lessons.test']);
+    Route::post('lesson/{code}/{slug}/test-result', ['uses' => 'LessonsController@testResult', 'as' => 'lessons.test-result']);
+
+    Route::post('lesson/{code}/{slug}/comment', ['uses' => 'CommentsController@addComment', 'as' => 'add.comment']);
+    Route::post('lesson/{code}/{slug}/reply', ['uses' => 'CommentsController@addReply', 'as' => 'add.reply']);
 });
 
 Auth::routes(['register' => false]);
@@ -72,4 +75,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Tests
     Route::delete('tests/destroy', 'TestController@massDestroy')->name('tests.massDestroy');
     Route::resource('tests', 'TestController');
+
+    // Profile edit
+    Route::get('profile/{id}', 'ProfileController@profile')->name('profile');
+    Route::post('profile/{id}/update', 'ProfileController@update')->name('profile-update');
+    Route::post('profile/{id}/update-password', 'ProfileController@updatePass')->name('profile-update-password');
 });

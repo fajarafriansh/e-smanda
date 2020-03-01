@@ -3,7 +3,9 @@
 @section('content')
 
 <!-- slider_area_start -->
-@include('layouts.courses-banner')
+<div class="bradcam_area breadcam_bg overlay2">
+	<h3>Semua Kursus</h3>
+</div>
 <!-- slider_area_end -->
 
 <!-- popular_courses_start -->
@@ -19,7 +21,7 @@
 			</div>
 		</div> --}}
 		<div class="row">
-			@include('layouts.course-nav')
+			@include('partials.course-menu')
 		</div>
 	</div>
 	<div class="all_courses">

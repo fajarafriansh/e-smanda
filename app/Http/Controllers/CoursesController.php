@@ -10,7 +10,7 @@ use DB;
 
 class CoursesController extends Controller
 {
-    public function showAll() {
+    public function index() {
         $courses = Course::where('published', 1)->orderBy('id', 'desc')->get();
 
         return view('courses', compact('courses'));

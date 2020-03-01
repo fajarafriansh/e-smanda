@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
             [
                 'id'             => 1,
                 'name'           => 'Admin',
-                'email'          => 'admin@admin.com',
+                'email'          => 'admin@neutron.com',
                 'password'       => '$2y$10$E8WUvnEkYEHtzUh/lkZtsugkgAEKkPePGdQ8mmViCAAwC0eGtAolW',
                 'remember_token' => null,
             ],

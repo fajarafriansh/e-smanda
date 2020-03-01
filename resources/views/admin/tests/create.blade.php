@@ -59,24 +59,6 @@
                     {{ trans('cruds.test.fields.description_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('questions') ? 'has-error' : '' }}">
-                <label for="questions">{{ trans('cruds.test.fields.questions') }}
-                    <span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
-                    <span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span></label>
-                <select name="questions[]" id="questions" class="form-control select2" multiple="multiple">
-                    @foreach($questions as $id => $questions)
-                        <option value="{{ $id }}" {{ (in_array($id, old('questions', [])) || isset($test) && $test->questions->contains($id)) ? 'selected' : '' }}>{{ $questions }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('questions'))
-                    <p class="help-block">
-                        {{ $errors->first('questions') }}
-                    </p>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.test.fields.questions_helper') }}
-                </p>
-            </div>
             <div class="form-group {{ $errors->has('published') ? 'has-error' : '' }}">
                 <label for="published">{{ trans('cruds.test.fields.published') }}</label>
                 <input name="published" type="hidden" value="0">

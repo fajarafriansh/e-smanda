@@ -13,6 +13,7 @@ use App\Test;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\User;
 
 class TestController extends Controller
 {
@@ -22,7 +23,10 @@ class TestController extends Controller
 
         $tests = Test::all();
 
-        return view('admin.tests.index', compact('tests'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.tests.index', compact('tests', 'user'));
     }
 
     public function create()
@@ -35,15 +39,15 @@ class TestController extends Controller
 
         $lessons = Lesson::whereIn('course_id', $courses_ids)->get()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $questions = Question::all()->pluck('question', 'id');
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
 
-        return view('admin.tests.create', compact('courses', 'lessons', 'questions'));
+        return view('admin.tests.create', compact('courses', 'lessons', 'user'));
     }
 
     public function store(StoreTestRequest $request)
     {
         $test = Test::create($request->all());
-        $test->questions()->sync($request->input('questions', []));
 
         return redirect()->route('admin.tests.index');
     }
@@ -58,17 +62,17 @@ class TestController extends Controller
 
         $lessons = Lesson::whereIn('course_id', $courses_ids)->get()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $questions = Question::all()->pluck('question', 'id');
-
         $test->load('course', 'lesson', 'questions');
 
-        return view('admin.tests.edit', compact('courses', 'lessons', 'questions', 'test'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.tests.edit', compact('courses', 'lessons', 'test', 'user'));
     }
 
     public function update(UpdateTestRequest $request, Test $test)
     {
         $test->update($request->all());
-        $test->questions()->sync($request->input('questions', []));
 
         return redirect()->route('admin.tests.index');
     }
@@ -79,7 +83,10 @@ class TestController extends Controller
 
         $test->load('course', 'lesson', 'questions');
 
-        return view('admin.tests.show', compact('test'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.tests.show', compact('test', 'user'));
     }
 
     public function destroy(Test $test)

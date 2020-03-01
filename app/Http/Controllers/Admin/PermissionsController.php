@@ -10,6 +10,7 @@ use App\Permission;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\User;
 
 class PermissionsController extends Controller
 {
@@ -19,12 +20,18 @@ class PermissionsController extends Controller
 
         $permissions = Permission::all();
 
-        return view('admin.permissions.index', compact('permissions'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.permissions.index', compact('permissions', 'user'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('permission_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
 
         return view('admin.permissions.create');
     }
@@ -40,7 +47,10 @@ class PermissionsController extends Controller
     {
         abort_if(Gate::denies('permission_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.permissions.edit', compact('permission'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.permissions.edit', compact('permission', 'user'));
     }
 
     public function update(UpdatePermissionRequest $request, Permission $permission)
@@ -54,7 +64,10 @@ class PermissionsController extends Controller
     {
         abort_if(Gate::denies('permission_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.permissions.show', compact('permission'));
+        $user_id = \Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        return view('admin.permissions.show', compact('permission', 'user'));
     }
 
     public function destroy(Permission $permission)

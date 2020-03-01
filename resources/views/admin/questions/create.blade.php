@@ -47,6 +47,24 @@
                     {{ trans('cruds.question.fields.score_helper') }}
                 </p>
             </div>
+            <div class="form-group {{ $errors->has('tests') ? 'has-error' : '' }}">
+                <label for="tests">Tests
+                    <span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span></label>
+                <select name="tests[]" id="tests" class="form-control select2" multiple="multiple">
+                    @foreach($tests as $id => $tests)
+                        <option value="{{ $id }}" {{ (in_array($id, old('tests', [])) || isset($question) && $question->tests->contains($id)) ? 'selected' : '' }}>{{ $tests }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('tests'))
+                    <p class="help-block">
+                        {{ $errors->first('tests') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('cruds.test.fields.questions_helper') }}
+                </p>
+            </div>
 
             @for($questionsoption=1; $questionsoption<=4; $questionsoption++)
             <div class="form-group {{ $errors->has('option_text') ? 'has-error' : '' }}">
