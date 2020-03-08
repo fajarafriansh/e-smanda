@@ -26,53 +26,6 @@
 </div>
 <!-- slider_area_end -->
 
-<!-- about_area_start -->
-<div class="about_area">
-	<div class="container">
-		<div class="row">
-			<div class="col-xl-5 col-lg-6">
-				<div class="single_about_info">
-					<h3>Over 7000 Tutorials <br>
-					from 20 Courses</h3>
-					<p>Our set he for firmament morning sixth subdue darkness creeping gathered divide our let god
-					moving. Moving in fourth air night bring upon you’re it beast let you dominion likeness open
-					place day great wherein heaven sixth lesser subdue fowl </p>
-					<a href="#" class="boxed_btn">Enroll a Course</a>
-				</div>
-			</div>
-			<div class="col-xl-6 offset-xl-1 col-lg-6">
-				<div class="about_tutorials">
-					<div class="courses">
-						<div class="inner_courses">
-							<div class="text_info">
-								<span>20+</span>
-								<p> Courses</p>
-							</div>
-						</div>
-					</div>
-					<div class="courses-blue">
-						<div class="inner_courses">
-							<div class="text_info">
-								<span>7638</span>
-								<p> Courses</p>
-							</div>
-						</div>
-					</div>
-					<div class="courses-sky">
-						<div class="inner_courses">
-							<div class="text_info">
-								<span>230+</span>
-								<p> Courses</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- about_area_end -->
-
 <!-- popular_courses_start -->
 <div class="popular_courses">
 	<div class="container">
@@ -99,7 +52,11 @@
 								<div class="single_courses">
 									<div class="thumb">
 										<a href="{{ route('courses.show', [$course->slug]) }}">
-											<img src="img/courses/1.png" alt="">
+											@if($course->course_image)
+												<img src="{{ $course->course_image->getUrl() }}" alt="">
+											@else
+												<img src="{{ asset('img/asset/default-image.png') }}" alt="">
+											@endif
 										</a>
 									</div>
 									<div class="courses_info">
@@ -124,6 +81,7 @@
 							</div>
 						@endforeach
 					</div>
+					{{ $courses->links() }}
 				</div>
 			</div>
 		</div>

@@ -53,7 +53,8 @@ class LessonsController extends Controller
 
     public function store(StoreLessonRequest $request)
     {
-        $lesson = Lesson::create($request->all() + ['position' => Lesson::where('course_id', $request->course_id)->max('position') + 1]);
+        $course_code = Course::where('id', $request->course_id)->first();
+        $lesson = Lesson::create($request->all() + ['position' => Lesson::where('course_id', $request->course_id)->max('position') + 1] + ['course_code' => $course_code->code]);
 
         if ($request->input('lesson_image', false)) {
             $lesson->addMedia(storage_path('tmp/uploads/' . $request->input('lesson_image')))->toMediaCollection('lesson_image');

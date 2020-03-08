@@ -40,7 +40,7 @@
                             {{ trans('cruds.lesson.fields.lesson_image') }}
                         </th>
                         <th>
-                            {{ trans('cruds.lesson.fields.shor_text') }}
+                            {{ trans('cruds.lesson.fields.short_text') }}
                         </th> --}}
                         <th>
                             {{ trans('cruds.lesson.fields.position') }}
@@ -85,7 +85,7 @@
                                 @endif
                             </td>
                             <td>
-                                {{ $lesson->shor_text ?? '' }}
+                                {{ $lesson->short_text ?? '' }}
                             </td> --}}
                             <td>
                                 {{ $lesson->position ?? '' }}

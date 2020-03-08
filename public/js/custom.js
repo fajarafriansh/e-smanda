@@ -55,11 +55,11 @@
 		},
 		messages: {
 			password: {
-				required: "Please provide your password!"
+				required: "Masukkan password anda!"
 			},
 			email: {
-				required: "Please enter your email address!",
-				email: "Please enter valid email!"
+				required: "Masukkan alamat email!",
+				email: "Email tidak valid."
 			}
 		}
 	});

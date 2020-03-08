@@ -105,6 +105,10 @@
                                     <a href="{{ $course->course_image->getUrl() }}" target="_blank">
                                         <img src="{{ $course->course_image->getUrl('thumb') }}" width="50px" height="50px">
                                     </a>
+                                @else
+                                    <a href="{{ asset('img/asset/default-image.jpg') }}" target="_blank">
+                                        <img src="{{ asset('img/asset/default-image.jpg') }}" width="50px" height="50px">
+                                    </a>
                                 @endif
                             </td>
                             <td>

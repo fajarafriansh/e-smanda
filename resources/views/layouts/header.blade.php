@@ -38,27 +38,64 @@
 									</a>
 								</div>
 							@else
-								<a href="{{ url('student/courses') }}" class="login student">
+								<a href="{{ url('student/profile') }}" class="login student">
 									<i class="flaticon-user"></i>
-									<span>Kursus</span>
+									<span>Profile</span>
 								</a>
 								<a href="{{ url('student/logout') }}" class="login student">
 									<span>Keluar</span>
 								</a>
 							@endif
-							{{-- <div class="live_chat_btn" style="padding-left: 20px">
-								<a class="boxed_btn" href="#">
-									<i class="fa fa-phone"></i>
-									<span>+10 378 467 3672</span>
-								</a>
-							</div> --}}
 						</div>
 					</div>
-					<div class="col-12">
-						<div class="mobile_menu d-block d-lg-none"></div>
+					<div class="col-10">
+						<div class="mobile_menu profile d-block d-lg-none">
+							<div class="slicknav_menu">
+								@if (empty(Auth::check()))
+									<span class="slicknav_btn login">
+										<a class="mobile_login" href="{{ url('student/login') }}">
+											Login
+										</a>
+									</span>
+								@else
+									<span class="slicknav_btn profile">
+										<span class="slicknav_icon">
+											<a href="{{ url('student/profile') }}">
+												<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+											</a>
+										</span>
+									</span>
+								@endif
+							</div>
+						</div>
+					</div>
+					<div class="col-2">
+						<div class="mobile_menu d-block d-lg-none">
+							<div class="slicknav_menu">
+								<span class="slicknav_btn" onclick="openNav()">
+									<span class="slicknav_icon">
+										<span class="slicknav_icon-bar"></span>
+										<span class="slicknav_icon-bar"></span>
+										<span class="slicknav_icon-bar"></span>
+									</span>
+								</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<div id="mobile_nav" class="afriansh overlay">
+		<a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+
+		<div class="overlay-content">
+			<a href="{{ route('home') }}">Home</a>
+			<a href="{{ url('/courses') }}">Kursus</a>
+			<a href="{{ route('home') }}">Materi</a>
+			<a href="{{ route('home') }}">Materi</a>
+			<a href="{{ route('home') }}">Materi</a>
 		</div>
 	</div>
 </header>

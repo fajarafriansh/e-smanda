@@ -20,7 +20,8 @@ class CreateStudentCoursesTable extends Migration
             $table->string('course_name');
             $table->string('course_slug');
             $table->string('price');
-            $table->string('student_email');
+            $table->integer('student_id')->unsigned()->nullable();
+            $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -56,10 +56,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.lesson.fields.shor_text') }}
+                            {{ trans('cruds.lesson.fields.short_text') }}
                         </th>
                         <td>
-                            {!! $lesson->shor_text !!}
+                            {!! $lesson->short_text !!}
                         </td>
                     </tr>
                     <tr>
@@ -83,7 +83,13 @@
                             {{ trans('cruds.lesson.fields.downloadable_file') }}
                         </th>
                         <td>
-                            {{ $lesson->downloadable_file }}
+                            @if($lesson->downloadable_file)
+                                <a href="{{ $lesson->downloadable_file->getUrl() }}" target="_blank">
+                                    <?php $nama_file = explode("_", $lesson->downloadable_file->name); ?>
+                                    {{ $nama_file[1] }}
+                                </a>
+                            @endif
+                            {{-- {{ $lesson->downloadable_file }} --}}
                         </td>
                     </tr>
                     <tr>

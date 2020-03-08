@@ -226,6 +226,27 @@ a.boxed_btn {
     border-top: 1px solid #eee;
 }
 
+.test-area .boxed-btn.done {
+	cursor: auto;
+}
+
+.test-area .boxed-btn.done:hover {
+    background: #fff;
+    color: #04D2C8 !important;
+    border: 1px solid #04D2C8;
+}
+
+.test-area a.boxed-btn:hover {
+    background: #04D2C8;
+    color: #fff !important;
+    border: 1px solid #04D2C8;
+    -webkit-text-fill-color: white;
+}
+
+.test-area a.boxed-btn {
+	color: #04D2C8!important;
+}
+
 .comment-list .reply-btn {
     position: absolute;
     right: 0;
@@ -234,63 +255,310 @@ a.boxed_btn {
 .comment-list.is_reply {
     margin-left: 50px;
 }
-/* #error_popup {
+
+.avatar-box {
+	padding: 0 10px;
+}
+
+img.is-avatar {
 	width: 100%;
+	margin-bottom: 20px;
+}
+
+.auhor_header .thumb img {
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+}
+
+.single-post-area .author-image img {
+	width: 90px;
+	height: 90px;
+	object-fit: cover;
+	margin-right: 30px;
+}
+
+@media (max-width: 600px) {
+	.single-post-area .author-image img {
+		width: 70px;
+		height: 70px;
+		object-fit: cover;
+		margin-right: 15px;
+	}
+
+	.comments-area {
+		font-size: 15px;
+	}
+
+	.comments-area h5 {
+		font-size: 15px;
+		line-height: 15px;
+	}
+
+	li.media .avatar {
+		width: 45px!important;
+	}
+
+	div.media.reply .avatar {
+		width: 35px!important;
+	}
+
+	.avatar.mr-3 {
+		margin-right: 10px!important;
+	}
+
+	.mb-1 {
+		margin-bottom: 0!important;
+	}
+
+	.btn-sm {
+		padding: 0rem .5rem;
+	}
+
+	.lebar-100 {
+		width: 100%!important;
+	}
+
+	.comment-form .form-control {
+		font-size: 14px;
+	}
+}
+
+.comments-area hr {
+	margin: 0;
+}
+
+button.btn.btn-sm.btn-link.comment-btn {
+    color: #666666 !important;
+}
+
+button.btn.btn-sm.btn-link.comment-btn:hover {
+    text-decoration: none;
+    background: -webkit-linear-gradient(131deg, #8A47E5 0%, #8A47E5 99%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+li.media .avatar {
+	width: 60px;
+}
+
+.avatar img {
+	width: 100%;
+	border-radius: 50%;
+}
+
+.modal-backdrop.show {
+    display: none;
+}
+
+div.modal.comment {
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.profile.slider_area .single_slider {
+    height: 500px;
+}
+
+.profile_avatar {
+	text-align: right;
+}
+
+.profile_avatar img {
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	margin: 50px 20px 0 20px;
+	border-radius: 50%;
+}
+
+.slider_area .single_slider .slider_info h3.student_name {
+    color: #ffffff;
+    font-size: 30px;
+    text-transform: capitalize;
+    font-weight: 400;
+    line-height: 40px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.slider_area .single_slider .slider_info h4 {
+	color: #dcdcdc;
+	font-size: 18px;
+	margin-bottom: 30px
+}
+.slider_area .single_slider .slider_info a {
+	color: #cecece;
+	font-size: 15px;
+}
+
+.student_menu span:first-child {
+	padding-right: 20px;
+	border-right: solid 1px #cecece;
+}
+
+.student_menu span:last-child {
+	margin-left: 2px;
+	padding-left: 20px;
+}
+
+.profile.popular_courses {
+    padding-top: 100px;
+}
+
+@media (max-width: 767px) {
+	.profile.slider_area .single_slider {
+	    height: 400px;
+	}
+
+	.profile.popular_courses {
+	    padding-top: 50px;
+	}
+
+	.profile_avatar {
+		text-align: center;
+	}
+
+	.profile_avatar img {
+		width: 150px;
+		height: 150px;
+		object-fit: cover;
+	}
+
+	.comment-form textarea.comment {
+		min-height: 10px!important;
+		padding-bottom: 18px;
+		resize: none;
+	}
+
+	/* .comment_form .button {
+		display: none;
+	} */
+
+	.button_inside {
+		position: relative;
+	}
+
+	.button_inside button {
+		position: absolute;
+	    right: 1px;
+	    top: 2px;
+	    padding: 19px 10px;
+	    border: 1px #ffffff00;
+	    text-transform: capitalize;
+	    font-size: 12px;
+	}
+
+	.button_inside .boxed-btn:hover {
+	    background: #fff;
+	    color: #04D2C8 !important;
+	    border: 1px #ffffff00;
+	}
+
+	.button_inside .form-control {
+		padding-right: 65px;
+	}
+}
+
+.afriansh.overlay {
 	height: 100%;
-	background: #0008;
-	position: absolute;
-	top: 0;
+	width: 0;
+	position: fixed;
+	z-index: 1001;
 	left: 0;
-	z-index: 1000;
-	display: none;
+	top: 0;
+	background-color: rgb(0,0,0);
+	background-color: #2e004beb;
+	overflow-x: hidden;
+	transition: 0.5s;
 }
 
-body.error_popup {
-	overflow: hidden;
+.afriansh .overlay-content {
+	position: relative;
+	top: 25%;
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
 }
 
-@media (max-width: 320px) {
-	.error_popup_box {
-		width: 280px;
-		padding: 30px 20px;
-	}
+.afriansh.overlay a {
+	padding: 8px;
+	text-decoration: none;
+	font-size: 36px;
+	color: #ffffff;
+	display: block;
+	transition: 0.3s;
 }
 
-@media (min-width: 321px) and (max-width: 767px) {
-	.error_popup_box {
-		width: 320px;
-		padding: 45px 30px;
-	}
+.afriansh.overlay a:hover, .afriansh.overlay a:focus {
+	color: gray;
+}
+
+.afriansh.overlay .close-btn {
+	position: absolute;
+	top: 20px;
+	right: 45px;
+	font-size: 60px;
+}
+
+.mobile_menu.profile i {
+    color: #fff;
+    font-size: 30px;
+}
+
+span.slicknav_btn.login {
+    top: -26px;
+    right: -10px;
 }
 
 @media (min-width: 768px) {
-	.error_popup_box {
-		width: 500px;
-		padding: 60px 40px;
+	span.slicknav_btn.login, span.slicknav_btn.profile {
+	    right: -70px;
+	}
+
+	.courses_details_info .courses_sidebar .video_thumb img {
+	    height: 100vw;
+	    object-fit: cover;
 	}
 }
 
-.error_popup_box {
-	background: #4B38D2;
-	border-radius: 5px;
-	box-sizing: border-box;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 1001;
+.slicknav_btn.login a.mobile_login {
+    padding: 5px 10px;
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 5px;
 }
 
-.error_popup_box h3 {
-	font-size: 24px;
-	color: #fff;
-	margin-bottom: 30px;
-	text-align: left;
+.courses_details_info #accordion .card .card-header {
+    padding: 14px 20px 16px 14px;
 }
 
-button#popup_close {
-	position: relative;
-	left: 50%;
-	bottom: 40%;
-	transform: translate(-50%, 50%);
-} */
+.courses_details_info #accordion .card .card-body {
+    padding: 0 20px 40px 76px;
+}
+
+.popular_courses .single_courses .thumb img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.single-post-area .navigation-area .nav-right .thumb img, .single-post-area .navigation-area .nav-left .thumb img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.courses_details_info .courses_sidebar .video_thumb img {
+    height: 445px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+	.courses_details_info .courses_sidebar .video_thumb img {
+	    height: 100vw;
+	    object-fit: cover;
+	}
+}

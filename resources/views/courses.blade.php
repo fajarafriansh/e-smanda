@@ -34,7 +34,11 @@
 								<div class="single_courses">
 									<div class="thumb">
 										<a href="{{ route('courses.show', [$course->slug]) }}">
-											<img src="img/courses/1.png" alt="">
+											@if($course->course_image)
+												<img src="{{ $course->course_image->getUrl() }}" alt="">
+											@else
+												<img src="{{ asset('img/asset/default-image.png') }}" alt="">
+											@endif
 										</a>
 									</div>
 									<div class="courses_info">

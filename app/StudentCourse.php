@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StudentCourse extends Model
-{
+class StudentCourse extends Model {
+
     public $table = 'student_courses';
 
     protected $fillable = [
@@ -13,7 +13,7 @@ class StudentCourse extends Model
         'course_name',
         'course_slug',
         'price',
-        'student_email'
+        'student_id'
     ];
 
     public function course()

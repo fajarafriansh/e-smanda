@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Laravelista\Comments\Commentable;
 
 class Lesson extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait;
+    use SoftDeletes, HasMediaTrait, Commentable;
 
     public $table = 'lessons';
 
@@ -30,6 +31,7 @@ class Lesson extends Model implements HasMedia
         'slug',
         'position',
         'course_id',
+        'course_code',
         'short_text',
         'full_text',
         'published',
@@ -54,6 +56,10 @@ class Lesson extends Model implements HasMedia
         return $this->hasOne(Test::class);
     }
 
+    public function files() {
+        return $this->hasMany(Media::class, 'model_id', 'id')->where('collection_name', 'downloadable_file');
+    }
+
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id')->withTrashed();
@@ -73,14 +79,12 @@ class Lesson extends Model implements HasMedia
 
     public function getDownloadableFileAttribute()
     {
-        return $this->getMedia('downloadable_file');
-    }
+        $downloadable_file = $this->getMedia('downloadable_file')->last();
 
-    public function comments() {
-        return $this->hasMany(Comment::class)->whereNull('parent_id');
-    }
+        if ($downloadable_file) {
+            $downloadable_file->url = $downloadable_file->getUrl();
+        }
 
-    public function comment() {
-        return $this->hasOne(Comment::class);
+        return $downloadable_file;
     }
 }

@@ -25,7 +25,6 @@
 	<link rel="stylesheet" href="{{ asset ('css/slicknav.css' ) }}">
 	<link rel="stylesheet" href="{{ asset ('css/style.css' ) }}">
 	<link rel="stylesheet" href="{{ asset ('css/custom.css' ) }}">
-	<!-- <link rel="stylesheet" href="{{ asset ('css/responsive.css' ) }}"> -->
 </head>
 
 <body>
@@ -56,21 +55,33 @@
 	<script src="{{ asset ('js/jquery.scrollUp.min.js') }}"></script>
 	<script src="{{ asset ('js/wow.min.js') }}"></script>
 	<script src="{{ asset ('js/nice-select.min.js') }}"></script>
-	<script src="{{ asset ('js/jquery.slicknav.min.js') }}"></script>
+	{{-- <script src="{{ asset ('js/jquery.slicknav.min.js') }}"></script> --}}
 	<script src="{{ asset ('js/jquery.magnific-popup.min.js') }}"></script>
 	<script src="{{ asset ('js/plugins.js') }}"></script>
 	<script src="{{ asset ('js/gijgo.min.js') }}"></script>
 
 	<!--contact js-->
-	<script src="{{ asset ('js/contact.js') }}"></script>
+	{{-- <script src="{{ asset ('js/contact.js') }}"></script>
 	<script src="{{ asset ('js/jquery.ajaxchimp.min.js') }}"></script>
 	<script src="{{ asset ('js/jquery.form.js') }}"></script>
 	<script src="{{ asset ('js/jquery.validate.min.js') }}"></script>
-	<script src="{{ asset ('js/mail-script.js') }}"></script>
+	<script src="{{ asset ('js/mail-script.js') }}"></script> --}}
 
 	<script src="{{ asset ('js/main.js') }}"></script>
 	{{-- <script src="{{ asset ('js/custom.js') }}"></script> --}}
 	{{-- <script src="{{ asset ('js/fuck.js') }}"></script> --}}
+
+	<script>
+		function openNav() {
+			document.getElementById("mobile_nav").style.width = "100%";
+		}
+
+		function closeNav() {
+			document.getElementById('mobile_nav').style.width = "0%";
+		}
+	</script>
+
+	@yield('scripts')
 </body>
 
 </html>

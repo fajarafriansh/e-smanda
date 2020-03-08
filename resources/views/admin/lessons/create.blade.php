@@ -61,12 +61,12 @@
                     {{ trans('cruds.lesson.fields.lesson_image_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('shor_text') ? 'has-error' : '' }}">
-                <label for="shor_text">{{ trans('cruds.lesson.fields.shor_text') }}</label>
-                <textarea id="shor_text" name="shor_text" class="form-control ">{{ old('shor_text', isset($lesson) ? $lesson->shor_text : '') }}</textarea>
-                @if($errors->has('shor_text'))
+            <div class="form-group {{ $errors->has('short_text') ? 'has-error' : '' }}">
+                <label for="short_text">{{ trans('cruds.lesson.fields.shor_text') }}</label>
+                <textarea id="short_text" name="short_text" class="form-control ">{{ old('short_text', isset($lesson) ? $lesson->short_text : '') }}</textarea>
+                @if($errors->has('short_text'))
                     <p class="help-block">
-                        {{ $errors->first('shor_text') }}
+                        {{ $errors->first('short_text') }}
                     </p>
                 @endif
                 <p class="helper-block">

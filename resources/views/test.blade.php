@@ -47,9 +47,6 @@
 			<div class="col-lg-4">
 				<div class="blog_right_sidebar">
 					<aside class="single_sidebar_widget post_category_widget">
-						<a href="{{ route('lessons.show', [$lesson->course->code, $lesson->slug]) }}">
-							<h4 class="widget_title">Kembali ke Pelajaran</h4>
-						</a>
 						<input class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit" name="" value="Kirim Jawaban">
 					</aside>
 				</div>

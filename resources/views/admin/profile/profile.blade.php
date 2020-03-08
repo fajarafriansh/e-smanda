@@ -7,33 +7,40 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route("admin.profile-update", [$user->id]) }}" method="POST" enctype="multipart/form-data">@csrf
+        <form action="{{ route("admin.profile-update", [$user->id]) }}" method="POST" enctype="multipart/form-data" role="form" novalidate="novalidate">@csrf
             <div class="row">
-            	<div class="col-sm-4">
-            		<div class="form-group {{ $errors->has('avatar') ? 'has-error' : '' }}">
-            			<label>Foto Profil</label>
-						<input type="file" id="avatar" name="avatar" class="form-control @error('avatar') is-invalid @enderror" value="{{ old('avatar', isset($user) ? $user->detail->avatar : '') }}">
-						<input type="hidden" id="avatar" name="current_avatar" value="{{ $user->detail->avatar }}">
+            	<div class="col-sm-3">
+            		<div class="avatar-box">
+            			<img class="is-avatar" src="{{ asset('storage/avatar/'. $user->detail->avatar) }}" alt="">
+	            		<div class="form-group {{ $errors->has('avatar') ? 'has-error' : '' }}">
+	            			<label for="avatar">Foto Profile Baru</label>
+							<div class="input-group">
+								<div class="custom-file">
+									<input type="file" id="avatar" name="avatar" class="custom-file-input">
+									<label class="custom-file-label" for="avatar">Pilih file</label>
+								</div>
+							</div>
+							{{-- <input type="file" id="avatar" name="avatar" class="form-control @error('avatar') is-invalid @enderror" value="{{ old('avatar', isset($user) ? $user->detail->avatar : '') }}"> --}}
+							<input type="hidden" id="avatar" name="current_avatar" value="{{ $user->detail->avatar }}">
 
-						@error('avatar')
-	                        <p class="help-block">
-	                            {{ $message }}
-	                        </p>
-	                    @enderror
+							@error('avatar')
+		                        <p class="help-block">
+		                            {{ $message }}
+		                        </p>
+		                    @enderror
+	            		</div>
             		</div>
 	            </div>
 	            <div class="col-sm-8">
-            		<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+            		<div class="form-group">
             			<label>Nama</label>
-						<input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($user) ? $user->name : '') }}" required>
-						@if($errors->has('name'))
+						<input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('name', isset($user) ? $user->name : '') }}" aria-describedby="name-error" required>
+						<span id="name-error" class="error invalid-feedback">{{ $errors->first('name') }}</span>
+						{{-- @if($errors->has('name'))
 	                        <p class="help-block">
 	                            {{ $errors->first('name') }}
 	                        </p>
-	                    @endif
-	                    <p class="helper-block">
-	                        {{ trans('cruds.lesson.fields.title_helper') }}
-	                    </p>
+	                    @endif --}}
             		</div>
             		<div class="form-group {{ $errors->has('role') ? 'has-error' : '' }}">
             			<label>Jabatan</label>
@@ -60,10 +67,12 @@
 	                    </p>
             		</div>
             	</div>
+            	<div class="col-sm-1">
+            	</div>
             </div>
             <div class="row">
 				<div>
-					<input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+					<button class="btn btn-danger" type="submit">{{ trans('global.save') }}</button>
 				</div>
             </div>
         </form>
@@ -104,25 +113,3 @@
 </div>
 
 @endsection
-
-@section('script')
-<script>
-	Dropzone.options.dropzone = {
-		maxFilesize: 5,
-		renameFile: function(file) {
-			var date = new Date();
-			var time = date.getTime();
-			return time+file.name;
-		},
-		acceptedFiles: ".jpg, .jpeg, .png",
-		addRemoveLinks: true,
-		timeout: 5000,
-		success: function(file, response) {
-			console.log(response);
-		},
-		error: function(file, response) {
-			return false;
-		}
-	}
-</script>
-@stop

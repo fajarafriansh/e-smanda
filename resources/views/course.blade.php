@@ -77,16 +77,21 @@
 			<div class="col-xl-5 col-lg-5">
 				<div class="courses_sidebar">
 					<div class="video_thumb">
-						<img src="{{ asset ('img/latest_blog/video.png') }}" alt="">
-						<a class="popup-video" href="https://www.youtube.com/watch?v=AjgD3CvWzS0">
+						@if($course->course_image)
+							<img src="{{ $course->course_image->getUrl() }}" alt="">
+						@else
+							<img src="{{ asset('img/default-image.png') }}" alt="">
+						@endif
+						{{-- <img src="{{ asset ('img/latest_blog/video.png') }}" alt=""> --}}
+						{{-- <a class="popup-video" href="https://www.youtube.com/watch?v=AjgD3CvWzS0">
 							<i class="fa fa-play"></i>
-						</a>
+						</a> --}}
 					</div>
 					<div class="author_info">
 						@foreach ($course->teachers as $teacher)
 							<div class="auhor_header">
 								<div class="thumb">
-									<img src="{{ asset ('storage/avatar/60x60/'. $teacher->detail->avatar) }}" alt="">
+									<img src="{{ asset ('img/avatar/'. $teacher->detail->avatar) }}" alt="">
 								</div>
 								<div class="name">
 									<h3>{{ $teacher->name }}</h3>
@@ -117,7 +122,7 @@
 							</form>
 						@endif
 					@endif
-					<div class="feedback_info">
+					{{-- <div class="feedback_info">
 						<h3>Write your feedback</h3>
 						<p>Your rating</p>
 						<i class="flaticon-mark-as-favorite-star"></i>
@@ -129,7 +134,7 @@
 							<textarea name="" id="" cols="30" rows="10" placeholder="Write your feedback"></textarea>
 							<button type="submit" class="boxed_btn">Submit</button>
 						</form>
-					</div>
+					</div> --}}
 				</div>
 			</div>
 

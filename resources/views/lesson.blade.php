@@ -15,33 +15,62 @@
 			<div class="col-lg-8 posts-list">
 				<div class="single-post">
 					<div class="feature-img">
-						<img class="img-fluid" src="{{ asset ('img/blog/single_blog_1.png') }}" alt="">
+						@if($lesson->lesson_image)
+							<img class="img-fluid" src="{{ $lesson->lesson_image->getUrl() }}" alt="">
+						@endif
 					</div>
 					<div class="blog_details">
 						<h2>{{ $lesson->title }}</h2>
 						<ul class="blog-info-link mt-3 mb-4">
 							<li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-							<li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+							<li><a href="#"><i class="fa fa-comments"></i> {{ $lesson->comments->count()}} Komentar</a></li>
 						</ul>
 
 						<div class=lesson-text-area>
 							<p>{{ $lesson->full_text }}</p>
 						</div>
 
-						@if ($lesson->test)
+						@if ($lesson->downloadable_file)
 							<div class="test-area">
 								<div class="container box_1170 border-top-generic">
+									<h3 class="text-heading">Unduh File Materi</h3>
+									<p>Unduh file materi pada link di bawah</p>
+									<ul class="unordered-list">
+										@foreach ($lesson->files as $file)
+											@php
+												$nama_file = explode("_", $file->name);
+												$ext = explode(".", $file->file_name);
+												if ($ext[1] == 'doc' || $ext[1] == 'docx') {
+													$file_type = 'word';
+												} elseif ($ext[1] == 'xls' || $ext[1] == 'xlsx') {
+													$file_type = 'excel';
+												} elseif ($ext[1] == 'ppt' || $ext[1] == 'pptx') {
+													$file_type = 'powerpoint';
+												} else {
+													$file_type = $ext[1];
+												}
+											@endphp
+
+											<i class="fa fa-file-{{ $file_type }}-o"></i>
+											<a href="{{ $file->getUrl() }}" target="_blank">
+												{{ $nama_file[1] }}
+											</a><br>
+										@endforeach
+									</ul>
+								</div>
+							</div>
+						@endif
+
+						@if ($lesson->test)
+							<div class="test-area">
+								<div class="container box_1170 border-top-generic text-center">
 									<h3 class="text-heading">{{ $lesson->test->title }}</h3>
 									@if (!is_null($test_result))
-										<div class="quote-wrapper">
-											<div class="quotes">
-												Kamu sudah mengerjakan soal {{ $lesson->test->title }}.
-												Nilai kamu adalah {{ $test_result->test_result }}.
-											</div>
-										</div>
+										<p>Kamu sudah mengerjakan soal {{ $lesson->test->title }}.</p>
+										<div class="button rounded-0 primary-bg text-white lebar-100 btn_1 boxed-btn done">Nilai kamu = {{ $test_result->test_result }}</div>
 									@else
 										<p>Selesaikan soal {{ $lesson->test->title }} dengan klik pada tombol di bawah!</p>
-										<a href="{{ route('lessons.test', [$lesson->course->code, $lesson->slug]) }}" class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn">Kerjakan Soal</a>
+										<a href="{{ route('lessons.test', [$lesson->course->code, $lesson->slug]) }}" class="button rounded-0 primary-bg text-white lebar-100 btn_1 boxed-btn">Kerjakan Soal</a>
 									@endif
 								</div>
 							</div>
@@ -53,7 +82,7 @@
 					<div class="d-sm-flex justify-content-between text-center">
 						<p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4 people like this</p>
 						<div class="col-sm-4 text-center my-2 my-sm-0">
-							<!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
+							<p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p>
 						</div>
 						<ul class="social-icons">
 							<li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
@@ -68,7 +97,11 @@
 								@if ($previous_lesson)
 									<div class="thumb">
 										<a href="{{ route('lessons.show', [$previous_lesson->course->code, $previous_lesson->slug]) }}">
-											<img class="img-fluid" src="{{ asset ('img/post/preview.png') }}" alt="">
+											@if($previous_lesson->lesson_image)
+												<img class="img-fluid" src="{{ $previous_lesson->lesson_image->getUrl() }}" alt="">
+											@else
+												<img class="img-fluid" src="{{ asset('img/asset/previous.png') }}" alt="">
+											@endif
 										</a>
 									</div>
 									<div class="arrow">
@@ -99,7 +132,11 @@
 									</div>
 									<div class="thumb">
 										<a href="{{ route('lessons.show', [$next_lesson->course->code, $next_lesson->slug]) }}">
-											<img class="img-fluid" src="{{ asset ('img/post/next.png') }}" alt="">
+											@if($next_lesson->lesson_image)
+												<img class="img-fluid" src="{{ $next_lesson->lesson_image->getUrl() }}" alt="">
+											@else
+												<img class="img-fluid" src="{{ asset ('img/asset/next.png') }}" alt="">
+											@endif
 										</a>
 									</div>
 								@endif
@@ -110,109 +147,22 @@
 				<div class="blog-author">
 					@foreach ($lesson->course->teachers as $teacher)
 						<div class="media align-items-center">
-							<img src="{{ asset ('storage/avatar/90x90/'. $teacher->detail->avatar) }}" alt="">
+							<div class="author-image">
+								<img src="{{ asset ('img/avatar/'. $teacher->detail->avatar) }}" alt="">
+							</div>
 							<div class="media-body">
 								<a href="#">
                                     <h4>{{ $teacher->name }}</h4>
 								</a>
+
 								<p>{{ $teacher->detail->bio }}</p>
 							</div>
 						</div>
                     @endforeach
 				</div>
-				<div class="comments-area">
-					@if ($lesson->comment)
-						<h4>{{ $comments_count }} Diskusi, Ayo Diskusi!</h4>
-						@foreach ($lesson->comments as $comment)
-							<div class="comment-list">
-								<div class="single-comment justify-content-between d-flex">
-									<div class="user justify-content-between d-flex">
-										<div class="thumb">
-											<img src="{{ asset('storage/avatar/70x70/'. $comment->user->detail->avatar) }}" alt="">
-										</div>
-										<div class="desc">
-											<div class="d-flex justify-content-between">
-												<div class="d-flex align-items-center">
-													<h5>
-														<a href="#">{{ $comment->user->name }}</a>
-													</h5>
-													<p class="date">December 4, 2017 at 3:12 pm </p>
-												</div>
-												<div class="reply-btn">
-													<a href="#" class="btn-reply text-uppercase">reply</a>
-												</div>
-											</div>
-											<p class="comment">{{ $comment->comment_text }}</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							@foreach ($comment->replies as $reply)
-								<div class="comment-list is_reply">
-									<div class="single-comment justify-content-between d-flex">
-										<div class="user justify-content-between d-flex">
-											<div class="thumb">
-												<img src="{{ asset('storage/avatar/70x70/'. $reply->user->detail->avatar) }}" alt="">
-											</div>
-											<div class="desc">
-												<div class="d-flex justify-content-between">
-													<div class="d-flex align-items-center">
-														<h5>
-															<a href="#">{{ $reply->user->name }}</a>
-														</h5>
-														<p class="date">December 4, 2017 at 3:12 pm </p>
-													</div>
-													<div class="reply-btn">
-														<a href="#" class="btn-reply text-uppercase">reply</a>
-													</div>
-												</div>
-												<p class="comment">{{ $reply->comment_text }}</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							@endforeach
-							<div class="comment-list is_reply">
-								<div class="single-comment justify-content-between d-flex">
-									<div class="user justify-content-between d-flex">
-										<form class="form-contact comment_form" action="{{ route('add.reply', [$lesson->course->code, $lesson->slug]) }}" id="commentForm" method="POST">@csrf
-											<input type="hidden" name="comment_id" value="{{ $comment->id }}">
-											<div class="row">
-												<div class="col-12">
-													<div class="form-group">
-														<textarea class="form-control w-100" name="comment_text" id="comment" cols="30" rows="9"
-														placeholder="Tulis Balasan"></textarea>
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
-												<button type="submit" class="button button-contactForm btn_1 boxed-btn">Balas</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						@endforeach
-					@else
-						<h4>Belum ada diskusi</h4>
-					@endif
-				</div>
-				<div class="comment-form">
-					{{-- <h4>Ayo Diskusi!</h4> --}}
-					<form class="form-contact comment_form" action="{{ route('add.comment', [$lesson->course->code, $lesson->slug]) }}" id="commentForm" method="POST">@csrf
-						<div class="row">
-							<div class="col-12">
-								<div class="form-group">
-									<textarea class="form-control w-100" name="comment_text" id="comment" cols="30" rows="9"
-									placeholder="Tulis Komentar"></textarea>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="button button-contactForm btn_1 boxed-btn">Kirim Komentar</button>
-						</div>
-					</form>
-				</div>
+
+				@comments (['model' => $lesson])
+
 			</div>
 
 			<!-- lesson sidebar area start -->

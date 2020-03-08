@@ -3,14 +3,38 @@
 @section('content')
 
 <!-- bradcam_area_start -->
-<div class="bradcam_area breadcam_bg overlay2">
-	<h3>Kursus Kamu</h3>
+<div class="profile slider_area ">
+    <div class="single_slider d-flex align-items-center justify-content-center slider_bg_1">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xl-5 col-md-5">
+                    <div class="profile_avatar">
+                        <img src="{{ asset ('img/avatar/'. $student->detail->avatar) }}" alt="">
+                    </div>
+                </div>
+                <div class="col-xl-7 col-md-7">
+                    <div class="slider_info">
+                        <h3 class="student_name">{{ $student->name }}</h3>
+                        <h4>fjfkfakfkaj</h4>
+                        <div class="student_menu">
+                            <span>
+                                <a href="#" title="">Edit Profile</a>
+                            </span>
+                            <span>
+                                <a href="{{ url('student/logout') }}" title="">Keluar</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- bradcam_area_end -->
 
 <!-- popular_courses_start -->
     @if($student_courses->isEmpty())
-    <div class="popular_courses plus_padding">
+    <div class="profile popular_courses">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -24,7 +48,7 @@
         </div>
     </div>
     @else
-    <div class="popular_courses plus_padding">
+    <div class="profile popular_courses">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -86,37 +110,41 @@
             <div class="container">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="row">
-                                    @foreach($student_courses as $course)
-                                        <div class="col-xl-4 col-lg-4 col-md-6">
-                                            <div class="single_courses">
-                                                <div class="thumb">
-                                                    <a href="{{ route('courses.show', [$course->course_slug]) }}">
-                                                        <img src="{{ asset('img/courses/1.png') }}" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="courses_info">
-                                                    @foreach ($course->course->teachers as $teacher)
-                                                        <span>{{ $teacher->name }}</span>
-                                                    @endforeach
-                                                    <h3><a href="{{ route('courses.show', [$course->course_slug]) }}">{{ $course->course_name }}</a></h3>
-                                                    <div class="star_prise d-flex justify-content-between">
-                                                        <div class="star">
-                                                            <i class="flaticon-mark-as-favorite-star"></i>
-                                                            <span>(4.5)</span>
-                                                        </div>
-                                                        <div class="prise">
-                                                            <span class="offer">$89.00</span>
-                                                            <span class="active_prise">
-                                                                $49
-                                                            </span>
-                                                        </div>
+                        <div class="row">
+                                @foreach($student_courses as $course)
+                                    <div class="col-xl-4 col-lg-4 col-md-6">
+                                        <div class="single_courses">
+                                            <div class="thumb">
+                                                <a href="{{ route('courses.show', [$course->course_slug]) }}">
+                                                    @if($course->course->course_image)
+                                                        <img src="{{ $course->course->course_image->getUrl() }}" alt="">
+                                                    @else
+                                                        <img src="{{ asset('img/asset/default-image.png') }}" alt="">
+                                                    @endif
+                                                </a>
+                                            </div>
+                                            <div class="courses_info">
+                                                @foreach ($course->course->teachers as $teacher)
+                                                    <span>{{ $teacher->name }}</span>
+                                                @endforeach
+                                                <h3><a href="{{ route('courses.show', [$course->course_slug]) }}">{{ $course->course_name }}</a></h3>
+                                                <div class="star_prise d-flex justify-content-between">
+                                                    <div class="star">
+                                                        <i class="flaticon-mark-as-favorite-star"></i>
+                                                        <span>(4.5)</span>
+                                                    </div>
+                                                    <div class="prise">
+                                                        <span class="offer">$89.00</span>
+                                                        <span class="active_prise">
+                                                            $49
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
-                            </div>
+                                    </div>
+                                @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

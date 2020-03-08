@@ -7,7 +7,6 @@ use App\StudentCourse;
 use App\Question;
 use App\QuestionsOption;
 use App\TestsResult;
-use App\Comment;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
@@ -26,13 +25,11 @@ class LessonsController extends Controller
 	    	$previous_lesson = Lesson::where('course_id', $lesson->course_id)->where('published', 1)->where('position', '<', $lesson->position)->orderBy('position', 'desc')->first();
 	    	$next_lesson = Lesson::where('course_id', $lesson->course_id)->where('published', 1)->where('position', '>', $lesson->position)->orderBy('position', 'asc')->first();
 
-            $comments_count = Comment::where('lesson_id', $lesson->id)->count();
-
-	    	$student_email = \Auth::user()->email;
-	    	$count_course = StudentCourse::where(['course_id'=>$lesson->course_id, 'student_email'=>$student_email])->count();
+	    	$student_id = \Auth::user()->id;
+	    	$count_course = StudentCourse::where(['course_id'=>$lesson->course_id, 'student_id'=>$student_id])->count();
 
 	    	if ($count_course > 0) {
-		    	return view('lesson', compact('lesson', 'previous_lesson', 'next_lesson', 'test_result', 'comments_count'));
+		    	return view('lesson', compact('lesson', 'previous_lesson', 'next_lesson', 'test_result'));
 		    } else {
 		    	return redirect()->back()->with('warning', 'Kamu harus mengambil kursus ini terlebih dahulu.');
 		    }

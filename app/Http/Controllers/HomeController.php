@@ -14,7 +14,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
-        $courses = Course::where('published', 1)->orderBy('id', 'desc')->get();
+        $courses = Course::where('published', 1)->orderBy('id', 'desc')->paginate(6);
         return view('home', compact('courses'));
     }
 }
