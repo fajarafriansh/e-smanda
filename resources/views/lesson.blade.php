@@ -1,5 +1,9 @@
 @extends('layouts.home-index')
 
+@section('title')
+	{{ $lesson->title }}
+@endsection
+
 @section('content')
 
 <!-- bradcam_area_start -->
@@ -68,6 +72,8 @@
 									@if (!is_null($test_result))
 										<p>Kamu sudah mengerjakan soal {{ $lesson->test->title }}.</p>
 										<div class="button rounded-0 primary-bg text-white lebar-100 btn_1 boxed-btn done">Nilai kamu = {{ $test_result->test_result }}</div>
+									@elseif ($lesson->test->questions)
+										<p>{{ $lesson->test->description }}</p>
 									@else
 										<p>Selesaikan soal {{ $lesson->test->title }} dengan klik pada tombol di bawah!</p>
 										<a href="{{ route('lessons.test', [$lesson->course->code, $lesson->slug]) }}" class="button rounded-0 primary-bg text-white lebar-100 btn_1 boxed-btn">Kerjakan Soal</a>

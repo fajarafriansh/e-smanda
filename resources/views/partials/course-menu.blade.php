@@ -3,15 +3,15 @@
 		<nav>
 			<ul class="nav" id="myTab" role="tablist">
 				<li class="nav-item">
-					<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">All Courses</a>
+					<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Semua Kursus</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Photoshop</a>
+					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">IPA</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">UI/UX</a>
+					<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">IPS</a>
 				</li>
-				<li class="nav-item">
+				{{-- <li class="nav-item">
 					<a class="nav-link" id="design-tab" data-toggle="tab" href="#design" role="tab" aria-controls="design" aria-selected="false">Web Design</a>
 				</li>
 				<li class="nav-item">
@@ -28,7 +28,7 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" id="Adobe-XD-tab9" data-toggle="tab" href="#Adobe-XD9" role="tab" aria-controls="design" aria-selected="false">Illustrator</a>
-				</li>
+				</li> --}}
 			</ul>
 		</nav>
 	</div>

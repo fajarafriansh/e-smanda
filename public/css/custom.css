@@ -562,3 +562,7 @@ span.slicknav_btn.login {
 	    object-fit: cover;
 	}
 }
+
+.upper_margin {
+	margin-top: 100px;
+}

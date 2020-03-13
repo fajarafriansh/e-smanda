@@ -21,10 +21,16 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-					<a href="{{ route("admin.home") }}" class="nav-link">
+					<a href="{{ route("admin.home") }}" class="nav-link {{ request()->is('admin') ? 'active' : '' }}">
 						<i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>{{ trans('global.dashboard') }}</p>
 					</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route("admin.reports") }}" class="nav-link {{ request()->is('admin/reports') || request()->is('admin/report/*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Rapor Siswa</p>
+                    </a>
                 </li>
                 @can('user_management_access')
                     <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}">

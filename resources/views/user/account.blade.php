@@ -1,5 +1,9 @@
 @extends('layouts.home-index')
 
+@section('title')
+    {{ $student->name }}
+@endsection
+
 @section('content')
 
 <!-- bradcam_area_start -->
@@ -18,7 +22,7 @@
                         <h4>fjfkfakfkaj</h4>
                         <div class="student_menu">
                             <span>
-                                <a href="#" title="">Edit Profile</a>
+                                <a href="{{ route('student.edit', $student->id) }}" title="">Edit Profile</a>
                             </span>
                             <span>
                                 <a href="{{ url('student/logout') }}" title="">Keluar</a>

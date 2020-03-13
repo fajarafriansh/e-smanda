@@ -1,5 +1,9 @@
 @extends('layouts.home-index')
 
+@section('title')
+	Home
+@endsection
+
 @section('content')
 
 <!-- slider_area_start -->
@@ -32,15 +36,14 @@
 		<div class="row">
 			<div class="col-xl-12">
 				<div class="section_title text-center mb-100">
-					<h3>Popular Courses</h3>
-					<p>Your domain control panel is designed for ease-of-use and <br> allows for all aspects of your
-					domains.</p>
+					<h3>Kursus Populer</h3>
+					<p>Semua kursus yang populer dapat kamu temukan disini<br> pastikan kamu memilih kursus yang benar</p>
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		{{-- <div class="row">
 			@include('partials.course-menu')
-		</div>
+		</div> --}}
 	</div>
 	<div class="all_courses">
 		<div class="container">
@@ -88,6 +91,5 @@
 	</div>
 </div>
 <!-- popular_courses_end-->
-
 
 @endsection

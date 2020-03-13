@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>{{ $page_title ?? 'e-Smanda' }}</title>
+	<title>@yield('title') &ndash; e-Smanda</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -33,6 +33,10 @@
 	<!-- header-end -->
 
 	@yield('content')
+
+	<!-- our_latest_blog_start -->
+	{{-- @include('partials.blog') --}}
+	<!-- our_latest_blog_end -->
 
 	<!-- footer -->
 	@include('layouts.footer')
@@ -68,6 +72,7 @@
 	<script src="{{ asset ('js/mail-script.js') }}"></script> --}}
 
 	<script src="{{ asset ('js/main.js') }}"></script>
+	<script src="{{ asset('js/just-validate.min.js') }}"></script>
 	{{-- <script src="{{ asset ('js/custom.js') }}"></script> --}}
 	{{-- <script src="{{ asset ('js/fuck.js') }}"></script> --}}
 
@@ -79,6 +84,48 @@
 		function closeNav() {
 			document.getElementById('mobile_nav').style.width = "0%";
 		}
+	</script>
+
+	<script>
+		new window.JustValidate('#student_edit', {
+			rules: {
+				name: {
+					required: true,
+				},
+				class: {
+					required: true,
+				}
+			},
+			messages: {
+				name: {
+					required: "Nama tidak boleh kosong",
+				},
+				class: {
+					required: "Kelas tidak boleh kosong",
+				}
+			},
+
+			focusWrongField: true,
+
+			// submitHandler: function (form, values, ajax) {
+			// 	ajax({
+			// 		url: 'https://just-validate-api.herokuapp.com/submit',
+			// 		method: 'POST',
+			// 		data: values,
+			// 		async: true,
+			// 		callback: function (response) {
+			// 			alert('AJAX submit successful! \nResponse from server:' + response)
+			// 		},
+			// 		error: function (response) {
+			// 			alert('AJAX submit error! \nResponse from server:' + response)
+			// 		}
+			// 	});
+			// },
+
+			invalidFormCallback: function (errors) {
+				console.log(errors);
+			},
+		});
 	</script>
 
 	@yield('scripts')

@@ -19,7 +19,7 @@ class LessonsController extends Controller
 
 	    	$test_result = NULL;
 	    	if ($lesson->test) {
-		    	$test_result = TestsResult::where('test_id', $lesson->test->id)->where('user_email', Auth::user()->email)->first();
+		    	$test_result = TestsResult::where('test_id', $lesson->test->id)->where('user_id', Auth::user()->id)->first();
 		    }
 
 	    	$previous_lesson = Lesson::where('course_id', $lesson->course_id)->where('published', 1)->where('position', '<', $lesson->position)->orderBy('position', 'desc')->first();

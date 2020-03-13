@@ -28,13 +28,19 @@ class ProfileEditRequest extends FormRequest
         return [
             'name' => 'required|string',
             'role' => 'required|string',
+            'bio' => 'required|string',
+            'avatar' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+            'current_avatar' => 'nullable',
         ];
     }
 
     public function messages() {
         return [
-            'name.required' => 'Nama tidak boleh kosong.',
-            'role.required' => 'Jabatan tidak boleh kosong.'
+            'name.required' => 'Nama tidak boleh kosong',
+            'role.required' => 'Jabatan tidak boleh kosong',
+            'bio.required' => 'Bio tidak boleh kosong',
+            'avatar.mimes' => 'Format foto tidak sesuai',
+            'avatar.max' => 'Ukuran file foto terlalu besar',
         ];
     }
 }

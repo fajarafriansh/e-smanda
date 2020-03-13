@@ -1,15 +1,6 @@
 @extends('layouts.admin-index')
 @section('content')
-@can('course_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.courses.create") }}">
-                Tambah Kursus Baru
-                {{-- {{ trans('global.add') }} {{ trans('cruds.course.title_singular') }} --}}
-            </a>
-        </div>
-    </div>
-@endcan
+
 <div class="card">
     <div class="card-header">
         Daftar Kursus
@@ -21,17 +12,17 @@
             <table class=" table table-bordered table-striped table-hover datatable datatable-Course">
                 <thead>
                     <tr>
-                        @can('course_delete')
+                        {{-- @can('course_delete')
                             @if(request('show_deleted') != 1)
                                 <th style="..."><input type="checkbox" id="select-all" /></th>
                             @endif
                         @endcan
                         <th width="10">
 
-                        </th>
-                        {{-- <th>
-                            {{ trans('cruds.course.fields.id') }}
                         </th> --}}
+                        <th>
+                            {{ trans('cruds.course.fields.id') }}
+                        </th>
                         @if (\Auth::user()->isAdmin())
                         <th>
                             {{ trans('cruds.course.fields.teacher') }}
@@ -42,18 +33,6 @@
                         </th>
                         <th>
                             {{ trans('cruds.course.fields.title') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.course.fields.slug') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.course.fields.description') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.course.fields.price') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.course.fields.course_image') }}
                         </th>
                         <th>
                             {{ trans('cruds.course.fields.start_date') }}
@@ -69,13 +48,13 @@
                 <tbody>
                     @foreach($courses as $key => $course)
                         <tr data-entry-id="{{ $course->id }}">
-                            @can('course_delete')
+                           {{--  @can('course_delete')
                                 @if(request('show_deleted') != 1)
                                     <td></td>
                                 @endif
-                            @endcan
+                            @endcan --}}
                             <td>
-                                {{-- {{ $course->id ?? '' }} --}}
+                                {{ $course->id ?? '' }}
                             </td>
 
                             @if (\Auth::user()->isAdmin())
@@ -92,26 +71,6 @@
                                 {{ $course->title ?? '' }}
                             </td>
                             <td>
-                                {{ $course->slug ?? '' }}
-                            </td>
-                            <td>
-                                {{ $course->description ?? '' }}
-                            </td>
-                            <td>
-                                {{ $course->price ?? '' }}
-                            </td>
-                            <td>
-                                @if($course->course_image)
-                                    <a href="{{ $course->course_image->getUrl() }}" target="_blank">
-                                        <img src="{{ $course->course_image->getUrl('thumb') }}" width="50px" height="50px">
-                                    </a>
-                                @else
-                                    <a href="{{ asset('img/asset/default-image.png') }}" target="_blank">
-                                        <img src="{{ asset('img/asset/default-image.png') }}" width="50px" height="50px">
-                                    </a>
-                                @endif
-                            </td>
-                            <td>
                                 {{ $course->start_date ?? '' }}
                             </td>
                             <td>
@@ -119,15 +78,15 @@
                             </td>
                             <td>
                                 @can('course_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.lessons.index', ['course_id' => $course->id]) }}">
-                                        {{ trans('global.lessons.title') }}
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.reports.test', $course->id) }}">
+                                        Lihat Report
                                     </a>
                                     {{-- <a class="btn btn-xs btn-primary" href="{{ route('admin.courses.show', $course->id) }}">
                                         {{ trans('global.view') }}
                                     </a> --}}
                                 @endcan
 
-                                @can('course_edit')
+                                {{-- @can('course_edit')
                                     <a class="btn btn-xs btn-info" href="{{ route('admin.courses.edit', $course->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
@@ -139,7 +98,7 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
-                                @endcan
+                                @endcan --}}
 
                             </td>
 

@@ -17,4 +17,12 @@ class HomeController extends Controller
         $courses = Course::where('published', 1)->orderBy('id', 'desc')->paginate(6);
         return view('home', compact('courses'));
     }
+
+    public function about() {
+    	return view('about');
+    }
+
+    public function contact() {
+    	return view('contact');
+    }
 }

@@ -1,5 +1,9 @@
 @extends('layouts.home-index')
 
+@section('title')
+	{{ $course->title }}
+@endsection
+
 @section('content')
 
 <!-- bradcam_area_start -->
@@ -45,9 +49,9 @@
 		<div class="row">
 			<div class="col-xl-7 col-lg-7">
 				<div class="single_courses">
-					<h3>Objectives</h3>
+					<h3>Objektif</h3>
 					<p>{{ $course->description }}</p>
-					<h3 class="second_title">Course Outline</h3>
+					<h3 class="second_title">Daftar Pelajaran</h3>
 				</div>
 				<div class="outline_courses_info">
 					<div id="accordion">
@@ -80,7 +84,7 @@
 						@if($course->course_image)
 							<img src="{{ $course->course_image->getUrl() }}" alt="">
 						@else
-							<img src="{{ asset('img/default-image.png') }}" alt="">
+							<img src="{{ asset('img/asset/default-image.png') }}" alt="">
 						@endif
 						{{-- <img src="{{ asset ('img/latest_blog/video.png') }}" alt=""> --}}
 						{{-- <a class="popup-video" href="https://www.youtube.com/watch?v=AjgD3CvWzS0">

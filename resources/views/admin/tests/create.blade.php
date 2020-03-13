@@ -9,19 +9,6 @@
     <div class="card-body">
         <form action="{{ route("admin.tests.store") }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="form-group {{ $errors->has('course_id') ? 'has-error' : '' }}">
-                <label for="course">{{ trans('cruds.test.fields.course') }}</label>
-                <select name="course_id" id="course" class="form-control select2">
-                    @foreach($courses as $id => $course)
-                        <option value="{{ $id }}" {{ (isset($test) && $test->course ? $test->course->id : old('course_id')) == $id ? 'selected' : '' }}>{{ $course }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('course_id'))
-                    <p class="help-block">
-                        {{ $errors->first('course_id') }}
-                    </p>
-                @endif
-            </div>
             <div class="form-group {{ $errors->has('lesson_id') ? 'has-error' : '' }}">
                 <label for="lesson">{{ trans('cruds.test.fields.lesson') }}</label>
                 <select name="lesson_id" id="lesson" class="form-control select2">
@@ -32,6 +19,19 @@
                 @if($errors->has('lesson_id'))
                     <p class="help-block">
                         {{ $errors->first('lesson_id') }}
+                    </p>
+                @endif
+            </div>
+            <div class="form-group {{ $errors->has('course_id') ? 'has-error' : '' }}">
+                <label for="course">{{ trans('cruds.test.fields.course') }}</label>
+                <select name="course_id" id="course" class="form-control select2">
+                    @foreach($courses as $id => $course)
+                        <option value="{{ $id }}" {{ (isset($test) && $test->course ? $test->course->id : old('course_id')) == $id ? 'selected' : '' }}>{{ $course }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('course_id'))
+                    <p class="help-block">
+                        {{ $errors->first('course_id') }}
                     </p>
                 @endif
             </div>

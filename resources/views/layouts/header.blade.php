@@ -14,17 +14,18 @@
 						<div class="main-menu  d-none d-lg-block">
 							<nav>
 								<ul id="navigation">
-									<li><a class="active" href="{{ route('home') }}">Home</a></li>
-									<li><a href="{{ url('/courses') }}">Kursus</a></li>
-									<li><a href="{{ url('/documents') }}">Materi</a></li>
-									<li><a href="#">blog{{--  <i class="ti-angle-down"></i> --}}</a>
-										{{-- <ul class="submenu">
+									<li><a class="{{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
+									<li><a class="{{ request()->is('course/*') || request()->is('courses') ? 'active' : '' }}" href="{{ url('/courses') }}">Kursus</a></li>
+									{{-- <li><a class="{{ request()->is('/documents') ? 'active' : '' }}" href="{{ url('/documents') }}">Materi</a></li>
+									<li><a href="#">blog <i class="ti-angle-down"></i></a>
+										<ul class="submenu">
 										    <li><a href="blog.html">blog</a></li>
 										    <li><a href="single-blog.html">single-blog</a></li>
-										</ul> --}}
-									</li>
-									<li><a href="about.html">About</a></li>
-									<li><a href="contact.html">Contact</a></li>
+										</ul>
+									</li> --}}
+									<li><a class="{{ request()->is('blog/*') ? 'active' : '' }}" href="{{ route('about') }}">Blog</a></li>
+									<li><a class="{{ request()->is('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
+									<li><a class="{{ request()->is('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
 								</ul>
 							</nav>
 						</div>

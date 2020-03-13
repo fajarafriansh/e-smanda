@@ -1,5 +1,9 @@
 @extends('layouts.home-index')
 
+@section('title')
+	Semua Kursus
+@endsection
+
 @section('content')
 
 <!-- slider_area_start -->
@@ -20,9 +24,9 @@
 				</div>
 			</div>
 		</div> --}}
-		<div class="row">
+		{{-- <div class="row">
 			@include('partials.course-menu')
-		</div>
+		</div> --}}
 	</div>
 	<div class="all_courses">
 		<div class="container">

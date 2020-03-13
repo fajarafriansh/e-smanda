@@ -81,4 +81,8 @@ class User extends Authenticatable
     public function detail() {
         return $this->hasOne(UserDetail::class);
     }
+
+    public function testResults() {
+        return $this->hasMany(TestsResult::class, 'user_id', 'id')->orderBy('test_id');
+    }
 }

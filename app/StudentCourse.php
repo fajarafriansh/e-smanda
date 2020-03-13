@@ -20,4 +20,8 @@ class StudentCourse extends Model {
     {
         return $this->belongsTo(Course::class, 'course_id')->withTrashed();
     }
+
+    public function student() {
+        return $this->belongsTo(User::class, 'student_id');
+    }
 }

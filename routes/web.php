@@ -2,9 +2,11 @@
 
 // Front routes
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/courses', 'CoursesController@index');
+Route::get('/courses', 'CoursesController@index')->name('courses');
 Route::get('course/{slug}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
 Route::get('lesson/{code}/{slug}', ['uses' => 'LessonsController@show', 'as' => 'lessons.show']);
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/contact', 'HomeController@contact')->name('contact');
 
 // Admin routes
 Route::redirect('/admin', '/login');
@@ -26,6 +28,9 @@ Route::get('/student/logout', 'UserController@logout');
 Route::group(['middleware' => ['student']], function() {
     Route::match(['get', 'post'], '/student/profile', 'CoursesController@account');
     Route::redirect('/student', '/student/profile');
+    Route::get('student/{id}/edit', 'StudentsController@editProfile')->name('student.edit');
+    Route::get('student/{id}/update', 'StudentsController@updateProfile')->name('student.update');
+
     Route::match(['get', 'post'], '/student/take-course', 'CoursesController@takeCourse')->name('take-course');
     Route::get('student/{slug}/delete', 'CoursesController@deleteCourse')->name('untake-course');
 
@@ -80,4 +85,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('profile/{id}', 'ProfileController@profile')->name('profile');
     Route::post('profile/{id}/update', 'ProfileController@update')->name('profile-update');
     Route::post('profile/{id}/update-password', 'ProfileController@updatePass')->name('profile-update-password');
+
+    // Report
+    Route::get('reports', 'ReportsController@index')->name('reports');
+    Route::get('report/course/{id}', 'ReportsController@indexTest')->name('reports.test');
+    Route::get('report/test/{id}', 'ReportsController@showTest')->name('reports.show');
 });

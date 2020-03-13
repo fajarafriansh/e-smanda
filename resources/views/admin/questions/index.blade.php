@@ -26,6 +26,9 @@
                             {{ trans('cruds.question.fields.id') }}
                         </th>
                         <th>
+                            Tests
+                        </th>
+                        <th>
                             {{ trans('cruds.question.fields.question') }}
                         </th>
                         <th>
@@ -47,6 +50,11 @@
                             </td>
                             <td>
                                 {{ $question->id ?? '' }}
+                            </td>
+                            <td>
+                                @foreach($question->tests as $key => $item)
+                                    <span class="badge badge-info">{{ $item->title ?? '' }}</span>
+                                @endforeach
                             </td>
                             <td>
                                 {{ $question->question ?? '' }}

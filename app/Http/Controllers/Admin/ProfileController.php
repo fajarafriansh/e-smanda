@@ -20,38 +20,47 @@ class ProfileController extends Controller
     }
 
     public function update(ProfileEditRequest $request) {
-    	if ($request->isMethod('post')) {
-	    	$user_id = \Auth::user()->id;
-	    	$user = User::find($user_id);
-	    	$data = $request->all();
+    	$user_id = \Auth::user()->id;
+    	$user = User::find($user_id);
 
-	    	if (request()->has('avatar')) {
-	    		$avatar = request()->file('avatar');
-	    		$avatar_name = rand(111,99999).'.'.$avatar->getClientOriginalExtension();
-	    		$avatar_path = 'img/avatar/'.$avatar_name;
+    	$data = $request->all();
 
-				Image::make($avatar)->save($avatar_path);
+   //  	UserDetail::where('user_id', $user_id)->update([
+			// 'user_id' => $user_id,
+   //  		'role' => $data['role'],
+   //  		'bio' => $data['bio'],
+   //  	]);
+   //  	User::where('id', $user_id)->update([
+   //  		'name' => $data['name'],
+   //  	]);
 
-	    		$delete_avatar_path = 'img/avatar/'.$user->detail->avatar;
+    	if (request()->hasFile('avatar')) {
+    		$avatar = request()->file('avatar');
+    		$avatar_name = rand(111,99999).'.'.$avatar->getClientOriginalExtension();
+    		$avatar_path = 'img/avatar/'.$avatar_name;
 
-	    		File::delete($delete_avatar_path);
-	    	} else {
-	    		$avatar_name = $data['current_avatar'];
-	    	}
+			Image::make($avatar)->save($avatar_path);
 
-	    	UserDetail::where('user_id', $user_id)->update([
-	    		'avatar' => $avatar_name,
-	    		'role' => $data['role'],
-	    		'bio' => $data['bio'],
-	    	]);
+    		$delete_avatar_path = 'img/avatar/'.$user->detail->avatar;
 
-	    	User::where('id', $user_id)->update([
-	    		'name' => $data['name'],
-	    	]);
-	    	// echo "<pre>"; print_r($data); die;
+    		File::delete($delete_avatar_path);
+    	} else {
+    		$avatar_name = $data['current_avatar'];
+    	}
 
-	    	return redirect()->back()->with('toast_success', 'Profil berhasil diubah.');
-	    }
+    	UserDetail::where('user_id', $user_id)->update([
+    		'user_id' => $user_id,
+    		'avatar' => $avatar_name,
+    		'role' => $data['role'],
+    		'bio' => $data['bio'],
+    	]);
+
+    	User::where('id', $user_id)->update([
+    		'name' => $data['name'],
+    	]);
+    	// echo "<pre>"; print_r($data); die;
+
+    	return redirect()->back()->with('toast_success', 'Profil telah diubah');
     }
 
     public function updatePass() {
