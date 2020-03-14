@@ -34,7 +34,7 @@ class LessonsController extends Controller
 		    	return redirect()->back()->with('warning', 'Kamu harus mengambil kursus ini terlebih dahulu.');
 		    }
 		} else {
-			return view('errors.404');
+			return redirect()->back()->with('warning', 'Kamu harus login dan mengambil kursus ini terlebih dahulu.');
 		}
     }
 
