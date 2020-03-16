@@ -19,14 +19,14 @@ Route::get('/home', function () {
 });
 
 // Registration & Login routes
-Route::match(['get', 'post'], '/student/register', 'UserController@register');
-Route::match(['get', 'post'], '/student/login', 'UserController@login');
+Route::match(['get', 'post'], '/student/register', 'UserController@register')->name('student.register');
+Route::match(['get', 'post'], '/student/login', 'UserController@login')->name('student.login');
 Route::match(['get', 'post'], '/student/check-email', 'UserController@checkEmail');
-Route::get('/student/logout', 'UserController@logout');
+Route::get('/student/logout', 'UserController@logout')->name('student.logout');
 
 // Student after login
 Route::group(['middleware' => ['student']], function() {
-    Route::match(['get', 'post'], '/student/profile', 'CoursesController@account');
+    Route::match(['get', 'post'], '/student/profile', 'CoursesController@account')->name('student.profile');
     Route::redirect('/student', '/student/profile');
     Route::get('student/{id}/edit', 'StudentsController@editProfile')->name('student.edit');
     Route::get('student/{id}/update', 'StudentsController@updateProfile')->name('student.update');

@@ -16,6 +16,7 @@
 								<ul id="navigation">
 									<li><a class="{{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
 									<li><a class="{{ request()->is('course/*') || request()->is('courses') ? 'active' : '' }}" href="{{ url('/courses') }}">Kursus</a></li>
+									<li><a class="{{ request()->is('teacher/*') || request()->is('teachers') ? 'active' : '' }}" href="#">Guru</a></li>
 									{{-- <li><a class="{{ request()->is('/documents') ? 'active' : '' }}" href="{{ url('/documents') }}">Materi</a></li>
 									<li><a href="#">blog <i class="ti-angle-down"></i></a>
 										<ul class="submenu">
@@ -24,8 +25,8 @@
 										</ul>
 									</li> --}}
 									<li><a class="{{ request()->is('blog/*') ? 'active' : '' }}" href="{{ route('about') }}">Blog</a></li>
-									<li><a class="{{ request()->is('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
-									<li><a class="{{ request()->is('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
+									<li><a class="{{ request()->is('about') ? 'active' : '' }}" href="{{ route('about') }}">Tentang</a></li>
+									<li><a class="{{ request()->is('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Kontak</a></li>
 								</ul>
 							</nav>
 						</div>
@@ -94,9 +95,10 @@
 		<div class="overlay-content">
 			<a href="{{ route('home') }}">Home</a>
 			<a href="{{ url('/courses') }}">Kursus</a>
-			<a href="{{ route('home') }}">Materi</a>
-			<a href="{{ route('home') }}">Materi</a>
-			<a href="{{ route('home') }}">Materi</a>
+			<a href="#">Guru</a>
+			<a href="#">Blog</a>
+			<a href="{{ route('about') }}">Tentang</a>
+			<a href="{{ route('contact') }}">Kontak</a>
 		</div>
 	</div>
 </header>
