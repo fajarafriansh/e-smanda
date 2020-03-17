@@ -461,6 +461,15 @@ div.modal.comment {
 	.button_inside .form-control {
 		padding-right: 65px;
 	}
+
+	div.about_tutorials {
+		display: none;
+	}
+
+	.our_team_member .single_about_info h3 {
+	    font-size: 25px;
+	    line-height: 32px;
+	}
 }
 
 .afriansh.overlay {
@@ -565,4 +574,18 @@ span.slicknav_btn.login {
 
 .upper_margin {
 	margin-top: 100px;
+}
+
+.our_team_member .single_about_info h3 {
+    font-size: 46px;
+    line-height: 56px;
+    font-weight: 400;
+}
+
+.our_team_member .single_about_info p {
+    font-size: 17px;
+    font-weight: 400;
+    color: #727272;
+    margin-top: 10px;
+    margin-bottom: 42px;
 }

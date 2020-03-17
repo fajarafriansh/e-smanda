@@ -18,12 +18,10 @@
         <div class="row">
             <div class="col-xl-5 col-lg-6">
                 <div class="single_about_info">
-                    <h3>Over 7000 Tutorials <br>
-                        from 20 Courses</h3>
-                    <p>Our set he for firmament morning sixth subdue darkness creeping gathered divide our let god
-                        moving. Moving in fourth air night bring upon you’re it beast let you dominion likeness open
-                        place day great wherein heaven sixth lesser subdue fowl </p>
-                    <a href="#" class="boxed_btn">Enroll a Course</a>
+                    <h3>Untuk Pendidikan Indonesia <br>
+                        yang Lebih Baik</h3>
+                    <p>e-Smanda merupakan Online Learning Management System yang dibuat untuk penelitian yang dilakukan oleh Rifa Astrinaya dalam menyelesaikan Tugas Akhir.</p>
+                    {{-- <a href="#" class="boxed_btn">Enroll a Course</a> --}}
                 </div>
             </div>
             <div class="col-xl-6 offset-xl-1 col-lg-6">
@@ -31,16 +29,16 @@
                     <div class="courses">
                         <div class="inner_courses">
                             <div class="text_info">
-                                <span>20+</span>
-                                <p> Courses</p>
+                                {{-- <span>20+</span>
+                                <p> Courses</p> --}}
                             </div>
                         </div>
                     </div>
                     <div class="courses-blue">
                         <div class="inner_courses">
                             <div class="text_info">
-                                <span>7638</span>
-                                <p> Courses</p>
+                                {{-- <span>7638</span>
+                                <p> Courses</p> --}}
                             </div>
 
                         </div>
@@ -48,8 +46,8 @@
                     <div class="courses-sky">
                         <div class="inner_courses">
                             <div class="text_info">
-                                <span>230+</span>
-                                <p> Courses</p>
+                                {{-- <span>230+</span>
+                                <p> Courses</p> --}}
                             </div>
 
                         </div>
@@ -64,6 +62,14 @@
 <!-- our_team_member_start -->
 <div class="our_team_member">
     <div class="container">
+    	<div class="row">
+			<div class="col-xl-12">
+				<div class="single_about_info text-center mb-100">
+					<h3>Tim Kami</h3>
+					<p>Ini adalah orang-orang hebat di balik e-Smanda</p>
+				</div>
+			</div>
+		</div>
         <div class="row">
             <div class="col-xl-3 col-md-6 col-lg-3">
                 <div class="single_team">
