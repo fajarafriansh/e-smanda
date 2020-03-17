@@ -98,7 +98,9 @@
 									<img src="{{ asset ('img/avatar/'. $teacher->detail->avatar) }}" alt="">
 								</div>
 								<div class="name">
-									<h3>{{ $teacher->name }}</h3>
+									<a href="{{ route('teachers.show', $teacher->id) }}">
+										<h3>{{ $teacher->name }}</h3>
+									</a>
 									<p>{{ $teacher->detail->role }}</p>
 								</div>
 							</div>

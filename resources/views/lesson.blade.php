@@ -72,11 +72,13 @@
 									@if (!is_null($test_result))
 										<p>Kamu sudah mengerjakan soal {{ $lesson->test->title }}.</p>
 										<div class="button rounded-0 primary-bg text-white lebar-100 btn_1 boxed-btn done">Nilai kamu = {{ $test_result->test_result }}</div>
-									@elseif ($lesson->test->questions->count() < 1)
-										<p>{{ $lesson->test->description }}</p>
 									@else
-										<p>Selesaikan soal {{ $lesson->test->title }} dengan klik pada tombol di bawah!</p>
-										<a href="{{ route('lessons.test', [$lesson->course->code, $lesson->slug]) }}" class="button rounded-0 primary-bg text-white lebar-100 btn_1 boxed-btn">Kerjakan Soal</a>
+										@if ($lesson->test->questions->count() < 1)
+											<p>{{ $lesson->test->description }}</p>
+										@else
+											<p>Selesaikan soal {{ $lesson->test->title }} dengan klik pada tombol di bawah!</p>
+											<a href="{{ route('lessons.test', [$lesson->course->code, $lesson->slug]) }}" class="button rounded-0 primary-bg text-white lebar-100 btn_1 boxed-btn">Kerjakan Soal</a>
+										@endif
 									@endif
 								</div>
 							</div>
@@ -157,7 +159,7 @@
 								<img src="{{ asset ('img/avatar/'. $teacher->detail->avatar) }}" alt="">
 							</div>
 							<div class="media-body">
-								<a href="#">
+								<a href="{{ route('teachers.show', $teacher->id) }}">
                                     <h4>{{ $teacher->name }}</h4>
 								</a>
 

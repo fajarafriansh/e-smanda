@@ -15,8 +15,8 @@
 							<nav>
 								<ul id="navigation">
 									<li><a class="{{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
-									<li><a class="{{ request()->is('course/*') || request()->is('courses') ? 'active' : '' }}" href="{{ url('/courses') }}">Kursus</a></li>
-									<li><a class="{{ request()->is('teacher/*') || request()->is('teachers') ? 'active' : '' }}" href="#">Guru</a></li>
+									<li><a class="{{ request()->is('course/*') || request()->is('courses') ? 'active' : '' }}" href="{{ route('courses') }}">Kursus</a></li>
+									<li><a class="{{ request()->is('teacher/*') || request()->is('teachers') ? 'active' : '' }}" href="{{ route('teachers') }}">Guru</a></li>
 									{{-- <li><a class="{{ request()->is('/documents') ? 'active' : '' }}" href="{{ url('/documents') }}">Materi</a></li>
 									<li><a href="#">blog <i class="ti-angle-down"></i></a>
 										<ul class="submenu">
