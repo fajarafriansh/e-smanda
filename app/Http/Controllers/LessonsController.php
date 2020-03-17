@@ -64,7 +64,7 @@ class LessonsController extends Controller
 
     	$test_result = TestsResult::create([
     		'test_id' => $lesson->test->id,
-    		'user_email' => Auth::user()->email,
+    		'user_id' => Auth::user()->id,
     		'test_result' => $test_score
     	]);
     	$test_result->answers()->createMany($answers);
