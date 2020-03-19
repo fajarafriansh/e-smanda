@@ -26,9 +26,9 @@
                                 <th style="..."><input type="checkbox" id="select-all" /></th>
                             @endif
                         @endcan
-                        <th width="10">
+                        {{-- <th width="10">
 
-                        </th>
+                        </th> --}}
                         {{-- <th>
                             {{ trans('cruds.course.fields.id') }}
                         </th> --}}
@@ -37,6 +37,9 @@
                             {{ trans('cruds.course.fields.teacher') }}
                         </th>
                         @endif
+                        <th>
+                            Kategori
+                        </th>
                         <th>
                             Kode Kursus
                         </th>
@@ -48,9 +51,6 @@
                         </th>
                         <th>
                             {{ trans('cruds.course.fields.description') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.course.fields.price') }}
                         </th>
                         <th>
                             {{ trans('cruds.course.fields.course_image') }}
@@ -74,9 +74,9 @@
                                     <td></td>
                                 @endif
                             @endcan
-                            <td>
-                                {{-- {{ $course->id ?? '' }} --}}
-                            </td>
+                            {{-- <td>
+                                {{ $course->id ?? '' }}
+                            </td> --}}
 
                             @if (\Auth::user()->isAdmin())
                             <td>
@@ -85,6 +85,11 @@
                                 @endforeach
                             </td>
                             @endif
+                            <td>
+                                @foreach($course->categories as $key => $item)
+                                    <span class="badge badge-info">{{ $item->title }}</span>
+                                @endforeach
+                            </td>
                             <td>
                                 {{ $course->code ?? '' }}
                             </td>
@@ -96,9 +101,6 @@
                             </td>
                             <td>
                                 {{ $course->description ?? '' }}
-                            </td>
-                            <td>
-                                {{ $course->price ?? '' }}
                             </td>
                             <td>
                                 @if($course->course_image)

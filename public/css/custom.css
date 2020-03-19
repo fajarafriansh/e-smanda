@@ -607,3 +607,7 @@ span.slicknav_btn.login {
 		height: 50vw;
 	}
 }
+
+.nav-treeview a.nav-link {
+    margin-left: 20px;
+}

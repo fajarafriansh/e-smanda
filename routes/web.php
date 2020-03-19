@@ -65,6 +65,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('courses/media', 'CoursesController@storeMedia')->name('courses.storeMedia');
     Route::resource('courses', 'CoursesController');
 
+    // Categories
+    Route::get('categories', 'CategoriesController@index')->name('categories.index');
+    Route::get('category/create', 'CategoriesController@create')->name('category.create');
+    Route::post('category/store', 'CategoriesController@store')->name('category.store');
+    Route::get('category/{id}', 'CategoriesController@show')->name('category.show');
+    Route::get('category/{id}/edit', 'CategoriesController@edit')->name('category.edit');
+    Route::post('category/{id}/update', 'CategoriesController@update')->name('category.update');
+    Route::get('category/{id}/delete', 'CategoriesController@destroy')->name('category.destroy');
+
     // Lessons
     Route::delete('lessons/destroy', 'LessonsController@massDestroy')->name('lessons.massDestroy');
     Route::post('lessons/media', 'LessonsController@storeMedia')->name('lessons.storeMedia');

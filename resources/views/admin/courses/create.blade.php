@@ -65,6 +65,24 @@
                     {{ trans('cruds.course.fields.slug_helper') }}
                 </p>
             </div>
+            <div class="form-group {{ $errors->has('categories') ? 'has-error' : '' }}">
+                <label for="categories">Kategori
+                    <span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span></label>
+                <select name="categories[]" id="categories" class="form-control select2" multiple="multiple">
+                    @foreach($categories as $id => $category)
+                        <option value="{{ $id }}" {{ (in_array($id, old('categories', [])) || isset($course) && $course->categories->contains($id)) ? 'selected' : '' }}>{{ $category }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('categories'))
+                    <p class="help-block">
+                        {{ $errors->first('categories') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('cruds.course.fields.teacher_helper') }}
+                </p>
+            </div>
             <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                 <label for="description">{{ trans('cruds.course.fields.description') }}</label>
                 <textarea id="description" name="description" class="form-control ">{{ old('description', isset($course) ? $course->description : '') }}</textarea>

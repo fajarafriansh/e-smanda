@@ -26,8 +26,10 @@
 					<div class="blog_details">
 						<h2>{{ $lesson->title }}</h2>
 						<ul class="blog-info-link mt-3 mb-4">
-							<li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-							<li><a href="#"><i class="fa fa-comments"></i> {{ $lesson->comments->count()}} Komentar</a></li>
+							@foreach ($lesson->course->categories as $category)
+								<li><i class="fa fa-folder-open"></i> <a href="">{{ $category->title }}</a></li>
+							@endforeach
+							{{-- <li><a href="#"><i class="fa fa-comments"></i> {{ $lesson->comments->count()}} Komentar</a></li> --}}
 						</ul>
 
 						<div class=lesson-text-area>
