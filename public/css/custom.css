@@ -546,7 +546,7 @@ span.slicknav_btn.login {
 }
 
 .courses_details_info #accordion .card .card-body {
-    padding: 0 20px 40px 76px;
+    padding: 0 30px 40px 30px;
 }
 
 .popular_courses .single_courses .thumb img {
@@ -606,4 +606,10 @@ span.slicknav_btn.login {
 	.our_team_member .single_team .thumb img.teacher {
 		height: 50vw;
 	}
+}
+
+.courses_info img.avatar {
+	width: 23px;
+	height: 23px;
+	object-fit: cover;
 }

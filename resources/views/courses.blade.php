@@ -52,8 +52,11 @@
 										<h3><a href="{{ route('courses.show', [$course->slug]) }}">{{ $course->title }}</a></h3>
 										<div class="star_prise d-flex justify-content-between">
 											<div class="star">
-												<i class="flaticon-mark-as-favorite-star"></i>
-												<span>(4.5)</span>
+												<a href="{{ route('teachers.show', [$teacher->id]) }}">
+													<img class="avatar" src="{{ asset('img/avatar/'. $teacher->detail->avatar) }}" alt="">
+													{{-- <i class="flaticon-mark-as-favorite-star"></i> --}}
+													<span>{{ $teacher->name }}</span>
+												</a>
 											</div>
 											<div class="prise">
 												{{-- <span class="offer">$89.00</span> --}}
