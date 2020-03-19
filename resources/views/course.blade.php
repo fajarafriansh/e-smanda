@@ -28,10 +28,13 @@
 					<div class="hours">
 						<div class="video">
 							<div class="single_video">
-							<i class="fa fa-clock-o"></i> <span>12 Videos</span>
+								@foreach ($course->teachers as $teacher)
+									<i class="fa fa-user-o"></i>
+									<span>{{ $teacher->name }}</span>
+								@endforeach
 							</div>
 							<div class="single_video">
-							<i class="fa fa-play-circle-o"></i> <span>9 Hours</span>
+							<i class="fa fa-clock-o"></i></i> <span>9 Hours</span>
 							</div>
 						</div>
 					</div>
@@ -60,7 +63,7 @@
 								<div class="card-header" id="headingTwo">
 									<h5 class="mb-0">
 										<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{ $loop->iteration }}" aria-expanded="false" aria-controls="collapse{{ $loop->iteration }}">
-											<i class="flaticon-question"></i> {{ $lesson->title }}
+											{{-- <i class="flaticon-question"></i> --}} {{ $lesson->title }}
 										</button>
 									</h5>
 								</div>

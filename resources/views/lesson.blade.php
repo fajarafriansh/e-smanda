@@ -25,10 +25,10 @@
 					</div>
 					<div class="blog_details">
 						<h2>{{ $lesson->title }}</h2>
-						<ul class="blog-info-link mt-3 mb-4">
+						{{-- <ul class="blog-info-link mt-3 mb-4">
 							<li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
 							<li><a href="#"><i class="fa fa-comments"></i> {{ $lesson->comments->count()}} Komentar</a></li>
-						</ul>
+						</ul> --}}
 
 						<div class=lesson-text-area>
 							<p>{{ $lesson->full_text }}</p>
@@ -87,7 +87,7 @@
 					</div>
 				</div>
 				<div class="navigation-top">
-					<div class="d-sm-flex justify-content-between text-center">
+					{{-- <div class="d-sm-flex justify-content-between text-center">
 						<p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4 people like this</p>
 						<div class="col-sm-4 text-center my-2 my-sm-0">
 							<p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p>
@@ -98,7 +98,7 @@
 							<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
 							<li><a href="#"><i class="fa fa-behance"></i></a></li>
 						</ul>
-					</div>
+					</div> --}}
 					<div class="navigation-area">
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
