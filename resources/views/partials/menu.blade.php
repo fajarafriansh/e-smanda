@@ -84,15 +84,38 @@
                     </li>
                 @endcan
                 @can('course_access')
-                    <li class="nav-item">
-                        <a href="{{ route("admin.courses.index") }}" class="nav-link {{ request()->is('admin/courses') || request()->is('admin/courses/*') ? 'active' : '' }}">
+                    <li class="nav-item has-treeview {{ request()->is('admin/courses*') ? 'menu-open' : '' }} {{ request()->is('admin/categories*') ? 'menu-open' : '' }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="nav-icon fas fa-school">
 
                             </i>
                             <p>
                                 <span>{{ trans('cruds.course.title') }}</span>
+                                <i class="right fa fa-fw fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route("admin.courses.index") }}" class="nav-link {{ request()->is('admin/courses') || request()->is('admin/courses/*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-chalkboard-teacher">
+
+                                    </i>
+                                    <p>
+                                        <span>{{ trans('cruds.course.title') }}</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route("admin.categories.index") }}" class="nav-link {{ request()->is('admin/categories') || request()->is('admin/category/*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-folder">
+
+                                    </i>
+                                    <p>
+                                        <span>Kategori</span>
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endcan
                 @can('lesson_access')

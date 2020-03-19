@@ -9,6 +9,7 @@ use App\Http\Requests\MassDestroyCourseRequest;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\User;
+use App\CoursesCategory;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,10 +41,12 @@ class CoursesController extends Controller
 
         $teachers = User::whereHas('roles', function ($q) { $q->where('role_id', 3); })->get()->pluck('name', 'id');
 
+        $categories = CoursesCategory::all()->pluck('title', 'id');
+
         $user_id = \Auth::user()->id;
         $user = User::where('id', $user_id)->first();
 
-        return view('admin.courses.create', compact('teachers', 'user'));
+        return view('admin.courses.create', compact('teachers', 'user', 'categories'));
     }
 
     public function store(StoreCourseRequest $request)
@@ -51,6 +54,7 @@ class CoursesController extends Controller
         $course = Course::create($request->all());
         $teachers = \Auth::user()->isAdmin() ? array_filter((array)$request->input('teachers', [])) : [\Auth::user()->id];
         $course->teachers()->sync($teachers);
+        $course->categories()->sync($request->input('categories', []));
 
         if ($request->input('course_image', false)) {
             $course->addMedia(storage_path('tmp/uploads/' . $request->input('course_image')))->toMediaCollection('course_image');
@@ -64,13 +68,14 @@ class CoursesController extends Controller
         abort_if(Gate::denies('course_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $teachers = User::whereHas('roles', function ($q) { $q->where('role_id', 3); })->get()->pluck('name', 'id');
+        $categories = CoursesCategory::all()->pluck('title', 'id');
 
-        $course->load('teachers');
+        $course->load('teachers', 'categories');
 
         $user_id = \Auth::user()->id;
         $user = User::where('id', $user_id)->first();
 
-        return view('admin.courses.edit', compact('teachers', 'course', 'user'));
+        return view('admin.courses.edit', compact('teachers', 'course', 'user', 'categories'));
     }
 
     public function update(UpdateCourseRequest $request, Course $course)
@@ -78,6 +83,7 @@ class CoursesController extends Controller
         $course->update($request->all());
         $teachers = \Auth::user()->isAdmin() ? array_filter((array)$request->input('teachers', [])) : [\Auth::user()->id];
         $course->teachers()->sync($teachers);
+        $course->categories()->sync($request->input('categories', []));
 
         if ($request->input('course_image', false)) {
             if (!$course->course_image || $request->input('course_image') !== $course->course_image->file_name) {
