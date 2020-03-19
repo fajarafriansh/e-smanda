@@ -502,7 +502,8 @@ div.modal.comment {
 	transition: 0.3s;
 }
 
-.afriansh.overlay a:hover, .afriansh.overlay a:focus {
+.afriansh.overlay a:hover,
+.afriansh.overlay a:focus {
 	color: gray;
 }
 
@@ -524,7 +525,8 @@ span.slicknav_btn.login {
 }
 
 @media (min-width: 768px) {
-	span.slicknav_btn.login, span.slicknav_btn.profile {
+	span.slicknav_btn.login,
+	span.slicknav_btn.profile {
 	    right: -70px;
 	}
 
@@ -554,7 +556,8 @@ span.slicknav_btn.login {
     object-fit: cover;
 }
 
-.single-post-area .navigation-area .nav-right .thumb img, .single-post-area .navigation-area .nav-left .thumb img {
+.single-post-area .navigation-area .nav-right .thumb img,
+.single-post-area .navigation-area .nav-left .thumb img {
     width: 60px;
     height: 60px;
     object-fit: cover;

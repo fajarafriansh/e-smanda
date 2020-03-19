@@ -29,7 +29,7 @@
 							@foreach ($lesson->course->categories as $category)
 								<li><i class="fa fa-folder-open"></i> <a href="">{{ $category->title }}</a></li>
 							@endforeach
-							{{-- <li><a href="#"><i class="fa fa-comments"></i> {{ $lesson->comments->count()}} Komentar</a></li> --}}
+							<li><a href="#"><i class="fa fa-comments"></i> {{ $lesson->comments->count()}} Komentar</a></li>
 						</ul>
 
 						<div class=lesson-text-area>
