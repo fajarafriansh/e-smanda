@@ -18,7 +18,7 @@
 			<div class="col-xl-12">
 				<div class="section_title text-center mb-100">
 					<h3>Daftar Guru Hebat Kami</h3>
-					<p>Guru-guru hebat yang akan memberikan pelajarn terbaik</p>
+					<p>Guru-guru hebat yang akan memberikan pelajaran terbaik</p>
 				</div>
 			</div>
 		</div>

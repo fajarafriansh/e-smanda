@@ -4,6 +4,7 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/courses', 'CoursesController@index')->name('courses');
 Route::get('course/{slug}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
+Route::get('course/category/{slug}', 'CoursesController@category')->name('courses.category');
 Route::get('teachers', 'TeachersController@index')->name('teachers');
 Route::get('teacher/{id}', 'TeachersController@show')->name('teachers.show');
 Route::get('lesson/{code}/{slug}', ['uses' => 'LessonsController@show', 'as' => 'lessons.show']);

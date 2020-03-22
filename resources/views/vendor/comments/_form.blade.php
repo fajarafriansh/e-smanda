@@ -10,7 +10,7 @@
                 {{ $errors->get('commentable_id') }}
             </div>
         @endif
-        <div class="comment-form">
+        <div id="comment-area" class="comment-form">
             <h4>Ayo Diskusi!</h4>
             <form method="POST" action="{{ route('comments.store') }}" class="comment_form">
                 @csrf

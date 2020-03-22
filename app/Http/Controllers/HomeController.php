@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 Use App\Course;
+use App\CoursesCategory;
 Use App\Http\Requests;
 use RealRashid\SweetAlert\Facades\Alert;
 

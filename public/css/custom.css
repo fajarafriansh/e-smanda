@@ -324,6 +324,10 @@ img.is-avatar {
 	}
 }
 
+.comment-form .form-control {
+	font-size: 17px;
+}
+
 .comments-area hr {
 	margin: 0;
 }
@@ -548,7 +552,7 @@ span.slicknav_btn.login {
 }
 
 .courses_details_info #accordion .card .card-body {
-    padding: 0 20px 40px 76px;
+    padding: 0 30px 40px 30px;
 }
 
 .popular_courses .single_courses .thumb img {
@@ -611,6 +615,31 @@ span.slicknav_btn.login {
 	}
 }
 
+.courses_info img.avatar {
+	width: 22px;
+	height: 22px;
+	object-fit: cover;
+	vertical-align: text-top;
+}
+
 .nav-treeview a.nav-link {
     margin-left: 20px;
+}
+
+.single-post-area .blog_details p {
+    font-size: 17px;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media secreen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+.download-file .fa {
+	margin-right: 10px;
 }

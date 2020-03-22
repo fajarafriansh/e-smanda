@@ -63,17 +63,21 @@
 										</a>
 									</div>
 									<div class="courses_info">
-										@foreach ($course->teachers as $teacher)
-											<span>{{ $teacher->name }}</span>
+										@foreach ($course->categories as $category)
+											<a href="{{ route('courses.category', [$category->slug]) }}">
+												<span>{{ $category->title }}</span>
+											</a>
 										@endforeach
 										<h3><a href="{{ route('courses.show', [$course->slug]) }}">{{ $course->title }}</a></h3>
 										<div class="star_prise d-flex justify-content-between">
 											<div class="star">
-												<a href="{{ route('teachers.show', [$teacher->id]) }}">
-													<img class="avatar" src="{{ asset('img/avatar/'. $teacher->detail->avatar) }}" alt="">
-													{{-- <i class="flaticon-mark-as-favorite-star"></i> --}}
-													<span>{{ $teacher->name }}</span>
-												</a>
+												@foreach ($course->teachers as $teacher)
+													<a class="teacher" href="{{ route('teachers.show', [$teacher->id]) }}">
+														<img class="avatar" src="{{ asset('img/avatar/'. $teacher->detail->avatar) }}" alt="">
+														{{-- <i class="flaticon-mark-as-favorite-star"></i> --}}
+														<span>{{ $teacher->name }}</span>
+													</a>
+												@endforeach
 											</div>
 											<div class="prise">
 												{{-- <span class="offer">$89.00</span> --}}

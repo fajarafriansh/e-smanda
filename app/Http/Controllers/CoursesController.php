@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\CoursesCategory;
 use App\StudentCourse;
 use App\User;
 use Illuminate\Http\Request;
@@ -12,9 +13,20 @@ use DB;
 class CoursesController extends Controller
 {
     public function index() {
-        $courses = Course::where('published', 1)->orderBy('id', 'desc')->get();
+        $categories = CoursesCategory::all()->sortBy('title');
+        $courses = Course::where('published', 1)->orderBy('id', 'desc')->paginate(6);
 
-        return view('courses', compact('courses'));
+        return view('courses', compact('courses', 'categories'));
+    }
+
+    public function category($category_slug) {
+        $categories = CoursesCategory::all()->sortBy('title');
+        $category = CoursesCategory::where('slug', $category_slug)->first();
+        $courses = Course::whereHas('categories', function($query) use ($category_slug) {
+            $query->where('slug', $category_slug);
+        })->paginate(6);
+
+        return view('category', compact('categories', 'category', 'courses'));
     }
 
     public function show($course_slug) {

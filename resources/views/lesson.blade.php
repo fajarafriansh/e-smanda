@@ -27,9 +27,9 @@
 						<h2>{{ $lesson->title }}</h2>
 						<ul class="blog-info-link mt-3 mb-4">
 							@foreach ($lesson->course->categories as $category)
-								<li><i class="fa fa-folder-open"></i> <a href="">{{ $category->title }}</a></li>
+								<li><i class="fa fa-folder-open"></i> <a href="{{ route('courses.category', [$category->slug]) }}">{{ $category->title }}</a></li>
 							@endforeach
-							<li><a href="#"><i class="fa fa-comments"></i> {{ $lesson->comments->count()}} Komentar</a></li>
+							<li><i class="fa fa-comments"></i> <a href="#comment-area">{{ $lesson->comments->count()}} Komentar</a></li>
 						</ul>
 
 						<div class=lesson-text-area>
@@ -37,7 +37,7 @@
 						</div>
 
 						@if ($lesson->downloadable_file)
-							<div class="test-area">
+							<div class="test-area download-file">
 								<div class="container box_1170 border-top-generic">
 									<h3 class="text-heading">Unduh File Materi</h3>
 									<p>Unduh file materi pada link di bawah</p>
