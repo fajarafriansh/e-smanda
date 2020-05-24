@@ -19,7 +19,7 @@
 			<div class="star">
 				@foreach ($course->teachers as $teacher)
 					<a href="{{ route('teachers.show', [$teacher->id]) }}">
-						<img class="avatar" src="{{ asset('img/avatar/'. $teacher->detail->avatar) }}" alt="">
+						<img class="avatar" src="{{ asset('img/avatar/'. $teacher->avatar) }}" alt="">
 						{{-- <i class="flaticon-mark-as-favorite-star"></i> --}}
 						<span>{{ $teacher->name }}</span>
 					</a>

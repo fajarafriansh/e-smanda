@@ -28,15 +28,16 @@
                         </div>
                         <div class="card-body">
                             <form class="form" action="{{ route('student.update', $student->id) }}" method="post" id="student_edit" novalidate="novalidate">@csrf
+                                <input type="hidden" id="current_avatar" name="current_avatar" value="{{ old('avatar', isset($student) ? $student->avatar : '') }}">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <input type="text" class="form__input form-control w-100" name="name" id="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama'" placeholder=" Nama" autocomplete="off" data-validate-field="name">
+                                            <input type="text" class="form__input form-control w-100" name="name" id="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama'" placeholder=" Nama" autocomplete="off" data-validate-field="name" value="{{ old('name', isset($student) ? $student->name : '') }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <input class="form__input form-control" name="class" id="class" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan kelas'" placeholder="Masukkan kelas" autocomplete="off" data-validate-field="class">
+                                            <input class="form__input form-control" name="class_room" id="class_room" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan kelas'" placeholder="Masukkan kelas" autocomplete="off" data-validate-field="class_room">
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +64,7 @@
                             </h5>
                         </div>
                         <div class="card-body">
-                            <form class="" action="{{ route('student.update', $student->id) }}" method="post" id="student_password" novalidate="novalidate">@csrf
+                            <form class="" action="{{ route('student.update.password', $student->id) }}" method="post" id="student_password" novalidate="novalidate">@csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">

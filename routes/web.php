@@ -32,7 +32,8 @@ Route::group(['middleware' => ['student']], function() {
     Route::match(['get', 'post'], '/student/profile', 'CoursesController@account')->name('student.profile');
     Route::redirect('/student', '/student/profile');
     Route::get('student/{id}/edit', 'StudentsController@editProfile')->name('student.edit');
-    Route::get('student/{id}/update', 'StudentsController@updateProfile')->name('student.update');
+    Route::post('student/{id}/update', 'StudentsController@updateProfile')->name('student.update');
+    Route::post('student/{id}/update-password', 'StudentsController@updatePassword')->name('student.update.password');
 
     Route::match(['get', 'post'], '/student/take-course', 'CoursesController@takeCourse')->name('take-course');
     Route::get('student/{slug}/delete', 'CoursesController@deleteCourse')->name('untake-course');
@@ -97,6 +98,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('profile/{id}', 'ProfileController@profile')->name('profile');
     Route::post('profile/{id}/update', 'ProfileController@update')->name('profile-update');
     Route::post('profile/{id}/update-password', 'ProfileController@updatePass')->name('profile-update-password');
+    Route::get('profile/check-password', 'ProfileController@checkPass')->name('check.pass');
+    Route::post('profile/{id}/update-email', 'ProfileController@updateEmail')->name('profile.update.email');
 
     // Report
     Route::get('reports', 'ReportsController@index')->name('reports');

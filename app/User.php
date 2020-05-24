@@ -82,6 +82,10 @@ class User extends Authenticatable
         return $this->hasOne(UserDetail::class);
     }
 
+    public function student() {
+        return $this->hasOne(StudentDetail::class);
+    }
+
     public function testResults() {
         return $this->hasMany(TestsResult::class, 'user_id', 'id')->orderBy('test_id');
     }

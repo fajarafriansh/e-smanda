@@ -28,7 +28,7 @@
 	                <div class="single_team">
 	                	<a href="{{ route('teachers.show', [$teacher->id]) }}">
 		                    <div class="thumb">
-		                        <img class="teacher" src="{{ asset('img/avatar/'. $teacher->detail->avatar) }}" alt="">
+		                        <img class="teacher" src="{{ asset('img/avatar/'. $teacher->avatar) }}" alt="">
 		                        <div class="social_link">
 		                            <a href="#"><i class="fa fa-envelope"></i></a>
 		                            <a href="#"><i class="fa fa-twitter"></i></a>

@@ -98,7 +98,7 @@
 						@foreach ($course->teachers as $teacher)
 							<div class="auhor_header">
 								<div class="thumb">
-									<img src="{{ asset ('img/avatar/'. $teacher->detail->avatar) }}" alt="">
+									<img src="{{ asset ('img/avatar/'. $teacher->avatar) }}" alt="">
 								</div>
 								<div class="name">
 									<a href="{{ route('teachers.show', $teacher->id) }}">

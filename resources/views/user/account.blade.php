@@ -13,13 +13,13 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-xl-5 col-md-5">
                     <div class="profile_avatar">
-                        <img src="{{ asset ('img/avatar/'. $student->detail->avatar) }}" alt="">
+                        <img src="{{ asset ('img/avatar/'. $student->avatar) }}" alt="">
                     </div>
                 </div>
                 <div class="col-xl-7 col-md-7">
                     <div class="slider_info">
                         <h3 class="student_name">{{ $student->name }}</h3>
-                        <h4>fjfkfakfkaj</h4>
+                        <h4>Kelas: {{ isset($student->student) ? $student->student->class_room : 'Kelas' }}</h4>
                         <div class="student_menu">
                             <span>
                                 <a href="{{ route('student.edit', $student->id) }}" title="">Edit Profile</a>
@@ -135,7 +135,7 @@
                                                 <div class="star_prise d-flex justify-content-between">
                                                     <div class="star">
                                                         <a href="{{ route('teachers.show', [$teacher->id]) }}">
-                                                            <img class="avatar" src="{{ asset('img/avatar/'. $teacher->detail->avatar) }}" alt="">
+                                                            <img class="avatar" src="{{ asset('img/avatar/'. $teacher->avatar) }}" alt="">
                                                             {{-- <i class="flaticon-mark-as-favorite-star"></i> --}}
                                                             <span>{{ $teacher->name }}</span>
                                                         </a>

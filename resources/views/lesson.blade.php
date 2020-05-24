@@ -158,7 +158,7 @@
 					@foreach ($lesson->course->teachers as $teacher)
 						<div class="media align-items-center">
 							<div class="author-image">
-								<img src="{{ asset ('img/avatar/'. $teacher->detail->avatar) }}" alt="">
+								<img src="{{ asset ('img/avatar/'. $teacher->avatar) }}" alt="">
 							</div>
 							<div class="media-body">
 								<a href="{{ route('teachers.show', $teacher->id) }}">
