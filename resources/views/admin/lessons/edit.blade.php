@@ -258,4 +258,17 @@ Dropzone.options.downloadableFileDropzone = {
      }
 }
 </script>
+
+{{-- ckeditor 5 --}}
+<script src="{{ asset('vendor/ckeditor5/ckeditor.js') }}"></script>
+<script>
+  ClassicEditor
+    .create( document.querySelector( '.ckeditor' ) )
+    .then( editor => {
+        console.log( editor );
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+</script>
 @stop
