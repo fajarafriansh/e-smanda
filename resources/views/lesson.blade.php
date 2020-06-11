@@ -33,7 +33,7 @@
 						</ul>
 
 						<div class="lesson-text-area ck-content">
-							{{ $lesson->full_text }}
+							{{ strip_tags($lesson->full_text) }}
 						</div>
 
 						@if ($lesson->downloadable_file)
