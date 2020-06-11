@@ -32,7 +32,7 @@
 							<li><i class="fa fa-comments"></i> <a href="#comment-area">{{ $lesson->comments->count()}} Komentar</a></li>
 						</ul>
 
-						<div class=lesson-text-area>
+						<div class="lesson-text-area ck-content">
 							{{ $lesson->full_text }}
 						</div>
 

@@ -25,6 +25,7 @@
 	<link rel="stylesheet" href="{{ asset ('css/slicknav.css' ) }}">
 	<link rel="stylesheet" href="{{ asset ('css/style.css' ) }}">
 	<link rel="stylesheet" href="{{ asset ('css/custom.css' ) }}">
+	<link rel="stylesheet" href="{{ asset ('vendor/ckeditor5/css/content-style.css' ) }}">
 </head>
 
 <body>
