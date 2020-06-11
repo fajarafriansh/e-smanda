@@ -33,7 +33,7 @@
 						</ul>
 
 						<div class=lesson-text-area>
-							<p>{{ $lesson->full_text }}</p>
+							{{ $lesson->full_text }}
 						</div>
 
 						@if ($lesson->downloadable_file)
