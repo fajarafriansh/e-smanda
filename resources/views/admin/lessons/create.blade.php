@@ -256,4 +256,5 @@ Dropzone.options.downloadableFileDropzone = {
      }
 }
 </script>
+<script src="{{ asset('vendor/ckeditor5/ckeditor.js') }}"></script>
 @stop
