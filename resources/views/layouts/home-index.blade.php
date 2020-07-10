@@ -74,6 +74,7 @@
 
 	<script src="{{ asset ('js/main.js') }}"></script>
 	<script src="{{ asset('js/just-validate.min.js') }}"></script>
+	<script src="{{ asset('js/pristine.min.js') }}"></script>
 	{{-- <script src="{{ asset ('js/custom.js') }}"></script> --}}
 	{{-- <script src="{{ asset ('js/fuck.js') }}"></script> --}}
 

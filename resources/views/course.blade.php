@@ -15,16 +15,16 @@
 					<h3>{{ $course->title }}</h3>
 					<div class="prise">
 						{{-- <span class="inactive">$89.00</span> --}}
-						<span class="active">${{ $course->price }}</span>
+						{{-- <span class="active">${{ $course->price }}</span> --}}
 					</div>
-					<div class="rating">
+					{{-- <div class="rating">
 						<i class="flaticon-mark-as-favorite-star"></i>
 						<i class="flaticon-mark-as-favorite-star"></i>
 						<i class="flaticon-mark-as-favorite-star"></i>
 						<i class="flaticon-mark-as-favorite-star"></i>
 						<i class="flaticon-mark-as-favorite-star"></i>
 						<span>(4.5)</span>
-					</div>
+					</div> --}}
 					<div class="hours">
 						<div class="video">
 							<div class="single_video">
@@ -33,9 +33,9 @@
 									<span>{{ $teacher->name }}</span>
 								@endforeach
 							</div>
-							<div class="single_video">
+							{{-- <div class="single_video">
 							<i class="fa fa-clock-o"></i></i> <span>9 Hours</span>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
