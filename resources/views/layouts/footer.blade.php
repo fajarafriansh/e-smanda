@@ -38,7 +38,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-2 offset-xl-1 col-md-6 col-lg-3">
+				{{-- <div class="col-xl-2 offset-xl-1 col-md-6 col-lg-3">
 					<div class="footer_widget">
 						<h3 class="footer_title">
 							Menu
@@ -77,7 +77,7 @@
 							supoort@e-smanda.id
 						</p>
 					</div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</div>

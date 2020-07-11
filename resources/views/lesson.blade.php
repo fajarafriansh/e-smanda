@@ -194,7 +194,7 @@
 							@endforeach
 						</ul>
 					</aside>
-					<aside class="single_sidebar_widget popular_post_widget">
+					{{-- <aside class="single_sidebar_widget popular_post_widget">
 						<h3 class="widget_title">Posting Blog Terbaru</h3>
 						<div class="media post_item">
 							<img src="{{ asset ('img/post/post_1.png') }}" alt="post">
@@ -232,7 +232,7 @@
 								<p>01 Hours ago</p>
 							</div>
 						</div>
-					</aside>
+					</aside> --}}
 				</div>
 			</div>
 			<!-- lesson sidebar area end -->
