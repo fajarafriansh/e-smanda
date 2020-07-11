@@ -13,7 +13,7 @@
 <!-- bradcam_area_end -->
 
 <!-- ================ contact section start ================= -->
-<section class="contact-section">
+<section class="profile-edit-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -29,15 +29,24 @@
                         <div class="card-body">
                             <form class="form" action="{{ route('student.update', $student->id) }}" method="post" id="student_edit" novalidate="novalidate">@csrf
                                 <input type="hidden" id="current_avatar" name="current_avatar" value="{{ old('avatar', isset($student) ? $student->avatar : '') }}">
+
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
+                                            <label for="name">Nama</label>
                                             <input type="text" class="form__input form-control w-100" name="name" id="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama'" placeholder=" Nama" autocomplete="off" data-validate-field="name" value="{{ old('name', isset($student) ? $student->name : '') }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <input class="form__input form-control" name="class_room" id="class_room" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan kelas'" placeholder="Masukkan kelas" autocomplete="off" data-validate-field="class_room">
+                                            <label for="class_room">Kelas</label>
+                                            <select class="form__input form-control" name="class_room" id="class_room">
+                                                <option>Pilih Kelas</option>
+                                                @foreach($classrooms as $class)
+                                                    <option>{{ $class->room }}</option>
+                                                @endforeach
+                                            </select>
+                                            {{-- <input class="form__input form-control" name="class_room" id="class_room" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan kelas'" placeholder="Pilih kelas" autocomplete="off" data-validate-field="class_room"> --}}
                                         </div>
                                     </div>
                                 </div>
