@@ -76,6 +76,11 @@
             <div class="form-group {{ $errors->has('full_text') ? 'has-error' : '' }}">
                 <label for="full_text">{{ trans('cruds.lesson.fields.full_text') }}</label>
                 <textarea id="full_text" name="full_text" class="form-control ckeditor">{{ old('full_text', isset($lesson) ? $lesson->full_text : '') }}</textarea>
+                <script>
+                    // Replace the <textarea id="editor1"> with a CKEditor 4
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'full_text' );
+                </script>
                 @if($errors->has('full_text'))
                     <p class="help-block">
                         {{ $errors->first('full_text') }}
@@ -258,45 +263,5 @@ Dropzone.options.downloadableFileDropzone = {
 </script>
 
 {{-- ckeditor 5 --}}
-<script src="{{ asset('vendor/ckeditor5/build/ckeditor.js') }}"></script>
-<script>
-  ClassicEditor
-    .create( document.querySelector( '.ckeditor' ), {
-        toolbar: {
-                items: [
-                    'heading',
-                    '|',
-                    'bold',
-                    'italic',
-                    'link',
-                    'bulletedList',
-                    'numberedList',
-                    '|',
-                    'indent',
-                    'outdent',
-                    '|',
-                    'imageUpload',
-                    'blockQuote',
-                    'insertTable',
-                    'mediaEmbed',
-                    'undo',
-                    'redo'
-                ]
-            },
-        // toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'mediaEmbed' ],
-        heading: {
-            options: [
-                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-            ]
-        }
-    } )
-    .then( editor => {
-        console.log( editor );
-    } )
-    .catch( error => {
-        console.error( error );
-    } );
-</script>
+<script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
 @stop
