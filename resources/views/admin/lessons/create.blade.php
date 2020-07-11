@@ -258,12 +258,11 @@ Dropzone.options.downloadableFileDropzone = {
 </script>
 
 {{-- ckeditor 5 --}}
-<script src="{{ asset('vendor/ckeditor5/ckeditor.js') }}"></script>
+<script src="{{ asset('vendor/ckeditor5/build/ckeditor.js') }}"></script>
 <script>
   ClassicEditor
     .create( document.querySelector( '.ckeditor' ), {
-        plugins: [ MediaEmbed, ... ],
-        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'MediaEmbed' ],
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'mediaEmbed' ],
         heading: {
             options: [
                 { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
