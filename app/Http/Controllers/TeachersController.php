@@ -17,7 +17,8 @@ class TeachersController extends Controller
 
 	public function show($id) {
 		$teacher = User::where('id', $id)->first();
+		$courses = $teacher->courses->where('published', 1);
 
-		return view('teachers.show', compact('teacher'));
+		return view('teachers.show', compact('teacher', 'courses'));
 	}
 }

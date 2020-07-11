@@ -61,7 +61,7 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
-                                @foreach($teacher->courses as $course)
+                                @foreach($courses as $course)
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         @include ('partials.course-card')
                                     </div>
