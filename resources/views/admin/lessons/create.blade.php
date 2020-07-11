@@ -76,11 +76,6 @@
             <div class="form-group {{ $errors->has('full_text') ? 'has-error' : '' }}">
                 <label for="full_text">{{ trans('cruds.lesson.fields.full_text') }}</label>
                 <textarea id="full_text" name="full_text" class="form-control ckeditor">{{ old('full_text', isset($lesson) ? $lesson->full_text : '') }}</textarea>
-                <script>
-                    // Replace the <textarea id="editor1"> with a CKEditor 4
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'full_text' );
-                </script>
                 @if($errors->has('full_text'))
                     <p class="help-block">
                         {{ $errors->first('full_text') }}
@@ -262,6 +257,11 @@ Dropzone.options.downloadableFileDropzone = {
 }
 </script>
 
-{{-- ckeditor 5 --}}
+{{-- ckeditor --}}
 <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor 4
+    // instance, using default configuration.
+    CKEDITOR.replace( 'full_text' );
+</script>
 @stop
