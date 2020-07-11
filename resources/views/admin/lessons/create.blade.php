@@ -260,7 +260,7 @@ Dropzone.options.downloadableFileDropzone = {
 {{-- ckeditor 5 --}}
 <script src="{{ asset('vendor/ckeditor5/build/ckeditor.js') }}"></script>
 <script>ClassicEditor
-        .create( document.querySelector( '.editor' ), {
+        .create( document.querySelector( '.ckeditor' ), {
 
             toolbar: {
                 items: [
