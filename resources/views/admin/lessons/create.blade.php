@@ -258,25 +258,61 @@ Dropzone.options.downloadableFileDropzone = {
 </script>
 
 {{-- ckeditor 5 --}}
-<script src="{{ asset('vendor/ckeditor5/ckeditor.js') }}"></script>
-<script>
-  ClassicEditor
-    .create( document.querySelector( '.ckeditor' ), {
-        plugins: [ MediaEmbed, ... ],
-        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'MediaEmbed' ],
-        heading: {
-            options: [
-                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-            ]
-        }
-    } )
-    .then( editor => {
-        console.log( editor );
-    } )
-    .catch( error => {
-        console.error( error );
-    } );
+<script src="{{ asset('vendor/ckeditor5/build/ckeditor.js') }}"></script>
+<script>ClassicEditor
+        .create( document.querySelector( '.editor' ), {
+
+            toolbar: {
+                items: [
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'link',
+                    'bulletedList',
+                    'numberedList',
+                    '|',
+                    'indent',
+                    'outdent',
+                    '|',
+                    'imageUpload',
+                    'blockQuote',
+                    'insertTable',
+                    'mediaEmbed',
+                    'undo',
+                    'redo'
+                ]
+            },
+            language: 'id',
+            image: {
+                toolbar: [
+                    'imageTextAlternative',
+                    'imageStyle:full',
+                    'imageStyle:side'
+                ]
+            },
+            table: {
+                contentToolbar: [
+                    'tableColumn',
+                    'tableRow',
+                    'mergeTableCells'
+                ]
+            },
+            licenseKey: '',
+
+        } )
+        .then( editor => {
+            window.editor = editor;
+
+
+
+
+        } )
+        .catch( error => {
+            console.error( 'Oops, something gone wrong!' );
+            console.error( 'Please, report the following error in the https://github.com/ckeditor/ckeditor5 with the build id and the error stack trace:' );
+            console.warn( 'Build id: kwm88qzg8ejr-8o65j7c6blw0' );
+            console.error( error );
+        } );
 </script>
 @stop
