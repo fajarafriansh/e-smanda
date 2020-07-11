@@ -262,6 +262,7 @@ Dropzone.options.downloadableFileDropzone = {
 <script>
   ClassicEditor
     .create( document.querySelector( '.ckeditor' ), {
+        plugins: [ MediaEmbed, ... ],
         toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'mediaEmbed' ],
         heading: {
             options: [
