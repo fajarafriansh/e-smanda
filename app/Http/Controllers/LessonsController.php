@@ -27,7 +27,7 @@ class LessonsController extends Controller
 
             $essay = Test::where('lesson_id', $lesson->id)->where('type', 1)->first();
 
-            $student_essay = Essay::where('lesson_id', $lesson->id)->where('user_id', \Auth::user()->id)->first();
+            $student_essay = Essay::where('lesson_id', $lesson->id)->where('user_id', \Auth::user()->id)->count();
 
 	    	$previous_lesson = Lesson::where('course_id', $lesson->course_id)->where('published', 1)->where('position', '<', $lesson->position)->orderBy('position', 'desc')->first();
 	    	$next_lesson = Lesson::where('course_id', $lesson->course_id)->where('published', 1)->where('position', '>', $lesson->position)->orderBy('position', 'asc')->first();

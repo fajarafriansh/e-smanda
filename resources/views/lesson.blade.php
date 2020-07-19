@@ -84,7 +84,7 @@
 									@endif
 								</div>
 								@if ($essay)
-									@if ($student_essay->count() < 1)
+									@if ($student_essay < 1)
 										<div class="container box_1170 border-top-generic text-center">
 											<h3 class="text-heading">Upload Jawaban Essay</h3>
 											<p>Upload jawaban pada form di bawah</p>
