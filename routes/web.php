@@ -43,6 +43,8 @@ Route::group(['middleware' => ['student']], function() {
 
     Route::post('lesson/{code}/{slug}/comment', ['uses' => 'CommentsController@addComment', 'as' => 'add.comment']);
     Route::post('lesson/{code}/{slug}/reply', ['uses' => 'CommentsController@addReply', 'as' => 'add.reply']);
+
+    Route::post('/essay/upload', 'LessonsController@essay')->name('essay.upload');
 });
 
 Auth::routes(['register' => false]);
@@ -93,6 +95,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Tests
     Route::delete('tests/destroy', 'TestController@massDestroy')->name('tests.massDestroy');
     Route::resource('tests', 'TestController');
+    Route::get('test/essay', 'EssayController@index')->name('essay.index');
+    Route::get('test/essay/create', 'EssayController@create')->name('essay.create');
+    Route::post('test/essay/store', 'EssayController@store')->name('essay.store');
+    Route::get('test/essay/show', 'EssayController@show')->name('essay.show');
+    Route::get('test/essay/edit', 'EssayController@edit')->name('essay.edit');
+    Route::post('test/essay/update', 'EssayController@update')->name('essay.update');
 
     // Profile edit
     Route::get('profile/{id}', 'ProfileController@profile')->name('profile');

@@ -56,6 +56,10 @@ class Lesson extends Model implements HasMedia
         return $this->hasOne(Test::class);
     }
 
+    public function essay() {
+        return $this->hasOne(Essay::class);
+    }
+
     public function files() {
         return $this->hasMany(Media::class, 'model_id', 'id')->where('collection_name', 'downloadable_file');
     }

@@ -83,6 +83,19 @@
 										@endif
 									@endif
 								</div>
+								@if ($essay)
+									@if ($student_essay->count() < 1)
+										<div class="container box_1170 border-top-generic text-center">
+											<h3 class="text-heading">Upload Jawaban Essay</h3>
+											<p>Upload jawaban pada form di bawah</p>
+											<form action="{{ route("essay.upload") }}" method="POST" enctype="multipart/form-data">@csrf
+												<input type="file" id="essay" name="essay">
+												<input type="hidden" name="lesson_id" value="{{ $lesson->id }}">
+												<button type="submit" class="button rounded-0 primary-bg text-white lebar-100 btn_1 boxed-btn">Upload</button>
+											</form>
+										</div>
+									@endif
+								@endif
 							</div>
 						@endif
 
