@@ -21,6 +21,7 @@ class Test extends Model
         'title',
         'course_id',
         'lesson_id',
+        'type',
         'published',
         'created_at',
         'updated_at',

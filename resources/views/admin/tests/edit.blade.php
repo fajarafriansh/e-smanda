@@ -36,6 +36,13 @@
                     </p>
                 @endif
             </div>
+            <div class="form-group {{ $errors->has('course_id') ? 'has-error' : '' }}">
+                <label for="course">Tipe</label>
+                <select name="type" id="course" class="form-control select2">
+                    <option value="0" >Pilihan Ganda</option>
+                    <option value="1" >Essay</option>
+                </select>
+            </div>
             <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                 <label for="title">{{ trans('cruds.test.fields.title') }}</label>
                 <input type="text" id="title" name="title" class="form-control" value="{{ old('title', isset($test) ? $test->title : '') }}">
