@@ -7,9 +7,12 @@ use App\StudentCourse;
 use App\Question;
 use App\QuestionsOption;
 use App\TestsResult;
+use App\Test;
+use App\Essay;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use File;
 
 class LessonsController extends Controller
 {
@@ -22,6 +25,10 @@ class LessonsController extends Controller
 		    	$test_result = TestsResult::where('test_id', $lesson->test->id)->where('user_id', Auth::user()->id)->first();
 		    }
 
+            $essay = Test::where('lesson_id', $lesson->id)->where('type', 1)->first();
+
+            $student_essay = Essay::where('lesson_id', $lesson->id)->where('user_id', \Auth::user()->id)->first();
+
 	    	$previous_lesson = Lesson::where('course_id', $lesson->course_id)->where('published', 1)->where('position', '<', $lesson->position)->orderBy('position', 'desc')->first();
 	    	$next_lesson = Lesson::where('course_id', $lesson->course_id)->where('published', 1)->where('position', '>', $lesson->position)->orderBy('position', 'asc')->first();
 
@@ -29,7 +36,7 @@ class LessonsController extends Controller
 	    	$count_course = StudentCourse::where(['course_id'=>$lesson->course_id, 'student_id'=>$student_id])->count();
 
 	    	if ($count_course > 0) {
-		    	return view('lesson', compact('lesson', 'previous_lesson', 'next_lesson', 'test_result'));
+		    	return view('lesson', compact('lesson', 'essay', 'student_essay', 'previous_lesson', 'next_lesson', 'test_result'));
 		    } else {
 		    	return redirect()->back()->with('warning', 'Kamu harus mengambil kursus ini terlebih dahulu.');
 		    }
@@ -70,5 +77,23 @@ class LessonsController extends Controller
     	$test_result->answers()->createMany($answers);
 
     	return redirect(route('lessons.show', [$lesson->course->code, $lesson->slug]))->with('info', 'Nilai kamu adalah '. $test_score);
+    }
+
+    public function essay(Request $request) {
+        $user_id = \Auth::user()->id;
+        $lesson_id = $request->lesson_id;
+
+        $essay = request()->file('essay');
+        $essay_name = rand(111,99999).'.'.$essay->getClientOriginalExtension();
+        $essay_path = 'file/essay/'.$essay_name;
+        $essay->move($essay_path, $essay_name);
+
+        Essay::create([
+            'essay' => $essay_name,
+            'user_id' => $user_id,
+            'lesson_id' => $lesson_id,
+        ]);
+
+        return redirect()->back()->with('success', 'Essay Berhasil diupload.');
     }
 }
