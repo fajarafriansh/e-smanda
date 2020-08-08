@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="section_title text-center mb-100">
-                        <h3>Daftar Kursus {{ $teacher->name }}</h3>
+                        <h3>Daftar Kursus oleh {{ $teacher->name }}</h3>
                     </div>
                 </div>
             </div>

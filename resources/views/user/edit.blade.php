@@ -31,6 +31,13 @@
                                 <input type="hidden" id="current_avatar" name="current_avatar" value="{{ old('avatar', isset($student) ? $student->avatar : '') }}">
 
                                 <div class="row">
+                                    <div class="col-12 profile-edit avatar-container">
+                                        <img class="profile-edit avatar" src="{{ asset ('img/avatar/'. $student->avatar) }}" alt="">
+                                        <div class="form-group">
+                                            <label for="name">Avatar</label>
+                                            <input type="file" class="form__input form-control w-100" name="avatar" id="avatar">
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="name">Nama</label>

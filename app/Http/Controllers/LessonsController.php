@@ -10,6 +10,7 @@ use App\TestsResult;
 use App\Test;
 use App\Essay;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Auth;
 use DB;
 use File;
@@ -26,8 +27,10 @@ class LessonsController extends Controller
 		    }
 
             $essay = Test::where('lesson_id', $lesson->id)->where('type', 1)->first();
+            $essay_result = TestsResult::where('test_id', $essay->id)->where('user_id', Auth::user()->id)->first();
 
-            $student_essay = Essay::where('lesson_id', $lesson->id)->where('user_id', \Auth::user()->id)->count();
+            $student_essay = Essay::where('lesson_id', $lesson->id)->where('user_id', \Auth::user()->id)->first();
+            $student_essays = Essay::where('lesson_id', $lesson->id)->where('user_id', \Auth::user()->id)->count();
 
 	    	$previous_lesson = Lesson::where('course_id', $lesson->course_id)->where('published', 1)->where('position', '<', $lesson->position)->orderBy('position', 'desc')->first();
 	    	$next_lesson = Lesson::where('course_id', $lesson->course_id)->where('published', 1)->where('position', '>', $lesson->position)->orderBy('position', 'asc')->first();
@@ -36,7 +39,7 @@ class LessonsController extends Controller
 	    	$count_course = StudentCourse::where(['course_id'=>$lesson->course_id, 'student_id'=>$student_id])->count();
 
 	    	if ($count_course > 0) {
-		    	return view('lesson', compact('lesson', 'essay', 'student_essay', 'previous_lesson', 'next_lesson', 'test_result'));
+		    	return view('lesson', compact('lesson', 'essay', 'essay_result', 'student_essay', 'student_essays', 'previous_lesson', 'next_lesson', 'test_result'));
 		    } else {
 		    	return redirect()->back()->with('warning', 'Kamu harus mengambil kursus ini terlebih dahulu.');
 		    }
@@ -82,15 +85,17 @@ class LessonsController extends Controller
     public function essay(Request $request) {
         $user_id = \Auth::user()->id;
         $lesson_id = $request->lesson_id;
+        $test_id = $request->test_id;
 
         $essay = request()->file('essay');
-        $essay_name = rand(111,99999).'.'.$essay->getClientOriginalExtension();
-        $essay_path = 'file/essay/'.$essay_name;
+        $essay_name = rand(111,99999).'-'.Str::slug(\Auth::user()->name).'.'.$essay->getClientOriginalExtension();
+        $essay_path = 'file/essay/';
         $essay->move($essay_path, $essay_name);
 
         Essay::create([
             'essay' => $essay_name,
             'user_id' => $user_id,
+            'test_id' => $test_id,
             'lesson_id' => $lesson_id,
         ]);
 

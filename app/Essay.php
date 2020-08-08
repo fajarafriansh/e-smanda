@@ -20,6 +20,7 @@ class Essay extends Model
     protected $fillable = [
         'essay',
         'lesson_id',
+        'test_id',
         'user_id',
         'created_at',
         'updated_at',
@@ -34,5 +35,10 @@ class Essay extends Model
     public function lesson()
     {
         return $this->belongsTo(Lesson::class, 'lesson_id');
+    }
+
+    public function test()
+    {
+        return $this->belongsTo(Test::class, 'test_id');
     }
 }

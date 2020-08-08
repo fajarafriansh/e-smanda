@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\StudentDetail;
 use Image;
+use File;
 use Hash;
+use DB;
 
 class StudentsController extends Controller
 {
     public function editProfile() {
     	$student_id = \Auth::user()->id;
     	$student = User::find($student_id);
+        $classrooms = DB::table('class_rooms')->get();
 
-    	return view('user.edit', compact('student'));
+    	return view('user.edit', compact('student', 'classrooms'));
     }
 
     public function updateProfile(Request $request) {
@@ -34,7 +38,8 @@ class StudentsController extends Controller
     		$delete_avatar_path = 'img/avatar/'.$user->detail->avatar;
 
     		File::delete($delete_avatar_path);
-    	} else {
+    	}
+        else {
     		$avatar_name = $data['current_avatar'];
     	}
 
@@ -75,3 +80,4 @@ class StudentsController extends Controller
         }
     }
 }
+

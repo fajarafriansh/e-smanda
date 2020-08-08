@@ -1,28 +1,47 @@
 @extends('layouts.admin-index')
 @section('content')
-
+@can('test_create')
+    <div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="{{ route("admin.essay.create") }}">
+                {{ trans('global.add') }} {{ trans('cruds.test.title_singular') }}
+            </a>
+        </div>
+    </div>
+@endcan
 <div class="card">
     <div class="card-header">
-        Daftar Kursus
-        {{-- {{ trans('cruds.course.title_singular') }} {{ trans('global.list') }} --}}
+        {{ trans('cruds.test.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Course">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Test">
                 <thead>
                     <tr>
-                        <th>
-                            {{ trans('cruds.course.fields.id') }}
+                        <th width="10">
+
                         </th>
                         <th>
-                            Nama Ujian
+                            {{ trans('cruds.test.fields.id') }}
                         </th>
                         <th>
-                          Tipe Ujian
+                            {{ trans('cruds.test.fields.course') }}
                         </th>
                         <th>
-                            {{ trans('cruds.course.fields.published') }}
+                            {{ trans('cruds.test.fields.lesson') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.test.fields.title') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.test.fields.description') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.test.fields.questions') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.test.fields.published') }}
                         </th>
                         <th>
                             &nbsp;
@@ -31,46 +50,51 @@
                 </thead>
                 <tbody>
                     @foreach($tests as $key => $test)
-                        <tr>
+                        <tr data-entry-id="{{ $test->id }}">
+                            <td>
+
+                            </td>
                             <td>
                                 {{ $test->id ?? '' }}
+                            </td>
+                            <td>
+                                {{ $test->course->title ?? '' }}
+                            </td>
+                            <td>
+                                {{ $test->lesson->title ?? '' }}
                             </td>
                             <td>
                                 {{ $test->title ?? '' }}
                             </td>
                             <td>
-                              @if($test->type == 0)
-                                Pilihan Ganda
-                              @else
-                                Essay
-                              @endif
+                                {{ $test->description ?? '' }}
+                            </td>
+                            <td>
+                                {{ $test->questions->count() }}
                             </td>
                             <td>
                                 {{ $test->published ? trans('global.yes') : trans('global.no') }}
                             </td>
                             <td>
-                                @can('course_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.reports.show', [$test->id]) }}">
-                                        Lihat Report
-                                    </a>
-                                    {{-- <a class="btn btn-xs btn-primary" href="{{ route('admin.courses.show', $course->id) }}">
+                                @can('test_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.tests.show', $test->id) }}">
                                         {{ trans('global.view') }}
-                                    </a> --}}
+                                    </a>
                                 @endcan
 
-                                {{-- @can('course_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.courses.edit', $course->id) }}">
+                                @can('test_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.tests.edit', $test->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
 
-                                @can('course_delete')
-                                    <form action="{{ route('admin.courses.destroy', $course->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @can('test_delete')
+                                    <form action="{{ route('admin.tests.destroy', $test->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
-                                @endcan --}}
+                                @endcan
 
                             </td>
 
@@ -78,9 +102,6 @@
                     @endforeach
                 </tbody>
             </table>
-             <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">
-                {{ trans('global.back_to_list') }}
-            </a>
         </div>
     </div>
 </div>
@@ -90,11 +111,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('course_delete')
+@can('test_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.courses.massDestroy') }}",
+    url: "{{ route('admin.tests.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -124,7 +145,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  $('.datatable-Course:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  $('.datatable-Test:not(.ajaxTable)').DataTable({ buttons: dtButtons })
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
         $($.fn.dataTable.tables(true)).DataTable()
             .columns.adjust();

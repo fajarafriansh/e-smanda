@@ -29,7 +29,7 @@
                 <li class="nav-item">
                     <a href="{{ route("admin.reports") }}" class="nav-link {{ request()->is('admin/reports') || request()->is('admin/report/*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Rapor Siswa</p>
+                        <p>Siswa Saya</p>
                     </a>
                 </li>
                 @can('user_management_access')

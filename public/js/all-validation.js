@@ -105,42 +105,69 @@ new window.JustValidate('#password_edit', {
 	},
 });
 
-new window.JustValidate('#profile_edit', {
-	rules: {
-		name: {
-			required: true,
-		},
-		role: {
-			required: true,
-		}
-	},
-	messages: {
-		name: {
-			required: "Nama tidak boleh kosong",
-		},
-		role: {
-			required: "Jabatan tidak boleh kosong",
-		}
-	},
+// new window.JustValidate('#profile_edit', {
+// 	rules: {
+// 		name: {
+// 			required: true,
+// 		},
+// 		role: {
+// 			required: true,
+// 		}
+// 	},
+// 	messages: {
+// 		name: {
+// 			required: "Nama tidak boleh kosong",
+// 		},
+// 		role: {
+// 			required: "Jabatan tidak boleh kosong",
+// 		}
+// 	},
 
-	focusWrongField: true,
+// 	focusWrongField: true,
 
-	// submitHandler: function (form, values, ajax) {
-	// 	ajax({
-	// 		url: 'https://just-validate-api.herokuapp.com/submit',
-	// 		method: 'POST',
-	// 		data: values,
-	// 		async: true,
-	// 		callback: function (response) {
-	// 			alert('AJAX submit successful! \nResponse from server:' + response)
-	// 		},
-	// 		error: function (response) {
-	// 			alert('AJAX submit error! \nResponse from server:' + response)
-	// 		}
-	// 	});
-	// },
+// 	// submitHandler: function (form, values, ajax) {
+// 	// 	ajax({
+// 	// 		url: 'https://just-validate-api.herokuapp.com/submit',
+// 	// 		method: 'POST',
+// 	// 		data: values,
+// 	// 		async: true,
+// 	// 		callback: function (response) {
+// 	// 			alert('AJAX submit successful! \nResponse from server:' + response)
+// 	// 		},
+// 	// 		error: function (response) {
+// 	// 			alert('AJAX submit error! \nResponse from server:' + response)
+// 	// 		}
+// 	// 	});
+// 	// },
 
-	invalidFormCallback: function (errors) {
-		console.log(errors);
-	},
-});
+// 	invalidFormCallback: function (errors) {
+// 		console.log(errors);
+// 	},
+// });
+
+window.onload = function () {
+
+   var profileEditForm = document.getElementById("student_edit");
+
+   var pristine = new Pristine(profileEditForm);
+
+   profileEditForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var valid = pristine.validate();
+      //alert('Form is valid: ' + valid);
+
+   });
+
+
+};
+
+(function($) {
+	"use strict";
+
+	$("#student_edit").submit(function(e) {
+		e.preventDefault();
+
+		$("#name")
+	});
+
+})(jQuery);

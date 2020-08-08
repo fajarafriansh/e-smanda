@@ -615,6 +615,12 @@ span.slicknav_btn.login {
 	}
 }
 
+@media (max-width: 991px) {
+	.profile-edit-section {
+	    padding: 50px 20px 40px;
+	}
+}
+
 .courses_info img.avatar {
 	width: 22px;
 	height: 22px;
@@ -645,4 +651,18 @@ html {
 
 p.teacher_bio {
 	color: #fff;
+}
+
+.profile-edit-section .container {
+	margin-top: 50px;
+}
+
+.profile-edit .avatar {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+}
+
+.profile-edit.avatar-container {
+	margin-bottom: 10px;
 }

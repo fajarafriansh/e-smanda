@@ -102,6 +102,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('test/essay/edit', 'EssayController@edit')->name('essay.edit');
     Route::post('test/essay/update', 'EssayController@update')->name('essay.update');
 
+    // E
+    Route::post('essay/result', 'ReportsController@essayResult')->name('essay.result');
+
     // Profile edit
     Route::get('profile/{id}', 'ProfileController@profile')->name('profile');
     Route::post('profile/{id}/update', 'ProfileController@update')->name('profile-update');

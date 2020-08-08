@@ -84,15 +84,26 @@
 									@endif
 								</div>
 								@if ($essay)
-									@if ($student_essay < 1)
+									@if ($student_essays < 1)
 										<div class="container box_1170 border-top-generic text-center">
 											<h3 class="text-heading">Upload Jawaban Essay</h3>
 											<p>Upload jawaban pada form di bawah</p>
 											<form action="{{ route("essay.upload") }}" method="POST" enctype="multipart/form-data">@csrf
 												<input type="file" id="essay" name="essay">
+												<input type="hidden" name="test_id" value="{{ $essay->id }}">
 												<input type="hidden" name="lesson_id" value="{{ $lesson->id }}">
 												<button type="submit" class="button rounded-0 primary-bg text-white lebar-100 btn_1 boxed-btn">Upload</button>
 											</form>
+										</div>
+									@else
+										<div class="container box_1170 border-top-generic text-center">
+											<h3 class="text-heading">Upload Jawaban Essay</h3>
+											<p>Kamu sudah mengupload tugas essay.</p>
+											@if (!is_null($essay_result))
+												<div class="button rounded-0 primary-bg text-white lebar-100 btn_1 boxed-btn done">Nilai kamu = {{ $essay_result->test_result }}</div>
+											@else
+												<div class="button rounded-0 primary-bg text-white lebar-100 btn_1 boxed-btn done">Essay kamu belum dinilai</div>
+											@endif
 										</div>
 									@endif
 								@endif
