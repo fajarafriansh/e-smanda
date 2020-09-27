@@ -666,3 +666,14 @@ p.teacher_bio {
 .profile-edit.avatar-container {
 	margin-bottom: 10px;
 }
+
+.input-result {
+	width: 100px;
+	margin-right: 5px;
+}
+
+@media (max-width: 320px) {
+	.input-result {
+		width: 50px;
+	}
+}

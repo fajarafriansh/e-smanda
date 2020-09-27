@@ -62,9 +62,13 @@ class ReportsController extends Controller
 
         $result = TestsResult::where('test_id', $request->test_id)->where('user_id', Auth::user()->id)->first();
 
+        $request->validate([
+            'test_result' => 'required',
+        ]);
+
         // dd($request->all());
-        if ($results) {
-            $results->update([
+        if ($result) {
+            $result->update([
                 'test_id' => $request->test_id,
                 'user_id' => \Auth::user()->id,
                 'test_result' => $request->test_result
