@@ -9,6 +9,7 @@ class TestsResult extends Model
 	protected $fillable = [
     	'test_id',
     	'user_id',
+        'essay_id',
     	'test_result'
     ];
 
@@ -25,6 +26,6 @@ class TestsResult extends Model
     }
 
     public function essay() {
-        return $this->belongsTo(Essay::class);
+        return $this->belongsTo(Essay::class, 'essay_id');
     }
 }
