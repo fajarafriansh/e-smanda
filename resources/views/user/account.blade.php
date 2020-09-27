@@ -141,10 +141,10 @@
                                                         </a>
                                                     </div>
                                                     <div class="prise">
-                                                        <span class="offer">$89.00</span>
+                                                       {{--  <span class="offer">$89.00</span>
                                                         <span class="active_prise">
                                                             $49
-                                                        </span>
+                                                        </span> --}}
                                                     </div>
                                                 </div>
                                             </div>

@@ -23,4 +23,8 @@ class TestsResult extends Model
     public function test() {
         return $this->belongsTo(Test::class, 'test_id');
     }
+
+    public function essay() {
+        return $this->belongsTo(Essay::class);
+    }
 }

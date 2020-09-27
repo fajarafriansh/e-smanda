@@ -48,19 +48,20 @@ class ReportsController extends Controller
 
         $test = Test::where('id', $test_id)->first();
         $essays = Essay::where('test_id', $test_id)->get();
-        $result = TestsResult::where('test_id', $test_id)->where('user_id', Auth::user()->id)->first();
         $results = TestsResult::where('test_id', $test_id)->get();
 
         $user_id = \Auth::user()->id;
         $user = User::where('id', $user_id)->first();
 
-        return view('admin.reports.show', compact('test', 'essays', 'result', 'results', 'user'));
+        // dump($essays);
+
+        return view('admin.reports.show', compact('test', 'essays', 'results', 'user'));
     }
 
     public function essayResult(Request $request) {
         abort_if(Gate::denies('course_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $result = TestsResult::where('test_id', $request->test_id)->where('user_id', Auth::user()->id)->first();
+        $result = TestsResult::where('test_id', $request->test_id)->where('user_id', $request->user_id)->first();
 
         $request->validate([
             'test_result' => 'required',
@@ -70,13 +71,15 @@ class ReportsController extends Controller
         if ($result) {
             $result->update([
                 'test_id' => $request->test_id,
-                'user_id' => \Auth::user()->id,
+                'user_id' => $request->user_id,
+                'essay_id' => $request->essay_id,
                 'test_result' => $request->test_result
             ]);
         } else {
             TestsResult::create([
                 'test_id' => $request->test_id,
-                'user_id' => \Auth::user()->id,
+                'user_id' => $request->user_id,
+                'essay_id' => $request->essay_id,
                 'test_result' => $request->test_result
             ]);
         }

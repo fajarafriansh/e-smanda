@@ -57,6 +57,7 @@
                         @foreach ($essays as $essay)
                             <tr>
                                 <td>{{ $essay->student->name }}</td>
+                                {{-- <td>{{ $essay->result->user_id }}</td> --}}
                                 <td>{{ $essay->created_at->toDayDateTimeString() }}</td>
                                 <td>
                                     <a class="btn btn-xs btn-primary" href="{{ asset('/file/essay').'/'.$essay->essay }}">
@@ -65,8 +66,10 @@
                                 </td>
                                 <td>
                                     <form action="{{ route("admin.essay.result") }}" method="post" accept-charset="utf-8">@csrf
-                                        <input type="text" name="test_result" value="@if (!is_null($result)) {{ $result->test_result }} @endif" class="input-result">
+                                        <input type="text" name="test_result" value="@if (!is_null($essay->result)) {{ $essay->result->test_result }} @endif" class="input-result">
                                         <input type="hidden" name="test_id" value="{{ $essay->test->id }}">
+                                        <input type="hidden" name="user_id" value="{{ $essay->student->id }}">
+                                         <input type="hidden" name="essay_id" value="{{ $essay->id }}">
                                         <button type="submit" class="btn btn-xs btn-primary">Update</button>
                                     </form>
                                 </td>

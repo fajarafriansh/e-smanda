@@ -41,4 +41,8 @@ class Essay extends Model
     {
         return $this->belongsTo(Test::class, 'test_id');
     }
+
+    public function result() {
+        return $this->hasOne(TestsResult::class);
+    }
 }
